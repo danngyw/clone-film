@@ -1,0 +1,138 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "795a1f00d87eb78095b926302052705a",
+    "packages": [
+        {
+            "name": "dimabdc/php-fast-simple-html-dom-parser",
+            "version": "1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dimabdc/PHP-Fast-Simple-HTML-DOM-Parser.git",
+                "reference": "5a247567567a512a2c7ba819898e00a9207f47c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dimabdc/PHP-Fast-Simple-HTML-DOM-Parser/zipball/5a247567567a512a2c7ba819898e00a9207f47c3",
+                "reference": "5a247567567a512a2c7ba819898e00a9207f47c3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "ext-simplexml": "*",
+                "php": ">=5.6",
+                "symfony/css-selector": "*"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FastSimpleHTMLDom\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "dimabdc",
+                    "email": "support@titor.ru",
+                    "homepage": "http://github.com/dimabdc"
+                }
+            ],
+            "description": "PHP Fast Simple HTML DOM parser.",
+            "keywords": [
+                "html",
+                "parse",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/dimabdc/PHP-Fast-Simple-HTML-DOM-Parser/issues",
+                "source": "https://github.com/dimabdc/PHP-Fast-Simple-HTML-DOM-Parser/tree/1.4"
+            },
+            "time": "2020-08-23T22:47:26+00:00"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v5.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "f65f217b3314504a1ec99c2d6ef69016bb13490f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/f65f217b3314504a1ec99c2d6ef69016bb13490f",
+                "reference": "f65f217b3314504a1ec99c2d6ef69016bb13490f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Converts CSS selectors to XPath expressions",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v5.2.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-01-27T10:01:46+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
