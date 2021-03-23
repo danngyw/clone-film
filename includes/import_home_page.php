@@ -69,6 +69,7 @@ function manually_update_filmd_detail($film_id ){
     $film_id = 526;
     $source_id = get_post_meta($film_id,'film_source_id', true);
     $movie_url = "https://yifysubtitles.org/movie-imdb/tt".$source_id;
+    echo '<a href="'.$movie_url.'">'.$movie_url.'</a>';
     var_dump($movie_url);
 
 
