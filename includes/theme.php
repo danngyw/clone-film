@@ -19,13 +19,13 @@ function import_film($args){
 	$args['post_status'] = 'publish';
 
 	$p_id = wp_insert_post($args);
-	if( ! is_wp_error($film_id) ){
+	if( ! is_wp_error($p_id) ){
 		update_post_meta($p_id,FILM_SOURCE_ID, $args[FILM_SOURCE_ID]);
 		update_post_meta($p_id,'year_release', $args['year_release']);
 		update_post_meta($p_id,'length_time', $args['length_time']);
 		update_post_meta($p_id,'imdb_score', $args['imdb_score']);
 
-		import_film_thumbnail($args, $film_id);
+		import_film_thumbnail($args, $p_id);
 	}
 
 }
