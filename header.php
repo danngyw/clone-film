@@ -80,14 +80,14 @@
 					</li>
 				<?php } else { ?>
 					<li>
-					<a href="https://yifysubtitles.org/" target="_blank">Source Post</a>
+					<a href="https://yifysubtitles.org/" target="_blank">Source Site</a>
 					</li>
 					<?php
 				}?>
 
 
 				<li>
-				<a href="/login">Login</a>
+				<a href="<?php echo home_url();?>">Login</a>
 				</li>
 			</ul>
 		</div>
