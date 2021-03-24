@@ -3,10 +3,11 @@ function get_recent_films(){
 	?>
 	<h4 class="section-title">Recently added movies</h4>
 	<?php
-
+	$paged  = get_query_var('paged');
 	$args = array(
 		'post_type' => 'film',
 		'post_status' => 'publish',
+		'paged' => $paged,
 	);
 	$query = new WP_Query($args);
 	if($query->have_posts()){
@@ -17,15 +18,11 @@ function get_recent_films(){
 			render_item_film($post);
 		}
 		echo '</ul>';
-	}
+	}?>
 
-	?>
-	<div id="movie-browser-paginate" class="dataTables_paginate paging_simple_numbers">
-		<ul class="pagination">
-		<li class="paginate_button previous disabled"><a href="javascript:;">Previous</a></li><li class="paginate_button active"><a href="javascript:;">1</a></li><li class="paginate_button" data-pid="2"><a href="/browse/page-2">2</a></li><li class="paginate_button" data-pid="3"><a href="/browse/page-3">3</a></li><li class="paginate_button" data-pid="4"><a href="/browse/page-4">4</a></li><li class="paginate_button" data-pid="5"><a href="/browse/page-5">5</a></li><li class="paginate_button" data-pid="6"><a href="/browse/page-6">6</a></li><li class="paginate_button" data-pid="7"><a href="/browse/page-7">7</a></li><li class="paginate_button" data-pid="8"><a href="/browse/page-8">8</a></li><li class="paginate_button" data-pid="1119"><a href="/browse/page-1119">1119</a></li><li class="paginate_button" data-pid="1120"><a href="/browse/page-1120">1120</a></li><li class="paginate_button" data-pid="2"><a href="/browse/page-2">Next</a></li>
-		</ul>
-	</div>
-
+	<?php wp_pagenavi( array( 'query' => $query) );?>
+	<div id="movie-browser-paginate" class="dataTables_paginate paging_simple_numbers"> </div>
+	<?php wp_reset_query();?>
 
 <?php }
 

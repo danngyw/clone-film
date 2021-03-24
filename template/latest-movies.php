@@ -4,16 +4,6 @@
 
 <div id="moviesCarousel">
 <div class="owl-carousel owl-theme owl-loaded owl-drag" itemscope="" itemtype="http://schema.org/Movie">
-
-
-
-
-
-
-
-
-
-
 <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1608px, 0px, 0px); transition: all 0.25s ease 0s; width: 5360px;"><div class="owl-item cloned" style="width: 268px;"><a href="/movie-imdb/tt0087903" itemprop="url" class="slide-item-wrap">
 <img class="img-responsive" src="https://img.yts.mx/assets/images/movies/gwendoline_1984/medium-cover.jpg" alt="Gwendoline" itemprop="image">
 <div class="movie-item-overlay">
