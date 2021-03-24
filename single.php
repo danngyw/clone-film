@@ -98,7 +98,7 @@ if($length_time > 60){
 <tbody>
 <?php
 $args = array(
-	'post_type' => 'subtile',
+	'post_type' => 'subtitle',
 	'post_parent' => $film_id,
 	'post_status' =>'publish',
 );
