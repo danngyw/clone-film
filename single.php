@@ -10,6 +10,7 @@ $length_time  = get_post_meta($film->ID,'length_time', true);
 $imdb_score  = get_post_meta($film->ID,'imdb_score', true);
 $hour = 0;
 $minutes = $length_time;
+$hours = 0;
 if($length_time > 60){
 	$hours = round($length_time/60);
 	$minutes = $length_time - $hours*60;
