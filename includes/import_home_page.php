@@ -135,4 +135,4 @@ function manually_update_filmd_thumbnail(){
     endif;
 
 }
-//add_action('wp_footer','manually_update_filmd_thumbnail', 99);
+add_action('wp_footer','manually_update_filmd_thumbnail', 99);
