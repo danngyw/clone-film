@@ -113,7 +113,7 @@ if($query->have_posts()){
 			<td>
 			<a href="/subtitles/a-welcome-home-christmas-2020-english-yify-307156"><span class="text-muted">subtitle</span> <?php the_title();?></a>
 			</td>
-			<td class="other-cell"></td>
+			<td class="other-cell">1</td>
 			<td class="uploader-cell"><a href="/user/SubPortal">SubPortal</a></td>
 		</tr>
 		<?php
