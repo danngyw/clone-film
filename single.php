@@ -3,11 +3,12 @@
 get_header();
 the_post();
 global $post;
-$film = $post;
-$thumbnail_url = get_the_post_thumbnail_url($film->ID);
-$year_release  = get_post_meta($film->ID,'year_release', true);
-$length_time  = get_post_meta($film->ID,'length_time', true);
-$imdb_score  = get_post_meta($film->ID,'imdb_score', true);
+$film 			= $post;
+$film_id 		= $post->ID;
+$thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
+$year_release  	= get_post_meta($film->ID,'year_release', true);
+$length_time  	= get_post_meta($film->ID,'length_time', true);
+$imdb_score  	= get_post_meta($film->ID,'imdb_score', true);
 $hour = 0;
 $minutes = $length_time;
 $hours = 0;
@@ -85,43 +86,43 @@ if($length_time > 60){
 <br><br>
 <div class="table-responsive">
 <table class="table other-subs">
-<thead>
-<tr>
-<th>rating</th>
-<th>language</th>
-<th>release</th>
-<th>other</th>
-<th>uploader</th>
-</tr>
-</thead>
+	<thead>
+	<tr>
+		<th>rating</th>
+		<th>language</th>
+		<th>release</th>
+		<th>other</th>
+		<th>uploader</th>
+	</tr>
+	</thead>
 <tbody>
-<tr data-id="307074">
-<td class="rating-cell"><span class="label">0</span></td>
-<td class="flag-cell"><span class="flag flag-"></span><span class="sub-lang">English</span></td>
-<td>
-<a href="/subtitles/a-welcome-home-christmas-2020-english-yify-307074"><span class="text-muted">subtitle</span> A.Welcome.Home.Christmas.2020.Lifetime.WEBRip.X264-Solar</a>
-</td>
-<td class="other-cell"></td>
-<td class="uploader-cell"><a href="/user/M_I_S">M_I_S</a></td>
-</tr>
-<tr data-id="307155">
-<td class="rating-cell"><span class="label">0</span></td>
-<td class="flag-cell"><span class="flag flag-"></span><span class="sub-lang">English</span></td>
-<td>
-<a href="/subtitles/a-welcome-home-christmas-2020-english-yify-307155"><span class="text-muted">subtitle</span> A.Welcome.Home.Christmas.2020.1080p.WEBRip.x264.AAC-[YTS.MX]</a>
-</td>
-<td class="other-cell"><span class="hi-subtitle" title="hearing impaired"></span></td>
-<td class="uploader-cell"><a href="/user/SubPortal">SubPortal</a></td>
-</tr>
-<tr data-id="307156">
- <td class="rating-cell"><span class="label">0</span></td>
-<td class="flag-cell"><span class="flag flag-"></span><span class="sub-lang">English</span></td>
-<td>
-<a href="/subtitles/a-welcome-home-christmas-2020-english-yify-307156"><span class="text-muted">subtitle</span> A.Welcome.Home.Christmas.2020.1080p.WEBRip.x264.AAC-[YTS.MX]</a>
-</td>
-<td class="other-cell"></td>
-<td class="uploader-cell"><a href="/user/SubPortal">SubPortal</a></td>
-</tr>
+<?php
+$args = array(
+	'post_type' => 'subtile',
+	'post_parent' => $film_id,
+	'post_status' =>'publish',
+);
+$query  = new WP_Query($args);
+if($query->have_posts()){
+	while ($query->have_posts()) {
+		$query->the_post();
+		?>
+		<tr data-id="307156">
+			<td class="rating-cell"><span class="label">0</span></td>
+			<td class="flag-cell"><span class="flag flag-"></span><span class="sub-lang">English</span></td>
+			<td>
+			<a href="/subtitles/a-welcome-home-christmas-2020-english-yify-307156"><span class="text-muted">subtitle</span> <?php the_title();?></a>
+			</td>
+			<td class="other-cell"></td>
+			<td class="uploader-cell"><a href="/user/SubPortal">SubPortal</a></td>
+		</tr>
+		<?php
+	}
+}
+wp_reset_query();
+?>
+
+
 </tbody>
 </table>
 </div>
