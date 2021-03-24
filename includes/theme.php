@@ -29,11 +29,12 @@ function import_film($args){
 	}
 
 }
-function import_subtitle_of_filme($args){
+function import_subtitle_of_filme($args, $film_id){
 
 	$args['post_type'] 		= 'subtitle';
 	$args['post_status'] 	= 'publish';
 	$args['post_parent'] 	= is_film_imported($args['film_source_id']);
+	$args['post_parent']  	= $film_id;
 
 	$sub_id = wp_insert_post($args);
 	if( ! is_wp_error($sub_id) ){
@@ -59,10 +60,13 @@ function is_subtitle_imported($sub_source_id){
 
 function check_sub_of_filme(){
 	//https://yifysubtitles.org/movie-imdb/tt9056818
-
-	$film_source_id = 9056818;
-	$site_url = "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-	$html = new Document(file_get_contents($site_url));
+	if( !is_single() )
+		return ;
+	global $post;
+	$film_id = $post->ID;
+	$film_source_id = get_post_meta($film_id,'film_source_id', true);
+	$site_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
+	$html 			= new Document(file_get_contents($site_url));
 
 	$list = $html->find('.table-responsive .other-subs');
 	foreach($list->find('tr') as $key=> $tr) { // tr = element type
@@ -72,7 +76,7 @@ function check_sub_of_filme(){
 		$sub_source_id = $tr->__get('data-id');
 
 		$check = is_subtitle_imported($sub_source_id);
-		$check = 0;
+
 		if(! $check){
 			$sub_title = $tr->find('td',2);
 
@@ -114,7 +118,7 @@ function check_sub_of_filme(){
 			// var_dump($args);
 			// echo '</pre>';
 
-			import_subtitle_of_filme($args);
+			import_subtitle_of_filme($args, $film_id);
 		}
 
 	}

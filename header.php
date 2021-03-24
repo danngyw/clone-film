@@ -66,9 +66,26 @@
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li>
-			<a href="https://yifysubtitles.org/" target="_blank">Source Site</a>
-			</li>
+
+					<?php
+
+					if(is_single()){
+						global $post;
+						$film_source_id = get_post_meta($post->ID,'film_source_id', true);
+						$source_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
+
+					?>
+					<li>
+					<a href="<?php echo $source_url;?>" target="_blank">Source Post</a>
+					</li>
+				<?php } else { ?>
+					<li>
+					<a href="https://yifysubtitles.org/" target="_blank">Source Post</a>
+					</li>
+					<?php
+				}?>
+
+
 				<li>
 				<a href="/login">Login</a>
 				</li>
