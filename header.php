@@ -54,28 +54,28 @@
 		    });
 	    </script>
 	</head>
-<body <?php body_class(); ?>>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-			<a class="navbar-brand" href="<?php echo home_url();?>"><h1>Subtitles for YIFY movie </h1>
-				<img src="<?php echo get_stylesheet_directory_uri();?>/images/misc/yifysubtitles-logo-small.png" alt="YIFYSubtitles"></a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav navbar-right"><?php
-					if(is_single()){
-						global $post;
-						$film_source_id = get_post_meta($post->ID,'film_source_id', true);
-						$source_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;?>
-						<li><a href="<?php echo $source_url;?>" target="_blank">Source Post</a></li>
-					<?php } else { ?>
-						<li><a href="https://yifysubtitles.org/" target="_blank">Source Site</a></li><?php
-					}?>
-					<li><a href="<?php echo home_url();?>">Login</a></li>
-				</ul>
-			</div>
+	<body <?php body_class(); ?>>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="<?php echo home_url();?>"><h1>Subtitles for YIFY movie </h1>
+					<img src="<?php echo get_stylesheet_directory_uri();?>/images/misc/logo-small.png" alt="YIFYSubtitles"></a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right"><?php
+						if(is_single()){
+							global $post;
+							$film_source_id = get_post_meta($post->ID,'film_source_id', true);
+							$source_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;?>
+							<li><a href="<?php echo $source_url;?>" target="_blank">Source Post</a></li>
+						<?php } else { ?>
+							<li><a href="https://yifysubtitles.org/" target="_blank">Source Site</a></li><?php
+						}?>
+						<li><a href="<?php echo home_url();?>">Login</a></li>
+					</ul>
+				</div>
 
-		</div>
-	</nav>
-	<?php get_search_form();?>
+			</div>
+		</nav>
+		<?php get_search_form();?>
