@@ -3,14 +3,13 @@
 require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
-$site_url = "https://yifysubtitles.org/";
 
-$site_url = "https://yifysubtitles.org/";
+$site_url = "https://yifysubtitles.org/browse/page-2";
 $html = new Document(file_get_contents($site_url));
 
 //$html = file_get_html( $site_url );
 
-$list = $html->find('.col-md-8 ul.media-list');
+$list = $html->find(' ul.media-list');
 $i = 1;
 foreach($list->find('li') as $li) {
 
@@ -25,9 +24,12 @@ foreach($list->find('li') as $li) {
     $img            = $li->getElementByTagName('img');
     $thumbnail_url  = $img->getAttribute("src");
 
-    $year           = $li->find(".movinfo-section",0);
-    $year           = $year->text();
-    $year           = substr($year, 0, 4);
+
+    $actor  = $li->find(".movie-genre",0);
+    $actor  = $actor->text();
+    $year   = $li->find(".movinfo-section",0);
+    $year   = $year->text();
+    $year   = substr($year, 0, 4);
 
     $length = $li->find(".movinfo-section",1);
     $length = $length->text();
@@ -49,53 +51,12 @@ foreach($list->find('li') as $li) {
         $args['year_release']         = $year;
         $args['length_time']          = $length;
         $args['imdb_score']           = $imdb_score;
-        import_film($args);
+        $args['actor']                = $actor;
+        echo '<pre>';
+        var_dump($args);
+        echo '</pre>';
+        die();
+        //import_film($args);
     }
     $i ++;
-}
-
-function manually_update_filmd_detail($film_id ){
-    $film_id = 526;
-    $source_id = get_post_meta($film_id,'film_source_id', true);
-    $movie_url = "https://yifysubtitles.org/movie-imdb/tt".$source_id;
-
-
-
-    $html   = new Document(file_get_contents($movie_url));
-    $movie_desc = $html->find(".movie-desc");
-    $movie_content = $movie_desc->text();
-    $args['post_content'] = $movie_content;
-    $args['ID'] = $film_id;
-    wp_update_post($args);
-
-    $thumbnail = $html->find(".img-responsive");
-    $aml = $html->find(".slide-item-wrap");
-
-
-    echo '<pre>';
-    // foreach($html->find('img') as $img) {
-
-
-    // }
-    $thumb = $html->find('img',1);
-    $thumbnail_url  = $thumb->getAttribute("src");
-    $args['source_thumbnail_url'] = $thumbnail_url;
-    if( has_post_thumbnail($film_id) ){
-        import_film_thumbnail($args, $film_id);
-    }
-
-    echo '</pre>';
-}
-//add_action('wp_footer','manually_update_filmd_detail', 99);
-
-function auto_update_film_thumbnail($film_id){
-    $source_id = get_post_meta($film_id,'film_source_id', true);
-    $movie_url = "https://yifysubtitles.org/movie-imdb/tt".$source_id;
-    $html   = new Document(file_get_contents($movie_url));
-    $thumb = $html->find('img',1);
-
-    $thumbnail_url  = $thumb->getAttribute("src");
-    $args['source_thumbnail_url'] = $thumbnail_url;
-
-    import_film_thumbnail($args, $film_id);
 }
