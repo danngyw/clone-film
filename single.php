@@ -9,6 +9,9 @@ $thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
 $year_release  	= get_post_meta($film->ID,'year_release', true);
 $length_time  	= get_post_meta($film->ID,'length_time', true);
 $imdb_score  	= get_post_meta($film->ID,'imdb_score', true);
+$movie_actors  	= get_post_meta($film->ID,'movie_actors', true);
+$movie_type  	= get_post_meta($film->ID,'movie_type', true);
+
 $hour = 0;
 $minutes = $length_time;
 $hours = 0;
@@ -26,7 +29,7 @@ if($length_time > 60){
 <div class="row">
 <div class="col-xs-12 text-center">
 <h2 class="movie-main-title"><?php the_title();?> (<?php echo $year_release;?>)</h2>
-<div class="movie-genre">Drama, Romance</div>
+<div class="movie-genre"><?php echo $movie_type;?></div>
 </div>
 </div>
 <div class="row">
@@ -46,7 +49,7 @@ if($length_time > 60){
 <div id="circle-score-imdb" class="circliful" data-dimension="100" data-text="6.9" data-info="IMDB" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="6.9" data-total="10" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;"><span class="circle-text" style="line-height: 100px; font-size: 22px;">6.9</span><span class="circle-info" style="line-height: 125px;">IMDB</span><canvas id="circle-score-imdb_canvas" width="100" height="100"></canvas></div>
 <div id="circle-score-tomatoes" class="circliful" data-dimension="100" data-text="N/A" data-info="Tomato" data-fgcolor="#505050" data-bgcolor="#2c2f32" data-part="0" data-total="100" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;"><span class="circle-text" style="line-height: 100px; font-size: 22px;">N/A</span><span class="circle-info" style="line-height: 125px;">Tomato</span><canvas id="circle-score-tomatoes_canvas" width="100" height="100"></canvas></div>
 </div>
-<div class="movie-actors">Jana Kramer, Brandon Quinn, Charlene Tilton, Tim Reid<br></div>
+<div class="movie-actors"><?php echo $movie_actors;?><br></div>
 <div class="movie-desc"><?php the_content();?></div>
 </div>
 </div>
@@ -111,7 +114,7 @@ if($query->have_posts()){
 			<td class="rating-cell"><span class="label">0</span></td>
 			<td class="flag-cell"><span class="flag flag-"></span><span class="sub-lang">English</span></td>
 			<td>
-			<a href="/subtitles/a-welcome-home-christmas-2020-english-yify-307156"><span class="text-muted">subtitle</span> <?php the_title();?></a>
+			<a href="<?php the_permalink();?>"><span class="text-muted">subtitle</span> <?php the_title();?></a>
 			</td>
 			<td class="other-cell">1</td>
 			<td class="uploader-cell"><a href="/user/SubPortal">SubPortal</a></td>
