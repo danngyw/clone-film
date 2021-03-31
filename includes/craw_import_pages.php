@@ -7,9 +7,7 @@ use FastSimpleHTMLDom\Document;
 $site_url = "https://yifysubtitles.org/browse/page-2";
 $html = new Document(file_get_contents($site_url));
 
-//$html = file_get_html( $site_url );
-
-$list = $html->find(' ul.media-list');
+$list = $html->find('ul.media-list');
 $i = 1;
 foreach($list->find('li') as $li) {
 
@@ -41,7 +39,7 @@ foreach($list->find('li') as $li) {
 
     $film_desc = $li->find(".movie-desc");
     $film_excerpt = $film_desc->text();
-    $t = is_film_imported($film_id);
+    $t  = is_film_imported($film_id);
 
     if(!$t ){
         $args['post_excerpt']         = $film_excerpt;

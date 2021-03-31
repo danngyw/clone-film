@@ -32,6 +32,7 @@ function render_item_film($film){
 	$length_time  	= get_post_meta($film->ID,'length_time', true);
 	$imdb_score  	= get_post_meta($film->ID,'imdb_score', true);
 	$source_id 		= get_post_meta($film->ID,'film_source_id', true);
+	$actor 			= get_post_meta($film->ID,'actor', true);
 
 	?>
 	<li class="media media-movie-clickable film-id-<?php echo $film->ID;?> source-id-<?php echo $source_id;?>">
@@ -43,7 +44,7 @@ function render_item_film($film){
 			<div class="col-xs-12">
 			<h3 class="media-heading" itemprop="name"><?php the_title();?></h3>
 			</div>
-			<div class="col-sm-6 col-xs-12 movie-genre" itemprop="genre">Drama, Music</div>
+			<div class="col-sm-6 col-xs-12 movie-genre" itemprop="genre"><?php echo $actor;?></div>
 			<div class="col-sm-6 col-xs-12 movie-genre">
 				<span class="movinfo-section"><?php echo $year_release;?><small>year</small></span>
 				<span class="movinfo-section"><?php echo $length_time;?><small>min</small></span>
