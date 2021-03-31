@@ -134,7 +134,8 @@ wp_reset_query();
 <div class="col-md-offset-3 col-md-6 col-xs-12">
 <h4 class="section-title">Trailer:</h4>
 <div class="embed-responsive embed-responsive-16by9">
-<iframe id="video-iframe" allowfullscreen="allowfullscreen" class="embed-responsive-item" src="//www.youtube.com/embed/adIya-YXgoc?rel=0&amp;hd=1"></iframe>
+<?php $trail_link = get_post_meta($post_id,'trail_link', true);?>
+<iframe id="video-iframe" allowfullscreen="allowfullscreen" class="embed-responsive-item" src="<?ph echo $trail_link;?>"></iframe>
 </div>
 </div>
 </div>
