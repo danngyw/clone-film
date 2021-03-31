@@ -24,7 +24,9 @@ function import_film($args){
 		update_post_meta($p_id,'year_release', $args['year_release']);
 		update_post_meta($p_id,'length_time', $args['length_time']);
 		update_post_meta($p_id,'imdb_score', $args['imdb_score']);
-		update_post_meta($p_id,'actor', $args['actor']);
+		update_post_meta($p_id,'movie_actors', $args['movie_actors']);
+		update_post_meta($p_id,'movie_type', $args['movie_type']);
+
 
 
 		import_film_thumbnail($args, $p_id);

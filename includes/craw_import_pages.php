@@ -23,8 +23,13 @@ foreach($list->find('li') as $li) {
     $thumbnail_url  = $img->getAttribute("src");
 
 
-    $actor  = $li->find(".movie-genre",0);
-    $actor  = $actor->text();
+    $movie_type     = $li->find(".movie-genre",0);
+    $movie_type     = $movie_type->text();
+
+    $movie_actors   = $li->find(".movie-actors",0);
+    $movie_actors   = $actor->text();
+
+
     $year   = $li->find(".movinfo-section",0);
     $year   = $year->text();
     $year   = substr($year, 0, 4);
@@ -49,12 +54,15 @@ foreach($list->find('li') as $li) {
         $args['year_release']         = $year;
         $args['length_time']          = $length;
         $args['imdb_score']           = $imdb_score;
-        $args['actor']                = $actor;
+        $args['movie_actors']         = $movie_actors;
+        $args['movie_type']             = $movie_type;
+
+
         echo '<pre>';
         var_dump($args);
         echo '</pre>';
         die();
-        //import_film($args);
+        import_film($args);
     }
     $i ++;
 }
