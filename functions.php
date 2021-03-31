@@ -6,7 +6,9 @@ include_once('includes/html.php');
 include_once('includes/wp_head.php');
 
 
-require_once TEMPLATEPATH."/includes/import_home_page.php";
+//require_once TEMPLATEPATH."/includes/craw_import_home_page.php";
+require_once TEMPLATEPATH."/includes/craw_import_pages.php";
+require_once TEMPLATEPATH."/includes/update_fillm_detail.php";
 
 require_once "vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
