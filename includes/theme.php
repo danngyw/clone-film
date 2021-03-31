@@ -31,7 +31,7 @@ function import_film($args){
 	}
 
 }
-function import_subtitle_of_filme($args, $film_id){
+function import_subtitle_of_film($args, $film_id){
 
 	$args['post_type'] 		= 'subtitle';
 	$args['post_status'] 	= 'publish';
@@ -121,9 +121,10 @@ function check_sub_of_filme(){
 			// var_dump($args);
 			// echo '</pre>';
 
-			import_subtitle_of_filme($args, $film_id);
+			import_subtitle_of_film($args, $film_id);
 
 		}
+		$count ++;
 
 	}
 	update_post_meta($post_id,'number_subtile',$count);
