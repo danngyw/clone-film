@@ -27,7 +27,7 @@ foreach($list->find('li') as $li) {
     $movie_type     = $movie_type->text();
 
     $movie_actors   = $li->find(".movie-actors",0);
-    $movie_actors   = $actor->text();
+    $movie_actors   = $movie_actors->text();
 
 
     $year   = $li->find(".movinfo-section",0);
@@ -57,11 +57,6 @@ foreach($list->find('li') as $li) {
         $args['movie_actors']         = $movie_actors;
         $args['movie_type']             = $movie_type;
 
-
-        echo '<pre>';
-        var_dump($args);
-        echo '</pre>';
-        die();
         import_film($args);
     }
     $i ++;
