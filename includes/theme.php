@@ -84,12 +84,6 @@ function check_sub_of_filme(){
 		if(! $check){
 			$sub_title = $tr->find('td',2);
 
-			$tr_html = $tr->__get("outertext");
-
-			// $html = new Document();
-			// $html->loadHtml($tr_html);
-			// $sub_title = $html->find("td");
-
 			$rating_html = $tr->find('.label-success');
 			$rating_score =  $rating_html->text();
 
