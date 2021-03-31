@@ -27,8 +27,6 @@ function import_film($args){
 		update_post_meta($p_id,'movie_actors', $args['movie_actors']);
 		update_post_meta($p_id,'movie_type', $args['movie_type']);
 
-
-
 		import_film_thumbnail($args, $p_id);
 	}
 
@@ -66,13 +64,20 @@ function check_sub_of_filme(){
 	//https://yifysubtitles.org/movie-imdb/tt9056818
 	if( !is_single() )
 		return ;
+
+	$number_subtile = get_post_meta($post_id,'number_subtile', true);
+	if($number_subtile > 1)
+		return;
 	global $post;
+
+
 	$film_id = $post->ID;
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$site_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
 	$html 			= new Document(file_get_contents($site_url));
 
 	$list = $html->find('.table-responsive .other-subs');
+	$count = 0;
 	foreach($list->find('tr') as $key=> $tr) { // tr = element type
 		if( $key == 0){
 			continue;
@@ -117,9 +122,11 @@ function check_sub_of_filme(){
 			// echo '</pre>';
 
 			import_subtitle_of_filme($args, $film_id);
+
 		}
 
 	}
+	update_post_meta($post_id,'number_subtile',$count);
 
 }
 
