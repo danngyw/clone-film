@@ -64,14 +64,14 @@ function check_sub_of_filme(){
 	//https://yifysubtitles.org/movie-imdb/tt9056818
 	if( !is_single() )
 		return ;
+	global $post;
+	$film_id = $post_id =  $post->ID;
 
 	$number_subtile = get_post_meta($post_id,'number_subtile', true);
+
 	if($number_subtile > 1)
 		return;
-	global $post;
 
-
-	$film_id = $post->ID;
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$site_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
 	$html 			= new Document(file_get_contents($site_url));
