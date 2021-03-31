@@ -69,7 +69,7 @@ function check_sub_of_filme(){
 
 	$number_subtile = get_post_meta($post_id,'number_subtile', true);
 
-	if($number_subtile > 1)
+	if($number_subtile > 0)
 		return;
 
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);

@@ -25,7 +25,7 @@ function manually_update_filmd_thumbnail(){
     endif;
 
 }
-// add_action('wp_footer','manually_update_filmd_thumbnail', 99);
+ add_action('wp_footer','manually_update_filmd_thumbnail', 99);
 
 function manually_update_filmd_detail($film_id ){
     $film_id = 526;
@@ -45,7 +45,6 @@ function manually_update_filmd_detail($film_id ){
     $aml = $html->find(".slide-item-wrap");
 
 
-    echo '<pre>';
     // foreach($html->find('img') as $img) {
 
 
@@ -57,9 +56,9 @@ function manually_update_filmd_detail($film_id ){
         import_film_thumbnail($args, $film_id);
     }
 
-    echo '</pre>';
+
 }
-//add_action('wp_footer','manually_update_filmd_detail', 99);
+add_action('wp_footer','manually_update_filmd_detail', 99);
 
 function auto_update_film_thumbnail($film_id){
     $source_id = get_post_meta($film_id,'film_source_id', true);
