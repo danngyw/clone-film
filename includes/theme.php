@@ -71,8 +71,8 @@ function check_sub_of_filme(){
 
 	$number_subtile = (int) get_post_meta($post_id,'number_subtile', true);
 
-	if($number_subtile > 0)
-		return;
+	// if($number_subtile > 0)
+	// 	return;
 
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$site_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
@@ -86,6 +86,10 @@ function check_sub_of_filme(){
   	$iframe = $element->__toString();
  	update_post_meta($post_id, 'trailer_html',$iframe);
 
+ 	update_filmd_detail($film_id, $document);
+
+ 	$movie_desc     = $html->find(".movie-desc");
+    $movie_content  = $movie_desc->text();
 
 
 
@@ -94,7 +98,7 @@ function check_sub_of_filme(){
 	$count = 0;
 
 
-	//update_post_meta($film_id,'trail_link', $trail_link);
+
 
 	foreach($list->find('tr') as $key=> $tr) { // tr = element type
 		if( $key == 0){
@@ -151,6 +155,30 @@ function check_sub_of_filme(){
 }
 
 add_action('wp_footer','check_sub_of_filme');
+
+function update_filmd_detail( $film_id, $document){
+
+
+	$movie_desc     = $document->find(".movie-desc");
+    $movie_content  = $movie_desc->text();
+    $args['post_content'] = $movie_content;
+
+    $args['ID'] = $film_id;
+    wp_update_post($args);
+
+    $thumbnail = $html->find(".img-responsive");
+    $aml = $html->find(".slide-item-wrap");
+
+    $thumb = $html->find('img',1);
+    $thumbnail_url  = $thumb->getAttribute("src");
+    $args['source_thumbnail_url'] = $thumbnail_url;
+    if( has_post_thumbnail($film_id) ){
+        // import_film_thumbnail($args, $film_id);
+    }
+
+
+}
+
 
 function import_film_thumbnail($args, $film_id = 0){
 	$url =  $args['source_thumbnail_url'];
