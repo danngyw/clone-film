@@ -4,7 +4,7 @@ get_header();
 the_post();
 global $post;
 $film 			= $post;
-$film_id 		= $post->ID;
+$film_id 		= $post_id = $post->ID;
 $thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
 $year_release  	= get_post_meta($film->ID,'year_release', true);
 $length_time  	= get_post_meta($film->ID,'length_time', true);
@@ -134,8 +134,9 @@ wp_reset_query();
 <div class="col-md-offset-3 col-md-6 col-xs-12">
 <h4 class="section-title">Trailer:</h4>
 <div class="embed-responsive embed-responsive-16by9">
-<?php $trail_link = get_post_meta($post_id,'trail_link', true);?>
-<iframe id="video-iframe" allowfullscreen="allowfullscreen" class="embed-responsive-item" src="<?ph echo $trail_link;?>"></iframe>
+<?php $trailer_html = get_post_meta($post_id,'trailer_html', true);
+echo $trailer_html;?>
+<!-- <iframe id="video-iframe" allowfullscreen="allowfullscreen" class="embed-responsive-item" src="<?ph echo $trail_link;?>"></iframe> -->
 </div>
 </div>
 </div>

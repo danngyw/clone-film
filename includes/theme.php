@@ -1,6 +1,8 @@
 <?php
 define('FILM_SOURCE_ID','film_source_id');
 use FastSimpleHTMLDom\Document;
+use FastSimpleHTMLDom\Element;
+
 function is_film_imported($id){
 	global $wpdb;
 	$sql = "SELECT p.ID
@@ -74,14 +76,26 @@ function check_sub_of_filme(){
 
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$site_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-	$html 			= new Document(file_get_contents($site_url));
 
-	$list = $html->find('.table-responsive .other-subs');
+	$html =file_get_contents($site_url);
+
+
+	$document = new Document($html);
+    $node = $document->getDocument()->documentElement;
+    $element = $document->find('iframe');
+  	$iframe = $element->__toString();
+ 	update_post_meta($post_id, 'trailer_html',$iframe);
+
+
+
+
+
+	$list = $document->find('.table-responsive .other-subs');
 	$count = 0;
 
-	$trailer = $html->getElementById("video-iframe");
-	$trail_link = $trailer->getAttribute("href");
-	update_post_meta($film_id,'trail_link', $trail_link);
+
+	//update_post_meta($film_id,'trail_link', $trail_link);
+
 	foreach($list->find('tr') as $key=> $tr) { // tr = element type
 		if( $key == 0){
 			continue;

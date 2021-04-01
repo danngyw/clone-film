@@ -1,4 +1,6 @@
 <?php
+require_once TEMPLATEPATH."/vendor/autoload.php";
+use FastSimpleHTMLDom\Document;
 function manually_update_filmd_thumbnail(){
     global $wpdb;
     $args = array(
