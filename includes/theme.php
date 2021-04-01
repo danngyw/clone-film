@@ -101,8 +101,8 @@ function check_sub_of_filme(){
 		}
 		$sub_source_id = $tr->__get('data-id');
 
-		//$check = is_subtitle_imported($sub_source_id);
-		$check = 0;
+		$check = is_subtitle_imported($sub_source_id);
+
 		if(! $check){
 			$sub_title = $tr->find('td',2);
 
