@@ -123,6 +123,7 @@ if($query->have_posts()){
 	}
 }
 wp_reset_query();
+$trailer_html = get_post_meta($post_id,'trailer_html', true);
 ?>
 
 
@@ -130,16 +131,17 @@ wp_reset_query();
 </table>
 </div>
 </div>
-<div class="row" style="margin:20px auto;">
-<div class="col-md-offset-3 col-md-6 col-xs-12">
-<h4 class="section-title">Trailer:</h4>
-<div class="embed-responsive embed-responsive-16by9">
-<?php $trailer_html = get_post_meta($post_id,'trailer_html', true);
-echo $trailer_html;?>
-<!-- <iframe id="video-iframe" allowfullscreen="allowfullscreen" class="embed-responsive-item" src="<?ph echo $trail_link;?>"></iframe> -->
-</div>
-</div>
-</div>
+<?php if($trailer_html){?>
+	<div class="row" style="margin:20px auto;">
+		<div class="col-md-offset-3 col-md-6 col-xs-12">
+			<h4 class="section-title">Trailer:</h4>
+			<div class="embed-responsive embed-responsive-16by9">
+			<?php 
+			echo $trailer_html;?>
+			</div>
+		</div>
+	</div>
+<?php } ?>
 </div>
 
 <?php
