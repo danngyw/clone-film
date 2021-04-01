@@ -9,7 +9,7 @@ do_action('wp_footer');
 				</div>
 			</div>
 		</footer>
-		<?php if( ! is_singular( 'film') ) { ?>
+		<?php if(  is_singular( 'film') ) {  ?>
 	    	<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri();?>/assets/jquery.circliful.js"></script>
 	    	<script>
 	    		(function($){
