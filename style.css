@@ -26,3 +26,6 @@ form,body, div, span, strong, br,a,ul,li{
 	margin: 0;
 	padding: 0;
 }
+.table tbody tr td.td-subtitle{
+	white-space:initial;
+}

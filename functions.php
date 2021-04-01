@@ -34,7 +34,7 @@ function film_theme_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'film_theme_enqueue_styles' );
 function get_flag_css($lang){
-	$flag = 'gb';
+	$flag = '1';
 	switch ($lang) {
 
 
@@ -63,7 +63,9 @@ function get_flag_css($lang){
 		case 'Danish':
 			$flag = 'dk';
 			break;
-
+		case 'English':
+			$flag = 'gb';
+			break;
 
 
 		case 'Hebrew':
@@ -113,6 +115,7 @@ function get_flag_css($lang){
 		case 'Vietnamese':
 			$flag = 'vn';
 			break;
+
 
 		default:
 			# code...
