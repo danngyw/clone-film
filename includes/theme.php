@@ -71,13 +71,13 @@ function check_sub_of_filme(){
 
 	$number_subtile = (int) get_post_meta($post_id,'number_subtile', true);
 
-	// if($number_subtile > 0)
-	// 	return;
+	if($number_subtile > 0)
+		return;
 
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$site_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
 
-	$html = file_get_contents($site_url);
+	$html =file_get_contents($site_url);
 
 
 	$document = new Document($html);
@@ -91,7 +91,7 @@ function check_sub_of_filme(){
  	$movie_desc     = $html->find(".movie-desc");
     $movie_content  = $movie_desc->text();
 
-	$list = $document->find('.table-responsive .other-subs');
+    $list = $document->find('.table-responsive .other-subs');
 	$count = 0;
 
 	foreach($list->find('tr') as $key=> $tr) { // tr = element type
@@ -108,13 +108,17 @@ function check_sub_of_filme(){
 			$rating_html = $tr->find('.label-success');
 			$rating_score =  $rating_html->text();
 
+
 			$td_subtitle = $tr->find("td",2);
 			$sub_slug = $td_subtitle->getElementByTagName('a');
 			$sub_slug = $sub_slug->getAttribute("href"); // full path: /subtitles/last-breath-2019-danish-yify-305528"
 			$sub_slug = substr($sub_slug, 11, -1); // cut off to :last-breath-2019-danish-yify-305528"
 
+
 			$sub_title = $td_subtitle->text();
 			$sub_title = substr($sub_title, 9, -1); // remove [subtitle ] in the text;
+
+
 
 			$td_langue = $tr->find('.sub-lang');
 			$sub_language =  $td_langue->text();
@@ -142,25 +146,24 @@ function check_sub_of_filme(){
 
 add_action('wp_footer','check_sub_of_filme');
 
-function update_filmd_detail( $film_id, $document){
+function update_filmd_detail( $film_id, $html){
 
-
-	$movie_desc     		= $document->find(".movie-desc");
-    $movie_content  		= $movie_desc->text();
-    $args['post_content'] 	= $movie_content;
+	$movie_desc     = $html->find(".movie-desc");
+    $movie_content  = $movie_desc->text();
+    $args['post_content'] = $movie_content;
 
     $args['ID'] = $film_id;
     wp_update_post($args);
 
 	if( has_post_thumbnail($film_id) ){
-		$thumbnail = $document->find(".img-responsive");
-		$aml = $html->find(".slide-item-wrap");
+    	$thumbnail = $html->find(".img-responsive");
+	    $aml = $html->find(".slide-item-wrap");
 
-		$thumb = $document->find('img',1);
-		$thumbnail_url  = $thumb->getAttribute("src");
-		$args['source_thumbnail_url'] = $thumbnail_url;
-		// import_film_thumbnail($args, $film_id);
-	}
+	    $thumb = $html->find('img',1);
+	    $thumbnail_url  = $thumb->getAttribute("src");
+	    $args['source_thumbnail_url'] = $thumbnail_url;
+        // import_film_thumbnail($args, $film_id);
+    }
 }
 
 
