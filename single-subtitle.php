@@ -4,6 +4,7 @@ the_post();
 global $post;
 $film_id = $post->post_parent;
 $film = get_post($film_id);
+
 ?>
 
 </div><div class="container">
