@@ -31,9 +31,7 @@ function render_latest_item($film){
 <?php
 }
 function get_recent_films(){
-	?>
-	<h4 class="section-title">Recently added movies</h4>
-	<?php
+
 	$paged  = get_query_var('paged');
 	$args = array(
 		'post_type' => 'film',

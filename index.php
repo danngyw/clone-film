@@ -13,12 +13,16 @@ get_header();
 
 	<?php  } ?>
 
-	<div class="row"><div class="col-xs-12"><hr><div id="taboola-below-article-thumbnails"></div></div></div>
+	<?php if( is_home() || is_front_page() ){?>
+		<div class="row"><div class="col-xs-12"><hr><div id="taboola-below-article-thumbnails"></div></div></div>
+	<?php } ?>
 
 	<div class="row">
 	<div class="col-md-8">
-
-	 <?php get_recent_films();?>
+		<?php if( is_home() || is_front_page() ){?>
+			<h4 class="section-title">Recently added movies</h4>
+		<?php } ?>
+	 	<?php get_recent_films();?>
 
 	</div>
 	<?php get_sidebar();?>
