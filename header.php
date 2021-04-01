@@ -54,7 +54,7 @@
 		    });
 	    </script>
 	    <?php if( ! is_singular( 'film') ) { ?>
-	    	<script type="text/javascript" src="https://yifysubtitles.org/js/jquery.circliful.js"></script>
+	    	<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri();?>/assets/jquery.circliful.js"></script>
 	    	<script>
 			    $(document).ready(function() {
 			        var loader = $("#ajaxloader");
