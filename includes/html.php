@@ -51,6 +51,8 @@ function get_recent_films(){
 			render_item_film($post);
 		}
 		echo '</ul>';
+	} else {
+		echo 'No Post Found';
 	}?>
 
 	<?php wp_pagenavi( array( 'query' => $query) );?>
