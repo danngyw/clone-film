@@ -59,9 +59,13 @@ function testSendPost(){
 
 	$url = "https://data.slav.tv/";
 	$data = array(
-		'import' => 'subtitle',
-		'source' => home_url(),
-		'key' => 'value1'
+		'import'              => 'subtitle',
+        'sub_id'              =>  '4488',
+        'source_zip_url'      => 'https://yifysubtitles.org/subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip',
+        'sour_sub_id'         =>    323617,
+        'sub-slug'            => 'mortadelo-and-filemon-mission-implausible-2014-english-yify-323617',
+		'source'              => home_url(),
+		'key'                 => 'value1'
 	);
 	$res = httpPost($url,$data);
 	$resp = json_decode($res);

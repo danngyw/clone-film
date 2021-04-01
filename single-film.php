@@ -122,7 +122,7 @@ if($query->have_posts()){
 		$flag_css = get_flag_css($m_sub_language);
 
 		?>
-		<tr data-id="307156">
+		<tr data-id="<?php echo $post->ID;?>">
 			<td class="rating-cell"><span class="label label-success"><?php echo $m_rating_score;?></span></td>
 			<td class="flag-cell"><span class="flag flag-<?php echo $flag_css;?>"></span><span class="sub-lang"><?php echo $m_sub_language;?></span></td>
 			<td class="td-subtitle">
