@@ -56,13 +56,15 @@ function sendSubtileRequest( $data ) {
 }
 
 function testSendPost(){
-	echo 'Test Request';
+
 	$url = "https://data.slav.tv/";
 	$data = array(
+		'import' => 'subtitle',
 		'source' => home_url(),
 		'key' => 'value1'
 	);
 	$res = httpPost($url,$data);
-	var_dump($res);
+	$resp = json_decode($res);
+	echo $resp->msg;
 }
 add_action('wp_footer','testSendPost');
