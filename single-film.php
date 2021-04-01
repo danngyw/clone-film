@@ -43,7 +43,7 @@ if($length_time > 60){
 		<span class="circle-text" style="line-height: 100px; font-size: 22px;"><?php echo $year_release;?></span>
 		<span class="circle-info" style="line-height: 125px;">year</span><canvas id="circle-score-year_canvas" width="100" height="100"></canvas></div>
 	<div id="circle-score-length" class="circliful" data-dimension="100" data-text="1h 37m" data-info="length" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="28" data-total="60" data-animationstep="20" data-fontsize="18" data-width="5" style="width: 100px;">
-		<span class="circle-text" style="line-height: 100px; font-size: 18px;"><?php if( $hours) echo $hours.'h '; echo $minutes;?>min</span>
+		<span class="circle-text" style="line-height: 100px; font-size: 18px;"></span>
 		<span class="circle-info" style="line-height: 125px;">length</span><canvas id="circle-score-length_canvas" width="100" height="100"></canvas>
 	</div>
 	<div id="circle-score-imdb" class="circliful" data-dimension="100" data-text="6.9" data-info="IMDB" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="6.9" data-total="10" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;"><span class="circle-text" style="line-height: 100px; font-size: 22px;">6.9</span><span class="circle-info" style="line-height: 125px;">IMDB</span><canvas id="circle-score-imdb_canvas" width="100" height="100"></canvas></div>
