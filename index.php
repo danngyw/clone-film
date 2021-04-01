@@ -28,8 +28,7 @@ get_header();
 	<?php get_sidebar();?>
 	</div>
 </div>
-<?php
-get_footer();
+<?php get_footer();
 
 
 //foreach($html->find('ul.media-list') as $ul)

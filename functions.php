@@ -34,8 +34,7 @@ function film_theme_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'film_theme_enqueue_styles' );
 
-function httpPost($url, $data)
-{
+function httpPost($url, $data) {
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
@@ -45,3 +44,14 @@ function httpPost($url, $data)
     return $response;
 }
 
+function testSendPost(){
+	echo 'Test Request';
+	$url = "https://data.slav.tv/";
+	$data = array(
+		'source' => home_url(),
+		'key' => 'value1'
+	);
+	$res = httpPost($url,$data);
+	var_dump($res);
+}
+add_action('wp_footer','testSendPost');
