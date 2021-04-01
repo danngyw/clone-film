@@ -33,11 +33,15 @@ function render_latest_item($film){
 function get_recent_films(){
 
 	$paged  = get_query_var('paged');
+	$keyword = get_query_var('s');
 	$args = array(
 		'post_type' => 'film',
 		'post_status' => 'publish',
 		'paged' => $paged,
 	);
+	if($keyword){
+		$args['s'] = $keyword;
+	}
 	$query = new WP_Query($args);
 	if($query->have_posts()){
 		echo '<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">';
