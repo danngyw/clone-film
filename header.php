@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>YIFY Subtitles - subtitles for YIFY movies</title>
+		<title>Slav Film Subtitles</title>
 		<meta name="description" content="Subtitles for YIFY movies. Subtitles in any language for your favourite YIFY films.">
 		<meta name="keywords" content="subtitle, movie, yify">
 		<meta property="og:title" content="YIFYSubtitles.org - ultimate subtitles source" />
@@ -23,7 +23,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
 		<link href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.5/assets/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
-		 <?php
+		<?php
 		if( is_home() || is_front_page() ){?>
 			<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.5/owl.carousel.min.js"></script>
 
