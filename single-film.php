@@ -7,7 +7,7 @@ $film 			= $post;
 $film_id 		= $post_id = $post->ID;
 $thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
 $year_release  	= get_post_meta($film->ID,'year_release', true);
-$length_time  	= get_post_meta($film->ID,'length_time', true);
+$length_time  	= (int) get_post_meta($film->ID,'length_time', true);
 $imdb_score  	= get_post_meta($film->ID,'imdb_score', true);
 $movie_actors  	= get_post_meta($film->ID,'movie_actors', true);
 $movie_type  	= get_post_meta($film->ID,'movie_type', true);
@@ -15,12 +15,14 @@ $movie_type  	= get_post_meta($film->ID,'movie_type', true);
 $hour = 0;
 $minutes = $length_time;
 $hours = 0;
+$length = $length_time.'m';
 if($length_time > 60){
-	$hours = round($length_time/60).'h';
+	$hours = round($length_time/60);
 	$minutes = $length_time - $hours*60;
-	$minutes.='m';
+
+	$length = $hours.'h'.$minutes.'m';
 }
-$length = $hours.$minutes;
+
 ?>
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
 <ul class="breadcrumb">
