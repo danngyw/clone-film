@@ -65,39 +65,6 @@ foreach($list->find('li') as $li) {
     $i ++;
 }
 
-function manually_update_filmd_detail($film_id ){
-    $film_id = 526;
-    $source_id = get_post_meta($film_id,'film_source_id', true);
-    $movie_url = "https://yifysubtitles.org/movie-imdb/tt".$source_id;
-
-
-
-    $html   = new Document(file_get_contents($movie_url));
-    $movie_desc = $html->find(".movie-desc");
-    $movie_content = $movie_desc->text();
-    $args['post_content'] = $movie_content;
-    $args['ID'] = $film_id;
-    wp_update_post($args);
-
-    $thumbnail = $html->find(".img-responsive");
-    $aml = $html->find(".slide-item-wrap");
-
-
-    echo '<pre>';
-    // foreach($html->find('img') as $img) {
-
-
-    // }
-    $thumb = $html->find('img',1);
-    $thumbnail_url  = $thumb->getAttribute("src");
-    $args['source_thumbnail_url'] = $thumbnail_url;
-    if( has_post_thumbnail($film_id) ){
-        import_film_thumbnail($args, $film_id);
-    }
-
-    echo '</pre>';
-}
-//add_action('wp_footer','manually_update_filmd_detail', 99);
 
 function auto_update_film_thumbnail($film_id){
     $source_id = get_post_meta($film_id,'film_source_id', true);
