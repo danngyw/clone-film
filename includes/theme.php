@@ -33,7 +33,7 @@ function import_film($args){
 	}
 
 }
-function import_subtitle_of_film($args, $film_id){
+function import_subtitle_film($args, $film_id){
 
 	$args['post_type'] 		= 'subtitle';
 	$args['post_status'] 	= 'publish';
@@ -137,7 +137,7 @@ function check_sub_of_filme(){
 			$args['m_sub_slug'] 	= $sub_slug;
 			$args['m_rating_score'] = (int) $rating_score;
 
-			import_subtitle_of_film($args, $film_id);
+			import_subtitle_film($args, $film_id);
 
 		}
 		$count ++;

@@ -3,8 +3,10 @@ get_header();
 the_post();
 global $post;
 $film_id = $post->post_parent;
+$subtitle_id = $post_id = $post->ID;
 $film = get_post($film_id);
 $thumbnail_url = get_the_post_thumbnail_url($film_id);
+$m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
 ?>
 
 </div><div class="container">
@@ -34,7 +36,7 @@ $thumbnail_url = get_the_post_thumbnail_url($film_id);
 <div class="col-xs-10">
 <ul class="list-group  text-left">
 <li class="list-group-item">
-<span class="pull-right" style="padding-right: 40px;">English<span class="flag flag-" style="position:absolute;right:10px;top:5px;"></span></span>
+<span class="pull-right" style="padding-right: 40px;"><?php echo $m_sub_language;?><span class="flag flag-" style="position:absolute;right:10px;top:5px;"></span></span>
 <span class="text-muted text-uppercase">Language:</span></li>
 <li class="list-group-item">
 <span class="pull-right"><a href="/user/Ceyx">Ceyx</a></span>
