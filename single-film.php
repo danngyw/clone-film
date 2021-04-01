@@ -119,11 +119,12 @@ if($query->have_posts()){
 		$subtitle_id = $post->ID;
 		$m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
 		$m_rating_score = (int) get_post_meta($subtitle_id, 'm_rating_score', true );
+		$flag_css = get_flag_css($m_sub_language);
 
 		?>
 		<tr data-id="307156">
 			<td class="rating-cell"><span class="label"><?php echo $m_rating_score;?></span></td>
-			<td class="flag-cell"><span class="flag flag-"></span><span class="sub-lang"><?php echo $m_sub_language;?></span></td>
+			<td class="flag-cell"><span class="flag flag-<?php echo $flag_css;?>"></span><span class="sub-lang"><?php echo $m_sub_language;?></span></td>
 			<td>
 			<a href="<?php the_permalink();?>"><span class="text-muted">subtitle</span> <?php the_title();?></a>
 			</td>

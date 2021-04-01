@@ -33,3 +33,77 @@ function film_theme_enqueue_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'film_theme_enqueue_styles' );
+function get_flag_css($lang){
+	$flag = 'gb';
+	switch ($lang) {
+
+
+		case 'Arabic':
+			$flag = 'sa';
+			break;
+
+		case 'Romanian':
+			$flag = 'ro';
+			break;
+
+		case 'Polish':
+			$flag = 'pl';
+			break;
+		case 'Indonesian':
+			$flag = 'id';
+			break;
+		case 'Chinese':
+			$flag = 'cn';
+			break;
+		case 'Bulgarian':
+			$flag = 'bg';
+			break;
+		case 'German':
+			$flag = 'gb';
+			break;
+
+
+		case 'Hebrew':
+			$flag = 'il';
+			break;
+		case 'Hungarian':
+			$flag = 'hu';
+			break;
+		case 'Dutch':
+			$flag = 'nl';
+			break;
+		case 'French':
+			$flag = 'fr';
+			break;
+		case 'Finnish':
+			$flag = 'fi';
+			break;
+		case 'Portuguese':
+			$flag = 'pt';
+			break;
+		case 'Polish':
+			$flag = 'pl';
+			break;
+		case 'Spanish':
+			$flag = 'gr';
+			break;
+
+
+		case 'Singapore':
+			$flag = 'sg';
+			break;
+		case 'Thai':
+			$flag = 'th';
+			break;
+
+		case 'Vietnamese':
+			$flag = 'vn';
+			break;
+
+		default:
+			# code...
+			break;
+	}
+
+	return $flag;
+}
