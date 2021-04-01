@@ -69,7 +69,7 @@ function check_sub_of_filme(){
 	global $post;
 	$film_id = $post_id =  $post->ID;
 
-	$number_subtile = get_post_meta($post_id,'number_subtile', true);
+	$number_subtile = (int) get_post_meta($post_id,'number_subtile', true);
 
 	if($number_subtile > 0)
 		return;
