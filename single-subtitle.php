@@ -7,6 +7,8 @@ $subtitle_id = $post_id = $post->ID;
 $film = get_post($film_id);
 $thumbnail_url = get_the_post_thumbnail_url($film_id);
 $m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
+$m_rating_score = get_post_meta($subtitle_id,'m_rating_score', true );
+
 ?>
 
 </div><div class="container">
@@ -29,7 +31,7 @@ $m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
 <div class="col-xs-2">
 <div class="vote-column">
 <p class="upvote" data-canvote="false" data-hasvoted="false" title="This subtitle is good (click again to undo)">+</p>
-<div class="rating-container"><p class="rating">3</p></div>
+<div class="rating-container"><p class="rating"><?php echo $m_rating_score;?></p></div>
 <p class="downvote" data-canvote="false" data-hasvoted="false" title="This subtitle is bad (click again to undo)">-</p>
 </div>
 </div>
