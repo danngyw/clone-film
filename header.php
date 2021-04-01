@@ -23,47 +23,10 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
 
-		<link href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.5/assets/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
-		<?php
-		if( is_home() || is_front_page() ){?>
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.5/owl.carousel.min.js"></script>
-			<link href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.5/assets/owl.carousel.min.css" rel="stylesheet" type="text/css" />
-			<script>
-				(function($){
-				    $(document).ready(function() {
-				            var loader = $("#ajaxloader");
 
-				            $(".owl-carousel").owlCarousel({
-				                    items : 3,
-				                    autoplay:true,
-				                    autoplayHoverPause:true,
-				                    	autoplayTimeout:5000,
-				                    loop: true,
-				                    responsive : {
-				                            0 : {
-				                                    items : 1,
-				                            },
-				                            // breakpoint from 480 up
-				                            480 : {
-				                                    items : 2,
-				                            },
-				                            // breakpoint from 768 up
-				                            768 : {
-				                                    items : 3,
-				                            },
-				                            992 : {
-				                                    items : 4,
-				                            },
-				                            // breakpoint from 1200 up
-				                            1200 : {
-				                                    items : 5,
-				                            }
-				                    }
-				            });
-				    });
-			    })(jQuery);
-		    </script>
-		<?php } ?>
+
+
+		<link href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.5/assets/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
 
 	</head>
 	<body <?php body_class(); ?>>

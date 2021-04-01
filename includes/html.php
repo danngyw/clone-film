@@ -1,4 +1,35 @@
 <?php
+
+function render_latest_item($film){
+	$film_id = $film->ID;
+
+	$thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
+	$year_release  	= get_post_meta($film_id,'year_release', true);
+	$length_time  	= get_post_meta($film_id,'length_time', true);
+	$imdb_score  	= get_post_meta($film_id,'imdb_score', true);
+	$source_id 		= get_post_meta($film_id,'film_source_id', true);
+	$movie_actors 	= get_post_meta($film_id,'movie_actors', true);
+	$movie_type 	= get_post_meta($film_id,'movie_type', true);
+	$thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
+
+
+	?>
+	<div class="owl-item active" style="width: 235px;">
+		<a href="/movie-imdb/tt5160154" itemprop="url" class="slide-item-wrap">
+			<img class="img-responsive" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" itemprop="image">
+			<div class="movie-item-overlay">
+				<h3 class="title" itemprop="name"><?php the_title();?><br><?php echo $year_release;?></h3>
+				<span class="genre" itemprop="genre"><?php echo $movie_type;?></span>
+				<small class="actors" itemprop="actors"><?php echo $movie_actors;?></small>
+				<div class="meter">
+					<span class="value" style="color:#FFBA00;"><?php echo $imdb_score;?></span>
+					<span class="source text-muted">IMDB</span>
+				</div>
+			</div>
+		</a>
+	</div>
+<?php
+}
 function get_recent_films(){
 	?>
 	<h4 class="section-title">Recently added movies</h4>
