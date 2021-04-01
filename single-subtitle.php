@@ -19,7 +19,7 @@ $film = get_post($film_id);
 </div>
 <div class="col-md-4 col-md-push-5 col-sm-6 text-center"></div>
 <div class="col-md-5 col-md-pull-4 col-sm-8 movie-main-info text-center">
-<h2><?php the_title();?></h2>
+<h2><?php echo $film->post_title;?></h2>
 <div class="movie-year">2001</div>
 <div class="row">
 <div class="col-xs-2">
