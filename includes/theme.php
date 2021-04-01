@@ -74,8 +74,8 @@ function check_sub_of_filme(){
 	$number_subtile = (int) get_post_meta($post_id,'number_subtile', true);
 
 
-	// if( $number_subtile > 0 )
-	// 	return;
+	if( $number_subtile > 0 )
+		return;
 
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$site_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
@@ -139,10 +139,9 @@ function check_sub_of_filme(){
 			$args['m_sub_uploader'] = $sub_uploader;
 			$args['m_sub_slug'] 	= $sub_slug;
 			$args['m_rating_score'] = (int) $rating_score;
-			var_dump($sub_title);
-			echo '<br />';
 
-			// import_subtitle_film($args, $film_id);
+
+			import_subtitle_film($args, $film_id);
 
 		}
 		$count ++;
