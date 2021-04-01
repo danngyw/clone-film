@@ -22,3 +22,7 @@ with others.
 .vote-column .rating{
 	height: 15px;
 }
+form,body, div, span, strong, br,a,ul,li{
+	margin: 0;
+	padding: 0;
+}
