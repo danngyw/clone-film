@@ -46,9 +46,7 @@ function get_flag_css($lang){
 			$flag = 'ro';
 			break;
 
-		case 'Polish':
-			$flag = 'pl';
-			break;
+
 		case 'Indonesian':
 			$flag = 'id';
 			break;
@@ -61,6 +59,11 @@ function get_flag_css($lang){
 		case 'German':
 			$flag = 'gb';
 			break;
+
+		case 'Danish':
+			$flag = 'dk';
+			break;
+
 
 
 		case 'Hebrew':
@@ -84,16 +87,27 @@ function get_flag_css($lang){
 		case 'Polish':
 			$flag = 'pl';
 			break;
-		case 'Spanish':
-			$flag = 'gr';
+		// case 'Spanish':
+		// 	$flag = 'gr';
+		// 	break;
+
+		case 'Polish':
+			$flag = 'pl';
 			break;
-
-
 		case 'Singapore':
 			$flag = 'sg';
 			break;
+
+		case 'Spanish':
+			$flag = 'es';
+			break;
+
 		case 'Thai':
 			$flag = 'th';
+			break;
+
+		case 'Turkish':
+			$flag = 'tr';
 			break;
 
 		case 'Vietnamese':
