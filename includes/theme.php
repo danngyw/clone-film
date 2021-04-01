@@ -88,7 +88,7 @@ function check_sub_of_filme(){
 
  	update_filmd_detail($film_id, $document);
 
- 	$movie_desc     = $html->find(".movie-desc");
+ 	$movie_desc     = $document->find(".movie-desc");
     $movie_content  = $movie_desc->text();
 
     $list = $document->find('.table-responsive .other-subs');
