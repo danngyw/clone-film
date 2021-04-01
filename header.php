@@ -53,6 +53,28 @@
 		            });
 		    });
 	    </script>
+	    <?php if( ! is_singular( 'film') ) { ?>
+	    	<script type="text/javascript" src="https://yifysubtitles.org/js/jquery.circliful.js"></script>
+	    	<script>
+			    $(document).ready(function() {
+			        var loader = $("#ajaxloader");
+
+			        $("#circle-score-year").circliful({
+			        });
+			        $("#circle-score-length").circliful({
+
+			        });
+
+			        $("#circle-score-imdb").circliful({
+
+			        });
+			        $("#circle-score-tomatoes").circliful({
+
+			        });
+			    });
+			</script>
+
+	    <?php } ?>
 	</head>
 	<body <?php body_class(); ?>>
 		<nav class="navbar navbar-default navbar-fixed-top">
