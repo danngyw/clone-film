@@ -4,7 +4,7 @@ the_post();
 global $post;
 $film_id = $post->post_parent;
 $film = get_post($film_id);
-
+$thumbnail_url = get_the_post_thumbnail_url($film_id);
 ?>
 
 </div><div class="container">
@@ -15,7 +15,9 @@ $film = get_post($film_id);
 </ul>
 <div class="row row-section">
 <div class="col-md-3 col-sm-4">
-<a class="slide-item-wrap" href="/movie-imdb/tt0245238"><img alt="Lost and Delirious" src="https://img.yts.mx/assets/images/movies/lost_and_delirious_2001/medium-cover.jpg" class="img-responsive"></a>
+<a class="slide-item-wrap" href="/movie-imdb/tt0245238">
+
+    <img alt="Lost and Delirious" src="<?php echo $thumbnail_url;?>" class="img-responsive"></a>
 </div>
 <div class="col-md-4 col-md-push-5 col-sm-6 text-center"></div>
 <div class="col-md-5 col-md-pull-4 col-sm-8 movie-main-info text-center">

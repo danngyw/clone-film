@@ -19,3 +19,6 @@ Use it to make something cool, have fun, and share what you've learned
 with others.
 */
 .admin-bar .navbar-fixed-top{top: 26px !important;}
+.vote-column .rating{
+	height: 15px;
+}
