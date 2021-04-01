@@ -117,7 +117,7 @@ if($query->have_posts()){
 		global $post;
 		$subtitle_id = $post->ID;
 		$m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
-		$m_rating_score = get_post_meta($subtitle_id, 'm_rating_score', true );
+		$m_rating_score = (int) get_post_meta($subtitle_id, 'm_rating_score', true );
 
 		?>
 		<tr data-id="307156">
