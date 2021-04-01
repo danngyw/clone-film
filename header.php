@@ -4,13 +4,19 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<?php
 
-		<title>Slav Film Subtitles</title>
-		<meta name="description" content="Subtitles for YIFY movies. Subtitles in any language for your favourite YIFY films.">
+		$title = get_bloginfo('name');
+		$description = get_bloginfo('description');
+
+		?>
+
+		<title><?php echo $title;?></title>
+		<meta name="description" content="<?php echo $description;?>">
 		<meta name="keywords" content="subtitle, movie, yify">
 		<meta property="og:title" content="YIFYSubtitles.org - ultimate subtitles source" />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="http://www.yifysubtitles.org" />
+		<meta property="og:url" content="<?php echo home_url();?>" />
 		<meta property="og:image" content="<?php echo get_stylesheet_directory_uri();?>/images/screenshots/screenshot01.jpg" />
 		<meta property="fb:admins" content="1" />
 		<meta property="fb:app_id" content="1" />
