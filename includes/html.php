@@ -15,7 +15,7 @@ function render_latest_item($film){
 
 	?>
 	<div class="owl-item active" style="width: 235px;">
-		<a href="/movie-imdb/tt5160154" itemprop="url" class="slide-item-wrap">
+		<a href="<?php the_permalink();?>" itemprop="url" class="slide-item-wrap">
 			<img class="img-responsive" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" itemprop="image">
 			<div class="movie-item-overlay">
 				<h3 class="title" itemprop="name"><?php the_title();?><br><?php echo $year_release;?></h3>
