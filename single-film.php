@@ -34,7 +34,7 @@ if($length_time > 60){
 </div>
 <div class="row">
 	<div class="col-md-3 col-sm-6">
-	<a class="slide-item-wrap" itemprop="url" href="/movie-imdb/tt12988016"><img itemprop="image" alt="<?php the_title();?>" src="<?php echo $thumbnail_url;?>" class="img-responsive"></a>
+	<a class="slide-item-wrap" itemprop="url" href="#"><img itemprop="image" alt="<?php the_title();?>" src="<?php echo $thumbnail_url;?>" class="img-responsive"></a>
 	</div>
 	<div class="col-md-4 col-md-push-5 col-sm-6"></div>
 	<div class="col-md-5 col-md-pull-4 col-sm-12 movie-main-info text-center">
