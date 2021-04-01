@@ -5,7 +5,7 @@ include_once('includes/html.php');
 
 include_once('includes/wp_head.php');
 
-require_once TEMPLATEPATH."/includes/index.php";
+//require_once TEMPLATEPATH."/includes/index.php";
 
 
 require_once "vendor/autoload.php";
@@ -33,94 +33,15 @@ function film_theme_enqueue_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'film_theme_enqueue_styles' );
-function get_flag_css($lang){
-	$flag = '1';
-	switch ($lang) {
 
-
-		case 'Arabic':
-			$flag = 'sa';
-			break;
-
-		case 'Romanian':
-			$flag = 'ro';
-			break;
-
-
-		case 'Indonesian':
-			$flag = 'id';
-			break;
-		case 'Chinese':
-			$flag = 'cn';
-			break;
-		case 'Bulgarian':
-			$flag = 'bg';
-			break;
-		case 'German':
-			$flag = 'gb';
-			break;
-
-		case 'Danish':
-			$flag = 'dk';
-			break;
-		case 'English':
-			$flag = 'gb';
-			break;
-
-
-		case 'Hebrew':
-			$flag = 'il';
-			break;
-		case 'Hungarian':
-			$flag = 'hu';
-			break;
-		case 'Dutch':
-			$flag = 'nl';
-			break;
-		case 'French':
-			$flag = 'fr';
-			break;
-		case 'Finnish':
-			$flag = 'fi';
-			break;
-		case 'Portuguese':
-			$flag = 'pt';
-			break;
-		case 'Polish':
-			$flag = 'pl';
-			break;
-		// case 'Spanish':
-		// 	$flag = 'gr';
-		// 	break;
-
-		case 'Polish':
-			$flag = 'pl';
-			break;
-		case 'Singapore':
-			$flag = 'sg';
-			break;
-
-		case 'Spanish':
-			$flag = 'es';
-			break;
-
-		case 'Thai':
-			$flag = 'th';
-			break;
-
-		case 'Turkish':
-			$flag = 'tr';
-			break;
-
-		case 'Vietnamese':
-			$flag = 'vn';
-			break;
-
-
-		default:
-			# code...
-			break;
-	}
-
-	return $flag;
+function httpPost($url, $data)
+{
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
 }
+
