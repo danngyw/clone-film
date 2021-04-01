@@ -16,10 +16,11 @@ $hour = 0;
 $minutes = $length_time;
 $hours = 0;
 if($length_time > 60){
-	$hours = round($length_time/60);
+	$hours = round($length_time/60).'h';
 	$minutes = $length_time - $hours*60;
+	$minutes.='m';
 }
-
+$length = $hours.$minutes;
 ?>
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
 <ul class="breadcrumb">
@@ -40,17 +41,19 @@ if($length_time > 60){
 	<div class="col-md-5 col-md-pull-4 col-sm-12 movie-main-info text-center">
 	<div style="margin:10px auto;">
 
-	<div id="circle-score-year" class="circliful" data-dimension="100" data-text="<?php echo $year_release;?>" data-info="year" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="50" data-total="50" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
-		<span class="circle-text" style="line-height: 100px; font-size: 22px;"><?php echo $year_release;?></span>
-		<span class="circle-info" style="line-height: 125px;">year</span><canvas id="circle-score-year_canvas" width="100" height="100"></canvas>
-	</div>
+		<div id="circle-score-year" class="circliful" data-dimension="100" data-text="<?php echo $year_release;?>" data-info="year" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="50" data-total="50" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
 
-	<div id="circle-score-length" class="circliful" data-dimension="100" data-text="1h 37m" data-info="length" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="31" data-total="60" data-animationstep="20" data-fontsize="18" data-width="5" style="width: 100px;">
-		<span class="circle-text" style="line-height: 100px; font-size: 18px;">1h 20m</span>
-		<span class="circle-info" style="line-height: 125px;">length</span><canvas id="circle-score-length_canvas" width="100" height="100"></canvas>
-	</div>
-	<div id="circle-score-imdb" class="circliful" data-dimension="100" data-text="6.9" data-info="IMDB" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="6.9" data-total="10" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;"><span class="circle-text" style="line-height: 100px; font-size: 22px;">6.9</span><span class="circle-info" style="line-height: 125px;">IMDB</span><canvas id="circle-score-imdb_canvas" width="100" height="100"></canvas></div>
-	<div id="circle-score-tomatoes" class="circliful" data-dimension="100" data-text="N/A" data-info="Tomato" data-fgcolor="#505050" data-bgcolor="#2c2f32" data-part="0" data-total="100" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;"><span class="circle-text" style="line-height: 100px; font-size: 22px;">N/A</span><span class="circle-info" style="line-height: 125px;">Tomato</span><canvas id="circle-score-tomatoes_canvas" width="100" height="100"></canvas></div>
+		</div>
+
+		<div id="circle-score-length" class="circliful" data-dimension="100" data-text="<?php echo $length;?> " data-info="length" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="31" data-total="60" data-animationstep="20" data-fontsize="18" data-width="5" style="width: 100px;">
+
+		</div>
+		<div id="circle-score-imdb" class="circliful" data-dimension="100" data-text="<?php echo $imdb_score;?>" data-info="IMDB" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="<?php echo $imdb_score;?>" data-total="10" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
+
+		</div>
+
+		<div id="circle-score-tomatoes" class="circliful" data-dimension="100" data-text="N/A" data-info="Tomato" data-fgcolor="#505050" data-bgcolor="#2c2f32" data-part="0" data-total="100" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
+		</div>
 	</div>
 	<div class="movie-actors"><?php echo $movie_actors;?><br></div>
 	<div class="movie-desc"><?php the_content();?></div>
