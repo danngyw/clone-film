@@ -40,9 +40,9 @@ $film = get_post($film_id);
 </ul>
 </div>
 <div class="col-xs-12" style="margin-bottom:15px;">
-<b>Lost.and.Delirious.2001.720p.WEB-DL.DD5.1.H264-RARBG</b>
+<b><?php the_title();?></b>
 <br><br>
-Lost.and.Delirious.2001.720p.WEB-DL.DD5.1.H264-RARBG
+<?php the_title();?></b>
 </div>
 <div class="col-xs-12">
 <a class="btn-icon download-subtitle" href="/subtitle/lost-and-delirious-2001-english-yify-323427.zip"><span class="icon32 download"></span><span class="title">DOWNLOAD SUBTITLE</span></a>
