@@ -108,6 +108,7 @@ $args = array(
 	'post_type' => 'subtitle',
 	'post_parent' => $film_id,
 	'post_status' =>'publish',
+	'posts_per_page' => -1,
 );
 wp_reset_query();
 $query  = new WP_Query($args);

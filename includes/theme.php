@@ -139,9 +139,10 @@ function check_sub_of_filme(){
 			$args['m_sub_uploader'] = $sub_uploader;
 			$args['m_sub_slug'] 	= $sub_slug;
 			$args['m_rating_score'] = (int) $rating_score;
+			var_dump($sub_title);
+			echo '<br />';
 
-
-			import_subtitle_film($args, $film_id);
+			// import_subtitle_film($args, $film_id);
 
 		}
 		$count ++;
