@@ -64,7 +64,7 @@ function is_subtitle_imported($sub_source_id){
 
 function check_sub_of_filme(){
 	//https://yifysubtitles.org/movie-imdb/tt9056818
-	if( !is_single() )
+	if( !is_single( 'film') )
 		return ;
 	global $post;
 	$film_id = $post_id =  $post->ID;
