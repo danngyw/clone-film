@@ -5,7 +5,7 @@ use FastSimpleHTMLDom\Document;
 
 
 $page = rand(2, 1238);
-$page = 8;
+$page = rand(100, 1500);
 
 $site_url = "https://yifysubtitles.org/browse/page-".$page;
 $html = new Document(file_get_contents($site_url));
