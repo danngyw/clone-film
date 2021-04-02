@@ -186,7 +186,8 @@ function update_filmd_detail( $film_id, $html){
    	$dvd_release = $html->find(".list-group-item .pull-right", 4)->text(); // dvd_release
    	$released = $html->find(".list-group-item .pull-right", 3)->text(); // RELEASED
    	$rated = $html->find(".list-group-item .pull-right", 1)->text(); // RATED
-   	$company = $html->find(".list-group-item .pull-right", 0)->text(); // RATED
+   	$company = $html->find(".list-group-item .pull-right", 0)->text(); // company
+   	$writer = $html->find(".list-group-item .pull-right", 6)->text(); // WRITER:
 
 
    	update_post_meta($film_id,'director', $director);
@@ -194,6 +195,8 @@ function update_filmd_detail( $film_id, $html){
    	update_post_meta($film_id,'released', $released);
    	update_post_meta($film_id,'rated', $rated);
    	update_post_meta($film_id,'company', $company);
+   	update_post_meta($film_id,'writer', $writer);
+
 
 
 	if( ! has_post_thumbnail($film_id) ){

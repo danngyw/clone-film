@@ -23,12 +23,14 @@ if($length_time > 60){
 	$length = $hours.'h'.$minutes.'m';
 }
 
-$imdb_link 	= get_post_meta($film_id,'imdb_link', true);
-$director 	= get_post_meta($film_id,'director', true);
-$dvd_release= get_post_meta($film_id,'dvd_release', true);
-$released 	= get_post_meta($film_id,'released', true);
-$rated 		= get_post_meta($film_id,'rated', true);
-$company 		= get_post_meta($film_id,'company', true);
+$imdb_link 	= get_post_meta($film_id, 'imdb_link', true);
+$director 	= get_post_meta($film_id, 'director', true);
+$dvd_release= get_post_meta($film_id, 'dvd_release', true);
+$released 	= get_post_meta($film_id, 'released', true);
+$rated 		= get_post_meta($film_id, 'rated', true);
+$company 	= get_post_meta($film_id, 'company', true);
+$writer 	= get_post_meta($film_id, 'writer', true);
+
 
 ?>
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
@@ -88,7 +90,7 @@ $company 		= get_post_meta($film_id,'company', true);
 		</div>
 		<div class="col-md-6 col-sm-12">
 			<ul class="list-group text-left">
-				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Writer:</span></li>
+				<li class="list-group-item"><span class="pull-right">  <?php if($writer) echo $writer; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Writer:</span></li>
 				<li class="list-group-item"><span class="pull-right"><?php if($director) echo $director; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Director:</span></li>
 				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Website:</span></li>
 			</ul>
