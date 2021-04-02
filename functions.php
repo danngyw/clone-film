@@ -14,18 +14,17 @@ add_action('after_setup_theme','clone_includes_file');
 require_once "vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
-function wpdocs_setup_theme() {
-    add_theme_support( 'post-thumbnails', array( 'post', 'film' ) );
-    set_post_thumbnail_size( 230, 345 );
-    add_theme_support( 'custom-logo', array(
-	    'height'      => 100,
-	    'width'       => 400,
-	    'flex-height' => true,
-	    'flex-width'  => true,
-	    'header-text' => array( 'site-title', 'site-description' ),
-	) );
+function is_film_imported($id){
+    global $wpdb;
+    $sql = "SELECT p.ID
+            FROM $wpdb->posts AS p
+                LEFT JOIN $wpdb->postmeta AS pm on pm.post_id = p.ID
+                    WHERE p.post_type = 'film'  and pm.meta_key = 'film_source_id' AND pm.meta_value = $id
+                        LIMIT 1";
+
+    return  $wpdb->query($sql);
+
 }
-add_action( 'after_setup_theme', 'wpdocs_setup_theme' );
 
 
 
