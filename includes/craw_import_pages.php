@@ -62,7 +62,7 @@ foreach($list->find('li') as $li) {
         $args['length_time']          = $length;
         $args['imdb_score']           = $imdb_score;
         $args['movie_actors']         = $movie_actors;
-        $args['movie_type']             = $movie_type;
+        $args['movie_type']           = $movie_type;
 
         import_film($args);
     }
