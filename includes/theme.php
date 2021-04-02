@@ -160,7 +160,6 @@ function check_sub_of_filme(){
 
 
 			import_subtitle_film($args, $film_id);
-			die();
 
 		}
 		$count ++;
