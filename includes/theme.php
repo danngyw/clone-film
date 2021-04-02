@@ -98,8 +98,10 @@ function check_sub_of_filme(){
     $element = $document->find('iframe');
   	$iframe = $element->__toString();
  	update_post_meta($post_id, 'trailer_html',$iframe);
-
- 	update_filmd_detail($film_id, $document);
+ 	$is_full = get_post_meta($post_id,'is_full_update', true);
+ 	if( ! $is_full ){
+ 		update_filmd_detail($film_id, $document);
+ 	}
 
  	$movie_desc     = $document->find(".movie-desc");
     $movie_content  = $movie_desc->text();
@@ -208,6 +210,7 @@ function update_filmd_detail( $film_id, $html){
 	    $args['source_thumbnail_url'] = $thumbnail_url;
         import_film_thumbnail($args, $film_id);
     }
+    update_post_meta($film_id,'is_full_update', 1)
 }
 
 
