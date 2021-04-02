@@ -39,8 +39,8 @@ function import_subtitle_film($args, $film_id){
 	$args['post_status'] 	= 'publish';
 	$args['post_parent']  	= $film_id;
 
-	//$sub_id = wp_insert_post($args);
-	$sub_id = 1;
+	$sub_id = wp_insert_post($args);
+
 	if( ! is_wp_error($sub_id) ){
 		update_post_meta( $sub_id,'subtitle_source_id', $args['sub_source_id']);
 		update_post_meta( $sub_id,'m_sub_language', $args['m_sub_language']);
@@ -48,22 +48,7 @@ function import_subtitle_film($args, $film_id){
 		update_post_meta( $sub_id,'m_sub_slug', $args['m_sub_slug']);
 		update_post_meta( $sub_id, 'm_rating_score', $args['m_rating_score']);
 
-		// crawl detail substile page
-		$sub_url = "https://yifysubtitles.org/subtitles/".$args['m_sub_slug'];
-		$html = new Document(file_get_contents($sub_url));
 
-		$node = $html->find('.download-subtitle');
-		//$text = $node->__toString();
-		$html = $node->innerHtml();
-
-		$document = new Document($html);
-        $node = $document->getDocument()->documentElement;
-        $element = new Element($node);
-
-        //https://yifysubtitles.org/subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
-
-		$zip_url = $element->getAttribute('href'); // /subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
-		$zip_url_full = "https://yifysubtitles.org".$zip_url;
 		$data = array(
 			'import'              => 'subtitle',
 	        'sub_id'              =>  $sub_id,
@@ -79,7 +64,6 @@ function import_subtitle_film($args, $film_id){
 			update_post_meta($sub_id,'sub_zip_url', $url);
 		}
 
-		die();
 	}
 	// update subtitle detail
 
