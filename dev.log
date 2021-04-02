@@ -1,0 +1,19 @@
+<?php
+
+get zip ulr:
+
+	$sub_url = "https://yifysubtitles.org/subtitles/".$args['m_sub_slug'];
+	$html = new Document(file_get_contents($sub_url));
+
+	$node = $html->find('.download-subtitle');
+	//$text = $node->__toString();
+	$html = $node->innerHtml();
+
+	$document = new Document($html);
+    $node = $document->getDocument()->documentElement;
+    $element = new Element($node);
+
+    //https://yifysubtitles.org/subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
+
+	$zip_url = $element->getAttribute('href'); // /subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
+	$zip_url_full = "https://yifysubtitles.org".$zip_url;
