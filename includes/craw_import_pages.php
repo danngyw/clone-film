@@ -5,9 +5,11 @@ use FastSimpleHTMLDom\Document;
 
 
 $latest_time_crawl = (int) get_option('latest_time_crawl', 0 );
-if( time() - $latest_time_crawl < 250 ){
+if( time() - $latest_time_crawl < 200 ){
+    // film_log('Exit because has just crawed site. Latest craw time is: '.$latest_time_crawl);
     return 1;
 }
+
 
 
 $page = (int) get_option('latest_page_crawl', 1239);
@@ -78,5 +80,6 @@ foreach($list->find('li') as $li) {
     }
     $i ++;
 }
+film_log('save_latest_page_crawal:'.$page);
 update_option('latest_page_crawl', $page);
 update_option('latest_time_crawl', time() );
