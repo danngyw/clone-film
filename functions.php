@@ -5,7 +5,7 @@ require_once('includes/html.php');
 
 require_once('includes/wp_head.php');
 
-require_once TEMPLATEPATH."/includes/index.php";
+require_once ("/includes/index.php");
 
 
 require_once "vendor/autoload.php";
