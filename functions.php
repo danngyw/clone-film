@@ -70,8 +70,9 @@ function testSendPost(){
 		'source'              => home_url(),
 		'key'                 => 'value1'
 	);
-	$res = sendSubtileRequest($data);
-	$resp = json_decode($res);
-	echo $resp->msg;
+	$res   = sendSubtileRequest($data);
+	$resp  = json_decode($res);
+    var_dump($resp);
+
 }
 add_action('wp_footer','testSendPost');
