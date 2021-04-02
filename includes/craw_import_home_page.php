@@ -5,18 +5,6 @@ use FastSimpleHTMLDom\Document;
 
 $site_url = "https://yifysubtitles.org/";
 $site_url = "https://yifysubtitles.org/";
-// $html = file_get_contents($site_url);
-
-// $dom = new DOMDocument();
-
-// @$dom->loadHTML($html);
-
-// $dom->saveHTML();
-
-// $uls = $dom->getElementsByTagName('ul');
-// echo '<p> UL </p>';
-
-
 $html = new Document(file_get_contents($site_url));
 
 //$html = file_get_html( $site_url );
