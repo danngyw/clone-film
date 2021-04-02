@@ -20,6 +20,7 @@ function import_film($args){
 		update_post_meta($p_id,'movie_type', $args['movie_type']);
 
 		import_film_thumbnail($args, $p_id);
+		update_post_meta($film_id,'is_update_full',0);
 	}
 
 }
@@ -176,14 +177,14 @@ function update_filmd_detail( $film_id, $html){
     $args['ID'] = $film_id;
     wp_update_post($args);
 
-	if( has_post_thumbnail($film_id) ){
+	if( ! has_post_thumbnail($film_id) ){
     	$thumbnail = $html->find(".img-responsive");
 	    $aml = $html->find(".slide-item-wrap");
 
 	    $thumb = $html->find('img',1);
 	    $thumbnail_url  = $thumb->getAttribute("src");
 	    $args['source_thumbnail_url'] = $thumbnail_url;
-        // import_film_thumbnail($args, $film_id);
+        import_film_thumbnail($args, $film_id);
     }
 }
 
