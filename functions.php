@@ -60,7 +60,7 @@ function sendSubtileRequest( $data ) {
 
 function testSendPost(){
 
-	$url = "https://data.slav.tv/";
+
 	$data = array(
 		'import'              => 'subtitle',
         'sub_id'              =>  '4488',

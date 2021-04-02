@@ -37,17 +37,51 @@ function import_subtitle_film($args, $film_id){
 
 	$args['post_type'] 		= 'subtitle';
 	$args['post_status'] 	= 'publish';
-	//$args['post_parent'] 	= is_film_imported($args['film_source_id']);
 	$args['post_parent']  	= $film_id;
 
-	$sub_id = wp_insert_post($args);
+	//$sub_id = wp_insert_post($args);
+	$sub_id = 1;
 	if( ! is_wp_error($sub_id) ){
 		update_post_meta( $sub_id,'subtitle_source_id', $args['sub_source_id']);
 		update_post_meta( $sub_id,'m_sub_language', $args['m_sub_language']);
 		update_post_meta( $sub_id,'m_sub_uploader', $args['m_sub_uploader']);
 		update_post_meta( $sub_id,'m_sub_slug', $args['m_sub_slug']);
 		update_post_meta( $sub_id, 'm_rating_score', $args['m_rating_score']);
+
+		// crawl detail substile page
+		$sub_url = "https://yifysubtitles.org/subtitles/".$args['m_sub_slug'];
+		$html = new Document(file_get_contents($sub_url));
+
+		$node = $html->find('.download-subtitle');
+		//$text = $node->__toString();
+		$html = $node->innerHtml();
+
+		$document = new Document($html);
+        $node = $document->getDocument()->documentElement;
+        $element = new Element($node);
+
+        //https://yifysubtitles.org/subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
+
+		$zip_url = $element->getAttribute('href')); // /subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
+		$zip_url_full = "https://yifysubtitles.org".$zip_url;
+		$data = array(
+			'import'              => 'subtitle',
+	        'sub_id'              =>  $sub_id,
+	       // 'source_zip_url'      => $zip_url_full,
+	        //'source_sub_id'         =>    323617,
+	        'sub_slug'            =>$args['m_sub_slug'],
+			'source'              => home_url(),
+		);
+
+		$res = sendSubtileRequest($data);
+		if( $res ){
+			$url = $res['url'];
+			update_post_meta($sub_id,'sub_zip_url', $url);
+		}
+
+		die();
 	}
+	// update subtitle detail
 
 }
 
@@ -74,8 +108,8 @@ function check_sub_of_filme(){
 	$number_subtile = (int) get_post_meta($post_id,'number_subtile', true);
 
 
-	if( $number_subtile > 0 )
-		return;
+	// if( $number_subtile > 0 )
+	// 	return;
 
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$site_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
@@ -102,7 +136,7 @@ function check_sub_of_filme(){
 		$sub_source_id = $tr->__get('data-id');
 
 		$check = is_subtitle_imported($sub_source_id);
-
+		$check = 0;
 		if(! $check){
 			$sub_title = $tr->find('td',2);
 
@@ -142,6 +176,7 @@ function check_sub_of_filme(){
 
 
 			import_subtitle_film($args, $film_id);
+			die();
 
 		}
 		$count ++;

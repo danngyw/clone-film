@@ -2,10 +2,10 @@
 get_header();
 the_post();
 global $post;
-$film_id = $post->post_parent;
-$subtitle_id = $post_id = $post->ID;
-$film = get_post($film_id);
-$thumbnail_url = get_the_post_thumbnail_url($film_id);
+$film_id        = $post->post_parent;
+$subtitle_id    = $sub_id =  $post_id = $post->ID;
+$film           = get_post($film_id);
+$thumbnail_url  = get_the_post_thumbnail_url($film_id);
 $m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
 $m_rating_score = get_post_meta($subtitle_id,'m_rating_score', true );
 
@@ -51,7 +51,10 @@ $m_rating_score = get_post_meta($subtitle_id,'m_rating_score', true );
 <?php the_title();?></b>
 </div>
 <div class="col-xs-12">
-<a class="btn-icon download-subtitle" href="/subtitle/lost-and-delirious-2001-english-yify-323427.zip"><span class="icon32 download"></span><span class="title">DOWNLOAD SUBTITLE</span></a>
+    <?php
+    $sub_zip_url = get_post_meta($sub_id,'sub_zip_url', true);
+    ?>
+<a class="btn-icon download-subtitle" href="<?php echo $sub_zip_url;?>"><span class="icon32 download"></span><span class="title">DOWNLOAD SUBTITLE</span></a>
 </div>
 </div>
 </div>
