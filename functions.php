@@ -7,7 +7,7 @@ require_once('includes/html.php');
 require_once('includes/wp_head.php');
 
 function clone_includes_file(){
-    require_once ("includes/index.php");
+    //require_once ("includes/index.php");
 }
 add_action('after_setup_theme','clone_includes_file');
 
