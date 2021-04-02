@@ -62,7 +62,7 @@ function import_subtitle_film($args, $film_id){
 
         //https://yifysubtitles.org/subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
 
-		$zip_url = $element->getAttribute('href')); // /subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
+		$zip_url = $element->getAttribute('href'); // /subtitle/mortadelo-and-filemon-mission-implausible-2014-english-yify-323617.zip
 		$zip_url_full = "https://yifysubtitles.org".$zip_url;
 		$data = array(
 			'import'              => 'subtitle',
