@@ -20,7 +20,7 @@ function import_film($args){
 		update_post_meta($p_id,'movie_type', $args['movie_type']);
 
 		import_film_thumbnail($args, $p_id);
-		update_post_meta($film_id,'is_update_full',0);
+		update_post_meta($p_id,'is_update_full',0);
 	}
 
 }
@@ -181,10 +181,18 @@ function update_filmd_detail( $film_id, $html){
    	update_post_meta($film_id,'imdb_link',$imdb_link );
 
 
-   	$dvd_release = $html->find(".list-group-item span", 8)->text(); // DVD RELEASE:
+   	//$dvd_release = $html->find(".list-group-item span", 8)->text(); // DVD RELEASE:
    	$director = $html->find(".list-group-item .pull-right", 7)->text(); // director
+   	$dvd_release = $html->find(".list-group-item .pull-right", 4)->text(); // dvd_release
+   	$released = $html->find(".list-group-item .pull-right", 3)->text(); // RELEASED
+   	$rated = $html->find(".list-group-item .pull-right", 1)->text(); // RATED
+
+
    	update_post_meta($film_id,'director', $director);
    	update_post_meta($film_id,'dvd_release', $dvd_release);
+   	update_post_meta($film_id,'released', $released);
+   	update_post_meta($film_id,'rated', $rated);
+
 	if( ! has_post_thumbnail($film_id) ){
     	$thumbnail = $html->find(".img-responsive");
 	    $aml = $html->find(".slide-item-wrap");

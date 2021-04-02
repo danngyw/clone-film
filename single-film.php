@@ -23,9 +23,11 @@ if($length_time > 60){
 	$length = $hours.'h'.$minutes.'m';
 }
 
-$imdb_link= get_post_meta($film_id,'imdb_link', true);
-$director= get_post_meta($film_id,'director', true);
+$imdb_link 	= get_post_meta($film_id,'imdb_link', true);
+$director 	= get_post_meta($film_id,'director', true);
 $dvd_release= get_post_meta($film_id,'dvd_release', true);
+$released 	= get_post_meta($film_id,'released', true);
+$rated 		= get_post_meta($film_id,'rated', true);
 
 ?>
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
@@ -72,13 +74,13 @@ $dvd_release= get_post_meta($film_id,'dvd_release', true);
 		<div class="col-md-3 col-sm-6">
 			<ul class="list-group text-left">
 				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Company:</span></li>
-				<li class="list-group-item"><span class="pull-right">NR</span> <span class="text-muted text-uppercase">Rated:</span></li>
+				<li class="list-group-item"><span class="pull-right">  <?php if($rated) echo $rated; else echo 'NR';?>NR</span> <span class="text-muted text-uppercase">Rated:</span></li>
 				<li class="list-group-item"> <span class="pull-right"><?php echo $imdb_link;?></span> <span class="text-muted text-uppercase">IMDB:</span></li>
 			</ul>
 		</div>
 		<div class="col-md-3 col-sm-6">
 			<ul class="list-group text-left">
-				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Released:</span></li>
+				<li class="list-group-item"><span class="pull-right"> <?php if($released) echo $released; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Released:</span></li>
 				<li class="list-group-item"><span class="pull-right"><?php if($dvd_release) echo $dvd_release; else echo 'N/A';?></span> <span class="text-muted text-uppercase">DVD Release:</span></li>
 				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Box office:</span></li>
 			</ul>
