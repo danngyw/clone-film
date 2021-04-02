@@ -1,5 +1,5 @@
 <?php
-define('FILM_SOURCE_ID','film_source_id');
+
 use FastSimpleHTMLDom\Document;
 use FastSimpleHTMLDom\Element;
 

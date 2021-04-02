@@ -1,5 +1,5 @@
 <?php
-
+define('FILM_SOURCE_ID','film_source_id');
 require_once('includes/init.php');
 require_once('includes/theme.php');
 require_once('includes/html.php');
