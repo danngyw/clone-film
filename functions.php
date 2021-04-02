@@ -5,7 +5,7 @@ require_once('includes/html.php');
 
 require_once('includes/wp_head.php');
 
-require_once ("/includes/index.php");
+require_once ("includes/index.php");
 
 
 require_once "vendor/autoload.php";
@@ -68,9 +68,17 @@ function testSendPost(){
 		'source'              => home_url(),
 		'key'                 => 'value1'
 	);
-	$res   = sendSubtileRequest($data);
 
+
+    try {
+        $res   = sendSubtileRequest($data);
+        if($res){
+            
+        }
+    } catch (Exception $e) {
+        var_dump($e);
+    }
 
 
 }
-// add_action('wp_footer','testSendPost');
+add_action('wp_footer','testSendPost');

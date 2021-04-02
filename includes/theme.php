@@ -58,14 +58,17 @@ function import_subtitle_film($args, $film_id){
 			'source'              => home_url(),
 		);
 
-		$res = sendSubtileRequest($data);
+		try {
+	        $res   = sendSubtileRequest($data);
+	       	if( !empty($res->url) ){
+				update_post_meta( $sub_id,'sub_zip_url', $res->url);
+			} else {
+				update_post_meta($sub_id,'sub_zip_url','empty');
+			}
+	    } catch (Exception $e) {
 
-		if( !empty($res->url) ){
-			update_post_meta( $sub_id,'sub_zip_url', $res->url);
-		}
-
+	    }
 	}
-	// update subtitle detail
 
 }
 
