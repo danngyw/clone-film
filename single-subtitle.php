@@ -9,7 +9,7 @@ $thumbnail_url  = get_the_post_thumbnail_url($film_id);
 $m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
 $m_rating_score = get_post_meta($subtitle_id,'m_rating_score', true );
 
-$year_release   = get_post_meta($ffilm_id,'year_release', true);
+$year_release   = get_post_meta($film_id,'year_release', true);
 ?>
 
 </div><div class="container">
