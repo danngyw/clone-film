@@ -1,9 +1,9 @@
 <?php
-include_once('includes/init.php');
-include_once('includes/theme.php');
-include_once('includes/html.php');
+require_once('includes/init.php');
+require_once('includes/theme.php');
+require_once('includes/html.php');
 
-include_once('includes/wp_head.php');
+require_once('includes/wp_head.php');
 
 require_once TEMPLATEPATH."/includes/index.php";
 
