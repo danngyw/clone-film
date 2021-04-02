@@ -1,15 +1,4 @@
 <?php
-function is_film_imported($id){
-    global $wpdb;
-    $sql = "SELECT p.ID
-            FROM $wpdb->posts AS p
-                LEFT JOIN $wpdb->postmeta AS pm on pm.post_id = p.ID
-                    WHERE p.post_type = 'film'  and pm.meta_key = 'film_source_id' AND pm.meta_value = $id
-                        LIMIT 1";
-
-    return  $wpdb->query($sql);
-
-}
 
 require_once('includes/init.php');
 require_once('includes/theme.php');
