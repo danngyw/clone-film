@@ -4,7 +4,7 @@ require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
 
-$latest_time_crawl = (int) get_option('latest_time_crawl', time() + 500 );
+$latest_time_crawl = (int) get_option('latest_time_crawl', 0 );
 if( time() - $latest_time_crawl < 250 ){
     return 1;
 }

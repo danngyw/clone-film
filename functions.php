@@ -5,6 +5,7 @@ function film_log($input, $file_store = ''){
 
     $file_store = WP_CONTENT_DIR.'/log.css';
 
+
     if( is_array( $input ) || is_object( $input ) ){
         error_log( date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ). ': '. print_r($input, TRUE), 3, $file_store );
     } else {
