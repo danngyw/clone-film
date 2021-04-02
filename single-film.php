@@ -24,6 +24,9 @@ if($length_time > 60){
 }
 
 $imdb_link= get_post_meta($film_id,'imdb_link', true);
+$director= get_post_meta($film_id,'director', true);
+$dvd_release= get_post_meta($film_id,'dvd_release', true);
+
 ?>
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
 <ul class="breadcrumb">
@@ -70,20 +73,20 @@ $imdb_link= get_post_meta($film_id,'imdb_link', true);
 			<ul class="list-group text-left">
 				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Company:</span></li>
 				<li class="list-group-item"><span class="pull-right">NR</span> <span class="text-muted text-uppercase">Rated:</span></li>
-				<li class="list-group-item"><span class="pull-right"><?php echo $imdb_link;?></li>
+				<li class="list-group-item"> <span class="pull-right"><?php echo $imdb_link;?></span> <span class="text-muted text-uppercase">IMDB:</span></li>
 			</ul>
 		</div>
 		<div class="col-md-3 col-sm-6">
 			<ul class="list-group text-left">
-				<li class="list-group-item"><span class="pull-right">2020-11-07</span> <span class="text-muted text-uppercase">Released:</span></li>
-				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">DVD Release:</span></li>
+				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Released:</span></li>
+				<li class="list-group-item"><span class="pull-right"><?php if($dvd_release) echo $dvd_release; else echo 'N/A';?></span> <span class="text-muted text-uppercase">DVD Release:</span></li>
 				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Box office:</span></li>
 			</ul>
 		</div>
 		<div class="col-md-6 col-sm-12">
 			<ul class="list-group text-left">
 				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Writer:</span></li>
-				<li class="list-group-item"><span class="pull-right">Brian Herzlinger</span> <span class="text-muted text-uppercase">Director:</span></li>
+				<li class="list-group-item"><span class="pull-right"><?php if($director) echo $director; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Director:</span></li>
 				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Website:</span></li>
 			</ul>
 		</div>

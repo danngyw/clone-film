@@ -179,6 +179,12 @@ function update_filmd_detail( $film_id, $html){
     $imdb_link = $html->find(".list-group-item a");
     $imdb_link = $imdb_link->innerHtml();
    	update_post_meta($film_id,'imdb_link',$imdb_link );
+
+
+   	$dvd_release = $html->find(".list-group-item span", 8)->text(); // DVD RELEASE:
+   	$director = $html->find(".list-group-item .pull-right", 7)->text(); // director
+   	update_post_meta($film_id,'director', $director);
+   	update_post_meta($film_id,'dvd_release', $dvd_release);
 	if( ! has_post_thumbnail($film_id) ){
     	$thumbnail = $html->find(".img-responsive");
 	    $aml = $html->find(".slide-item-wrap");
