@@ -10,11 +10,11 @@ if( time() - $latest_time_crawl < 250 ){
 }
 
 
-$page = (int) get_option('latest_page_crawl', 1241);
+$page = (int) get_option('latest_page_crawl', 1239);
 
 $page =$page -1;
 
-film_log('crawl page '.$page);
+film_log('crawl page :'.$page);
 
 $site_url = "https://yifysubtitles.org/browse/page-".$page;
 $html = new Document(file_get_contents($site_url));
