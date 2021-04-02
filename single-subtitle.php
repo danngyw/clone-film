@@ -9,6 +9,7 @@ $thumbnail_url  = get_the_post_thumbnail_url($film_id);
 $m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
 $m_rating_score = get_post_meta($subtitle_id,'m_rating_score', true );
 
+$year_release   = get_post_meta($ffilm_id,'year_release', true);
 ?>
 
 </div><div class="container">
@@ -26,7 +27,7 @@ $m_rating_score = get_post_meta($subtitle_id,'m_rating_score', true );
 <div class="col-md-4 col-md-push-5 col-sm-6 text-center"></div>
 <div class="col-md-5 col-md-pull-4 col-sm-8 movie-main-info text-center">
 <h2><?php echo $film->post_title;?></h2>
-<div class="movie-year">2001</div>
+<div class="movie-year"><?php echo $year_release;?></div>
 <div class="row">
 <div class="col-xs-2">
 <div class="vote-column">
