@@ -3,17 +3,7 @@ define('FILM_SOURCE_ID','film_source_id');
 use FastSimpleHTMLDom\Document;
 use FastSimpleHTMLDom\Element;
 
-function is_film_imported($id){
-	global $wpdb;
-	$sql = "SELECT p.ID
-			FROM $wpdb->posts AS p
-				LEFT JOIN $wpdb->postmeta AS pm on pm.post_id = p.ID
-					WHERE p.post_type = 'film'  and pm.meta_key = 'film_source_id' AND pm.meta_value = $id
-						LIMIT 1";
 
-  	return  $wpdb->query($sql);
-
-}
 
 function import_film($args){
 
