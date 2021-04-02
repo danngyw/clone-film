@@ -33,3 +33,13 @@ function subtitle_custom_post_type() {
     );
 }
 add_action('init', 'subtitle_custom_post_type');
+
+function film_theme_enqueue_styles() {
+
+    $parent_style = 'jobcareertheme';
+    wp_enqueue_style( 'clone-film', get_stylesheet_uri() );
+
+    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/assets/app.css' );
+
+}
+add_action( 'wp_enqueue_scripts', 'film_theme_enqueue_styles' );

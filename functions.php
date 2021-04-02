@@ -38,25 +38,9 @@ function wpdocs_setup_theme() {
 }
 add_action( 'after_setup_theme', 'wpdocs_setup_theme' );
 
-function film_theme_enqueue_styles() {
 
-    $parent_style = 'jobcareertheme';
-    wp_enqueue_style( 'clone-film', get_stylesheet_uri() );
 
-    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/assets/app.css' );
 
-}
-add_action( 'wp_enqueue_scripts', 'film_theme_enqueue_styles' );
-
-function httpPost($url, $data) {
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($curl);
-    curl_close($curl);
-    return $response;
-}
 
 function sendSubtileRequest( $data ) {
 	$url = "https://data.slav.tv/";
