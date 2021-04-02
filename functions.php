@@ -93,4 +93,4 @@ function testSendPost(){
 
 
 }
-add_action('wp_footer','testSendPost');
+//add_action('wp_footer','testSendPost');
