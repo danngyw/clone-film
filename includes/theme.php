@@ -62,8 +62,6 @@ function import_subtitle_film($args, $film_id){
 
 		if( !empty($res->url) ){
 			update_post_meta( $sub_id,'sub_zip_url', $res->url);
-			var_dump($sub_id);
-			var_dump('update sub_zip_url done');
 		}
 
 	}
