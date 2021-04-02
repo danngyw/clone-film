@@ -53,6 +53,8 @@ $m_rating_score = get_post_meta($subtitle_id,'m_rating_score', true );
 <div class="col-xs-12">
     <?php
     $sub_zip_url = get_post_meta($sub_id,'sub_zip_url', true);
+    $sub_zip_url = str_replace( 'http://', 'https://', $sub_zip_url );
+
     ?>
 <a class="btn-icon download-subtitle" href="<?php echo $sub_zip_url;?>"><span class="icon32 download"></span><span class="title">DOWNLOAD SUBTITLE</span></a>
 </div>
