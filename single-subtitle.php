@@ -172,7 +172,7 @@ $m_rating_score = get_post_meta($subtitle_id,'m_rating_score', true );
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
-<script src="/js/typeahead.jquery.js?1"></script>
+<script src="<?php echo get_template_directory_uri();?>/js/typeahead.jquery.js?1"></script>
 <script>
 $(document).ready(function () {
         var loader = $("#ajaxloader");
@@ -210,18 +210,36 @@ $(document).ready(function () {
                 location.reload();
         });
         /*end select language dialog*/
+        $('#qSearch').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 2
+            },
+            {
+                name: 'rms',
+                limit: 15,
+                displayKey: 'movie',
+                source: function (q, sync, async) {
+                    $.ajax('/ajax/search/?mov='+q, {
+                            success: function(data, status){  async(data); }
+                    });
+                }
+            }).bind("typeahead:select", function(obj, selected, name) {
+                    window.location = '/movie-imdb/' + selected.imdb;
+            } );
 
-        toastr.options = {
-            "showDuration": "10",
-            "hideDuration": "10",
-            "timeOut": "3000",
-            "extendedTimeOut": "200",
-            "showEasing": "linear",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut",
-            "preventDuplicates": true
-        };
+
+            toastr.options = {
+                "showDuration": "10",
+                "hideDuration": "10",
+                "timeOut": "3000",
+                "extendedTimeOut": "200",
+                "showEasing": "linear",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+                "preventDuplicates": true
+            };
     });
 </script>
 <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101253065);</script>
