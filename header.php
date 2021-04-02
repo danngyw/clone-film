@@ -91,10 +91,17 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right"><?php
-						if(is_single()){
+						if(is_single() ){
 							global $post;
-							$film_source_id = get_post_meta($post->ID,'film_source_id', true);
-							$source_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;?>
+							if( is_singular('film') ){
+								$film_source_id = get_post_meta($post->ID,'film_source_id', true);
+								$source_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
+							} else if( is_singular('subtitle')){
+								$sub_slug = get_post_meta($post->ID,'m_sub_slug', true);
+								$source_url 	= "https://yifysubtitles.org/subtitles/".$sub_slug;
+							}?>
+
+
 							<li><a href="<?php echo $source_url;?>" target="_blank">Source Post</a></li>
 						<?php } else { ?>
 							<li><a href="https://yifysubtitles.org/" target="_blank">Source Site</a></li><?php
