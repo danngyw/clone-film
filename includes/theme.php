@@ -59,8 +59,7 @@ function import_subtitle_film($args, $film_id){
 		);
 
 		$res = sendSubtileRequest($data);
-		if( $res ){
-
+		if( isset($res['url']) ){
 			$url = $res['url'];
 			update_post_meta($sub_id,'sub_zip_url', $url);
 		}
