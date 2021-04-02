@@ -59,9 +59,11 @@ function import_subtitle_film($args, $film_id){
 		);
 
 		$res = sendSubtileRequest($data);
-		if( isset($res['url']) ){
-			$url = $res['url'];
-			update_post_meta($sub_id,'sub_zip_url', $url);
+
+		if( !empty($res->url) ){
+			update_post_meta( $sub_id,'sub_zip_url', $res->url);
+			var_dump($sub_id);
+			var_dump('update sub_zip_url done');
 		}
 
 	}
@@ -120,7 +122,7 @@ function check_sub_of_filme(){
 		$sub_source_id = $tr->__get('data-id');
 
 		$check = is_subtitle_imported($sub_source_id);
-		//		$check = 0;
+
 		if(! $check){
 			$sub_title = $tr->find('td',2);
 
@@ -131,12 +133,15 @@ function check_sub_of_filme(){
 			$td_subtitle = $tr->find("td",2);
 			$sub_slug = $td_subtitle->getElementByTagName('a');
 			$sub_slug = $sub_slug->getAttribute("href"); // full path: /subtitles/last-breath-2019-danish-yify-305528"
-			$sub_slug = substr($sub_slug, 11, -1); // cut off to :last-breath-2019-danish-yify-305528"
+			$sub_slug = substr($sub_slug, 11, 100); // cut off to :last-breath-2019-danish-yify-305528"
 
 
 			$sub_title = $td_subtitle->text();
 			$sub_title = substr($sub_title, 9, -1); // remove [subtitle ] in the text;
 
+			if( empty($sub_title) ){
+				$sub_title = $sub_slug;
+			}
 
 
 			$td_langue = $tr->find('.sub-lang');

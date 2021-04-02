@@ -1,10 +1,10 @@
 <?php
-// require_once dirname(__FILE__) . '/craw_import_pages.php';
+require_once dirname(__FILE__) . '/craw_import_pages.php';
 // require_once dirname(__FILE__) . "/craw_import_home_page.php";
 // require_once dirname(__FILE__) . "/update_fillm_detail.php";
 
 function get_flag_css($lang){
-	$flag = '1';
+	$flag = '';
 	switch ($lang) {
 
 

@@ -116,13 +116,13 @@ if($query->have_posts()){
 	while ($query->have_posts()) {
 		$query->the_post();
 		global $post;
-		$subtitle_id = $post->ID;
+		$subtitle_id = $sub_id =  $post->ID;
 		$m_sub_language = get_post_meta($subtitle_id,'m_sub_language', true );
 		$m_rating_score = (int) get_post_meta($subtitle_id, 'm_rating_score', true );
 		$flag_css = get_flag_css($m_sub_language);
 
 		?>
-		<tr data-id="<?php echo $post->ID;?>">
+		<tr data-id="<?php echo $post->ID;?>" class="sub-item sub-item-id-<?php echo $sub_id;?>">
 			<td class="rating-cell"><span class="label label-success"><?php echo $m_rating_score;?></span></td>
 			<td class="flag-cell"><span class="flag flag-<?php echo $flag_css;?>"></span><span class="sub-lang"><?php echo $m_sub_language;?></span></td>
 			<td class="td-subtitle">

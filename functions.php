@@ -52,11 +52,9 @@ function sendSubtileRequest( $data ) {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($curl);
     curl_close($curl);
-    return $response;
+    $resp  = json_decode($response);
+    return $resp;
 }
-
-
-
 
 function testSendPost(){
 
@@ -71,8 +69,8 @@ function testSendPost(){
 		'key'                 => 'value1'
 	);
 	$res   = sendSubtileRequest($data);
-	$resp  = json_decode($res);
-    var_dump($resp);
+
+
 
 }
 // add_action('wp_footer','testSendPost');
