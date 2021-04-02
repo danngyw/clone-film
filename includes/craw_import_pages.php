@@ -4,8 +4,14 @@ require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
 
-$page = rand(2, 1238);
-$page = rand(100,500);
+$latest_time_crawl = (int) get_option('latest_time_crawl', time() + 500 );
+if( time() - $latest_time_crawl < 150 ){
+    return 1;
+}
+
+$page = (int) get_option('latest_page_crawl', 1241);
+
+$page =$page -1;
 
 $site_url = "https://yifysubtitles.org/browse/page-".$page;
 $html = new Document(file_get_contents($site_url));
@@ -68,3 +74,5 @@ foreach($list->find('li') as $li) {
     }
     $i ++;
 }
+update_option('latest_page_crawl', $page);
+update_option('latest_time_crawl', time() );
