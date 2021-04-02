@@ -23,6 +23,7 @@ if($length_time > 60){
 	$length = $hours.'h'.$minutes.'m';
 }
 
+$imdb_link= get_post_meta($film_id,'imdb_link', true);
 ?>
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
 <ul class="breadcrumb">
@@ -69,7 +70,7 @@ if($length_time > 60){
 			<ul class="list-group text-left">
 				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Company:</span></li>
 				<li class="list-group-item"><span class="pull-right">NR</span> <span class="text-muted text-uppercase">Rated:</span></li>
-				<li class="list-group-item"><span class="pull-right"><a href="https://www.imdb.com/title/tt12988016/">IMDB link</a></span> <span class="text-muted text-uppercase">IMDB:</span></li>
+				<li class="list-group-item"><span class="pull-right"><?php echo $imdb_link;?></li>
 			</ul>
 		</div>
 		<div class="col-md-3 col-sm-6">

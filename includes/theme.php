@@ -176,7 +176,9 @@ function update_filmd_detail( $film_id, $html){
 
     $args['ID'] = $film_id;
     wp_update_post($args);
-
+    $imdb_link = $html->find(".list-group-item a");
+    $imdb_link = $imdb_link->innerHtml();
+   	update_post_meta($film_id,'imdb_link',$imdb_link );
 	if( ! has_post_thumbnail($film_id) ){
     	$thumbnail = $html->find(".img-responsive");
 	    $aml = $html->find(".slide-item-wrap");
@@ -244,4 +246,97 @@ function import_film_thumbnail($args, $film_id = 0){
 	    }
 
 	}
+}
+
+
+function get_flag_css($lang){
+	$flag = '';
+	switch ($lang) {
+
+
+		case 'Arabic':
+			$flag = 'sa';
+			break;
+
+		case 'Romanian':
+			$flag = 'ro';
+			break;
+
+
+		case 'Indonesian':
+			$flag = 'id';
+			break;
+		case 'Chinese':
+			$flag = 'cn';
+			break;
+		case 'Bulgarian':
+			$flag = 'bg';
+			break;
+		case 'German':
+			$flag = 'gb';
+			break;
+
+		case 'Danish':
+			$flag = 'dk';
+			break;
+		case 'English':
+			$flag = 'gb';
+			break;
+
+
+		case 'Hebrew':
+			$flag = 'il';
+			break;
+		case 'Hungarian':
+			$flag = 'hu';
+			break;
+		case 'Dutch':
+			$flag = 'nl';
+			break;
+		case 'French':
+			$flag = 'fr';
+			break;
+		case 'Finnish':
+			$flag = 'fi';
+			break;
+		case 'Portuguese':
+			$flag = 'pt';
+			break;
+		case 'Polish':
+			$flag = 'pl';
+			break;
+		// case 'Spanish':
+		// 	$flag = 'gr';
+		// 	break;
+
+		case 'Polish':
+			$flag = 'pl';
+			break;
+		case 'Singapore':
+			$flag = 'sg';
+			break;
+
+		case 'Spanish':
+			$flag = 'es';
+			break;
+
+		case 'Thai':
+			$flag = 'th';
+			break;
+
+		case 'Turkish':
+			$flag = 'tr';
+			break;
+
+		case 'Vietnamese':
+			$flag = 'vn';
+			break;
+
+
+		default:
+			# code...
+			break;
+	}
+
+	return $flag;
 }
