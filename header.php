@@ -90,7 +90,9 @@
 					<img src="<?php echo get_stylesheet_directory_uri();?>/images/misc/logo-small.png" alt="YIFYSubtitles"></a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav navbar-right"><?php
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="<?php echo home_url();?>/demo/">Demo</a></li>
+						<?php
 						if(is_single() ){
 							global $post;
 							if( is_singular('film') ){
@@ -106,6 +108,7 @@
 						<?php } else { ?>
 							<li><a href="https://yifysubtitles.org/" target="_blank">Source Site</a></li><?php
 						}?>
+
 						<li><a href="<?php echo home_url();?>">Login</a></li>
 					</ul>
 				</div>

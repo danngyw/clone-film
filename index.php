@@ -13,7 +13,7 @@ get_header();
 		<?php
 		$file_store = WP_CONTENT_DIR.'/log.css';
 		$myfile = fopen($file_store, "r") or die("Unable to open file!");
-		echo fgets($myfile);
+		echo nl2br(file_get_contents($file_store ));
 		fclose($myfile);
 	?>
 

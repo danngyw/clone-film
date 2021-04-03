@@ -80,6 +80,5 @@ foreach($list->find('li') as $li) {
     }
     $i ++;
 }
-film_log('save_latest_page_crawal:'.$page);
 update_option('latest_page_crawl', $page);
 update_option('latest_time_crawl', time() );
