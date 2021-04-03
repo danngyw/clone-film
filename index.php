@@ -2,6 +2,14 @@
 <?php
 
 get_header();
+$paged = get_query_var('paged');
+
+$class_class = "col-md-8";
+$show_sidebar = 1;
+if($paged > 1){
+	$show_sidebar = 0;
+	$css_class = "col-sm-12";
+}
 ?>
 <div class="container">
 	<?php
@@ -23,14 +31,15 @@ get_header();
 	<?php } ?>
 
 	<div class="row">
-	<div class="col-md-8">
+
+	<div class="<?php echo $css_class;?>">
 		<?php if( is_home() || is_front_page() ){?>
 			<h4 class="section-title">Recently added movies</h4>
 		<?php } ?>
 	 	<?php get_recent_films();?>
 
 	</div>
-	<?php get_sidebar();?>
+	<?php if($show_sidebar) get_sidebar();?>
 	</div>
 </div>
 <?php get_footer();

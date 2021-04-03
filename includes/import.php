@@ -58,7 +58,6 @@ function import_subtitle_film($args, $film_id){
 	    } catch (Exception $e) {
 
 	    }
-	    //update_post_meta($sub_id, 'is_full_updated','full');
 	}
 
 }

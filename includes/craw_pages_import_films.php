@@ -10,8 +10,8 @@ $site_url = $home_page =  "https://yifysubtitles.org/";
 if($ipage){
     $site_url   = "https://yifysubtitles.org/browse/page-".$ipage;
     $ul_css     = "ul.media-list";
-
 }
+film_log('crawl site:'.$site_url);
 
 $html = new Document(file_get_contents($site_url));
 
