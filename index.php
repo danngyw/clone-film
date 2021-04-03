@@ -1,7 +1,6 @@
 
 <?php
-require_once "vendor/autoload.php";
-use FastSimpleHTMLDom\Document;
+
 get_header();
 ?>
 <div class="container">
@@ -9,13 +8,13 @@ get_header();
 	if( is_home() || is_front_page() ){?>
 
 
-		<?php // get_template_part('template/latest','movies');?>
+		<?php get_template_part('template/latest','movies');?>
 		<?php
-		$file_store = WP_CONTENT_DIR.'/log.css';
-		$myfile = fopen($file_store, "r") or die("Unable to open file!");
-		echo nl2br(file_get_contents($file_store ));
-		fclose($myfile);
-	?>
+		// $file_store = WP_CONTENT_DIR.'/log.css';
+		// $myfile = fopen($file_store, "r") or die("Unable to open file!");
+		// echo nl2br(file_get_contents($file_store ));
+		// fclose($myfile);
+		?>
 
 	<?php  } ?>
 
@@ -28,7 +27,7 @@ get_header();
 		<?php if( is_home() || is_front_page() ){?>
 			<h4 class="section-title">Recently added movies</h4>
 		<?php } ?>
-	 	<?php // get_recent_films();?>
+	 	<?php get_recent_films();?>
 
 	</div>
 	<?php get_sidebar();?>

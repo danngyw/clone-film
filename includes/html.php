@@ -38,6 +38,7 @@ function get_recent_films(){
 		'post_type' => 'film',
 		'post_status' => 'publish',
 		'paged' => $paged,
+		'posts_per_page' => 14,
 	);
 	if($keyword){
 		$args['s'] = $keyword;
