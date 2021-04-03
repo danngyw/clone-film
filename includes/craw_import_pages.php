@@ -17,15 +17,20 @@ $ipage   = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
 
 // $page = $page -1;
 
-film_log('crawled page :'.$ipage);
 
-$site_url = $home_page =  "https://yifysubtitles.org";
+
+$ul_css = ".col-md-8 ul.media-list";
+$site_url = $home_page =  "https://yifysubtitles.org/";
 if($ipage){
-    $site_url = "https://yifysubtitles.org/browse/page-".$ipage;
+    $site_url   = "https://yifysubtitles.org/browse/page-".$ipage;
+    $ul_css     = "ul.media-list";
+
 }
+film_log('crawled url :'.$site_url);
 $html = new Document(file_get_contents($site_url));
 
-$list = $html->find('ul.media-list');
+
+$list = $html->find($ul_css);
 $i = 1;
 foreach($list->find('li') as $li) {
 
@@ -46,6 +51,7 @@ foreach($list->find('li') as $li) {
 
 
         $movie_type     = $li->find(".movie-genre",0);
+
         $movie_type     = $movie_type->text();
 
         $movie_actors   = $li->find(".movie-actors",0);
@@ -65,6 +71,7 @@ foreach($list->find('li') as $li) {
         $imdb_score = substr($imdb, 0, -4);
 
         $film_desc = $li->find(".movie-desc");
+
         $film_excerpt = $film_desc->text();
 
 

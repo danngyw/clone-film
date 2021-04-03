@@ -2,7 +2,8 @@
 define('FILM_SOURCE_ID','film_source_id');
 
 
-
+require_once "vendor/autoload.php";
+use FastSimpleHTMLDom\Document;
 
 require_once('includes/init.php');
 require_once('includes/default.php');
@@ -13,8 +14,6 @@ function clone_includes_file(){
     $act    = isset($_REQUEST['act']) ? $_REQUEST['act']:false;
 
     if( $act == 'import' || $act == 'importsub') {
-        require_once "vendor/autoload.php";
-
         require_once('includes/import.php');
         require_once ("includes/index.php");
     }

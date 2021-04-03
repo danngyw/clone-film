@@ -1,5 +1,4 @@
 <?php
-
 require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
