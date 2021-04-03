@@ -1,6 +1,4 @@
-<?php
-do_action('wp_footer');
-?>
+
 		<footer class="footer">
 			<div class="container text-center">
 				<div class="row">
@@ -35,6 +33,8 @@ do_action('wp_footer');
 	    <?php } ?>
 
 
-
+	    <?php
+		do_action('wp_footer');
+		?>
 	</body>
 </html>
