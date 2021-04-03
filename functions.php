@@ -28,12 +28,11 @@ add_action('after_setup_theme','clone_includes_file');
 require_once "vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
-function is_film_imported($id){
+function is_film_imported($source_id){
     global $wpdb;
-    $sql = "SELECT p.ID
-            FROM $wpdb->posts AS p
-                LEFT JOIN $wpdb->postmeta AS pm on pm.post_id = p.ID
-                    WHERE p.post_type = 'film'  and pm.meta_key = 'film_source_id' AND pm.meta_value = $id
+    $sql = "SELECT pm.post_id
+            FROM $wpdb->postmeta AS pm
+                    WHERE pm.meta_key = 'film_source_id' AND pm.meta_value = '{$source_id}'
                         LIMIT 1";
 
     return  $wpdb->query($sql);
