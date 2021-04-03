@@ -37,9 +37,9 @@ foreach($list->find('li') as $li) {
 
     $film_desc = $li->find(".movie-desc");
     $film_excerpt = $film_desc->text();
-    $t = is_film_imported($film_id);
+    $exists = is_film_imported($film_id);
 
-    if(!$t ){
+    if(!$exists ){
         $args['post_excerpt']         = $film_excerpt;
         $args['source_thumbnail_url'] = $thumbnail_url;
         $args[FILM_SOURCE_ID]         = $film_id;
