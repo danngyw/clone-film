@@ -15,7 +15,11 @@ function clone_includes_file(){
 
     if( $act == 'import' || $act == 'importsub') {
         require_once('includes/import.php');
-        require_once ("includes/index.php");
+        if($act == "import"){
+            require_once ("includes/craw_pages_import_films.php");
+        } else if($act =="importsub"){
+            require_once ("includes/crawl_film_import_subtitles.php");
+        }
     }
 }
 add_action('after_setup_theme','clone_includes_file');

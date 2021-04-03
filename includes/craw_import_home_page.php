@@ -3,7 +3,6 @@ require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
 $site_url = "https://yifysubtitles.org/";
-$site_url = "https://yifysubtitles.org/";
 $html = new Document(file_get_contents($site_url));
 
 //$html = file_get_html( $site_url );
