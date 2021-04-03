@@ -66,13 +66,11 @@ function testSendPost(){
 
     try {
         $res   = sendSubtileRequest($data);
-        if($res){
-
-        }
+        var_dump($res);
     } catch (Exception $e) {
         var_dump($e);
     }
 
 
 }
-//add_action('wp_footer','testSendPost');
+// add_action('wp_footer','testSendPost');
