@@ -12,7 +12,7 @@ if($ipage){
     $ul_css     = "ul.media-list";
 
 }
-film_log('crawled url :'.$site_url);
+
 $html = new Document(file_get_contents($site_url));
 
 

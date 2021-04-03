@@ -7,13 +7,15 @@
 		'post_type' => 'film',
 		'post_status' => 'publish',
 		'meta_query' => array(
-	        array(
-	            'key'     => 'is_updated_full',
+
+	         array(
+	            'key'     => 'is_full_updated',
 	            'value'   => 'full',
-	            'compare' => '!=',
+	            'compare' =>'!='
 	        ),
+
 	    ),
-	    'posts_per_page' => 5,
+	    'posts_per_page' => 2,
 
 	);
 	$query = new WP_Query($args);
@@ -24,10 +26,11 @@
 			global $post;
 			$p_film = $post;
 			$film_id = $p_film->ID;
-			update_filmd_detail($film_id, $document);
+
 
 			$film_source_id = get_post_meta($film_id,'film_source_id', true);
 			$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
+			film_log('Crawl film url:'.$film_url);
 
 			$html 			= file_get_contents($film_url);
 			$document 		= new Document($html);
@@ -35,7 +38,9 @@
 		    $element = $document->find('iframe');
 		  	$iframe = $element->__toString();
 
-		 	update_post_meta($post_id, 'trailer_html',$iframe);
+		  	update_filmd_detail($film_id, $document);
+
+		 	update_post_meta($film_id, 'trailer_html',$iframe);
 
 		 	$movie_desc     = $document->find(".movie-desc");
 		    $movie_content  = $movie_desc->text();

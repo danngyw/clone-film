@@ -20,8 +20,9 @@ function import_film($args){
 		update_post_meta($p_id,'movie_type', $args['movie_type']);
 
 		import_film_thumbnail($args, $p_id);
-		update_post_meta($p_id,'is_updated_full','full');
+
 	}
+	update_post_meta($p_id,'is_full_updated','noyet');
 
 }
 function import_subtitle_film($args, $film_id){
@@ -57,7 +58,7 @@ function import_subtitle_film($args, $film_id){
 	    } catch (Exception $e) {
 
 	    }
-	    update_post_meta($sub_id,'is_updated_full','full');
+	    update_post_meta($sub_id, 'is_full_updated','full');
 	}
 
 }
@@ -117,7 +118,8 @@ function update_filmd_detail( $film_id, $html){
 	    $args['source_thumbnail_url'] = $thumbnail_url;
         import_film_thumbnail($args, $film_id);
     }
-    update_post_meta($film_id,'is_full_update', 'full');
+
+    update_post_meta($film_id, 'is_full_updated','full');
 }
 
 
