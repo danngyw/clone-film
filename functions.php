@@ -1,32 +1,27 @@
 <?php
 define('FILM_SOURCE_ID','film_source_id');
 
-function film_log($input, $file_store = ''){
 
-    $file_store = WP_CONTENT_DIR.'/log.css';
-
-
-    if( is_array( $input ) || is_object( $input ) ){
-        error_log( date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ). ': '. print_r($input, TRUE), 3, $file_store );
-    } else {
-        error_log( date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ). ': '. $input . "\n" , 3, $file_store);
-    }
-}
 
 
 require_once('includes/init.php');
-require_once('includes/theme.php');
+require_once('includes/default.php');
 require_once('includes/html.php');
-
 require_once('includes/wp_head.php');
 
 function clone_includes_file(){
-    require_once ("includes/index.php");
+    $act    = isset($_REQUEST['act']) ? $_REQUEST['act']:false;
+
+    if( $act == 'import' || $act == 'importsub') {
+        require_once "vendor/autoload.php";
+
+        require_once('includes/import.php');
+        require_once ("includes/index.php");
+    }
 }
 add_action('after_setup_theme','clone_includes_file');
 
-require_once "vendor/autoload.php";
-use FastSimpleHTMLDom\Document;
+
 
 function is_film_imported($source_id){
     global $wpdb;

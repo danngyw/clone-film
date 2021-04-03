@@ -3,22 +3,26 @@
 require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
+$ipage   = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
 
-$latest_time_crawl = (int) get_option('latest_time_crawl', 0 );
-if( time() - $latest_time_crawl < 30 ){
-    // film_log('Exit because has just crawed site. Latest craw time is: '.$latest_time_crawl);
-    return 1;
+// $latest_time_crawl = (int) get_option('latest_time_crawl', 0 );
+// if( time() - $latest_time_crawl < 30 ){
+//     // film_log('Exit because has just crawed site. Latest craw time is: '.$latest_time_crawl);
+//     return 1;
+// }
+
+
+
+// $page = (int) get_option('latest_page_crawl', 1239);
+
+// $page = $page -1;
+
+film_log('crawled page :'.$ipage);
+
+$site_url = $home_page =  "https://yifysubtitles.org";
+if($ipage){
+    $site_url = "https://yifysubtitles.org/browse/page-".$ipage;
 }
-
-
-
-$page = (int) get_option('latest_page_crawl', 1239);
-
-$page = $page -1;
-
-film_log('crawled page :'.$page);
-
-$site_url = "https://yifysubtitles.org/browse/page-".$page;
 $html = new Document(file_get_contents($site_url));
 
 $list = $html->find('ul.media-list');
@@ -80,5 +84,5 @@ foreach($list->find('li') as $li) {
     }
     $i ++;
 }
-update_option('latest_page_crawl', $page);
+update_option('latest_page_crawl', $ipage);
 update_option('latest_time_crawl', time() );
