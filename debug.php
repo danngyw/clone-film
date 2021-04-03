@@ -20,4 +20,4 @@ function manual_film_debug(){
 	var_dump('Number film need to be crawl:'.$query->post_count);
 	echo '</pre>';
 }
-add_action('wp_footer','manual_film_debug');
+// add_action('wp_footer','manual_film_debug');
