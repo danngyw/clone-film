@@ -10,8 +10,8 @@
 
 	         array(
 	            'key'     => 'is_full_updated',
-	            'value'   => 'full',
-	            'compare' =>'!='
+	            'value'   => 'notyet',
+
 	        ),
 
 	    ),

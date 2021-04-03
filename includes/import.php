@@ -22,7 +22,7 @@ function import_film($args){
 		import_film_thumbnail($args, $p_id);
 
 	}
-	update_post_meta($p_id,'is_full_updated','noyet');
+	update_post_meta($p_id,'is_full_updated','notyet');
 
 }
 function import_subtitle_film($args, $film_id){
@@ -58,7 +58,7 @@ function import_subtitle_film($args, $film_id){
 	    } catch (Exception $e) {
 
 	    }
-	    update_post_meta($sub_id, 'is_full_updated','full');
+	    //update_post_meta($sub_id, 'is_full_updated','full');
 	}
 
 }
