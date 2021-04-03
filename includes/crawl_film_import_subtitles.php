@@ -7,14 +7,11 @@
 		'post_type' => 'film',
 		'post_status' => 'publish',
 		'meta_query' => array(
-
-	         array(
+			array(
 	            'key'     => 'is_full_updated',
 	            'value'   => 'notyet',
-
-	        ),
-
-	    ),
+			),
+		),
 	    'posts_per_page' => 3,
 
 	);
