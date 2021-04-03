@@ -31,7 +31,7 @@ use FastSimpleHTMLDom\Document;
 function is_film_imported($source_id){
     global $wpdb;
     $sql = "SELECT pm.post_id
-            FROM $wpdb->postmeta AS pm
+                FROM $wpdb->postmeta AS pm
                     WHERE pm.meta_key = 'film_source_id' AND pm.meta_value = '{$source_id}'
                         LIMIT 1";
 

@@ -64,7 +64,7 @@ function import_subtitle_film($args, $film_id){
 function is_subtitle_imported($sub_source_id){
 	global $wpdb;
 	$sql = "SELECT pm.post_id
-			FROM $wpdb->postmeta AS pm
+				FROM $wpdb->postmeta AS pm
 					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}'
 						LIMIT 1";
 
