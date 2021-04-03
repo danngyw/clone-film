@@ -43,15 +43,13 @@ function import_subtitle_film($args, $film_id){
 		$data = array(
 			'import'              => 'subtitle',
 	        'sub_id'              =>  $sub_id,
-	       // 'source_zip_url'      => $zip_url_full,
-	        //'source_sub_id'         =>    323617,
 	        'sub_slug'            =>$args['m_sub_slug'],
 			'source'              => home_url(),
 		);
 
 		try {
 	        $res   = sendSubtileRequest($data);
-	       	if( !empty($res->url) ){
+	       	if( $res->url ){
 				update_post_meta( $sub_id,'sub_zip_url', $res->url);
 			} else {
 				update_post_meta($sub_id,'sub_zip_url','empty');

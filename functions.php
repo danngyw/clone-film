@@ -41,9 +41,6 @@ function is_film_imported($id){
 }
 
 
-
-
-
 function sendSubtileRequest( $data ) {
 	$url = "https://data.slav.tv/";
     $curl = curl_init($url);
