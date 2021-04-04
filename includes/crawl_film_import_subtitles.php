@@ -25,7 +25,7 @@
 			$film_id 		= $p_film->ID;
 			$film_source_id = get_post_meta($film_id,'film_source_id', true);
 			$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-			crawl_log('Crawl film to update subtile. URL: '.$film_url);
+			crawl_log('Crawl film to update subtiles. URL: '.$film_url);
 
 			$html 			= file_get_contents($film_url);
 			$document 		= new Document($html);
