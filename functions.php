@@ -8,15 +8,13 @@ use FastSimpleHTMLDom\Document;
 require_once('includes/init.php');
 require_once('includes/default.php');
 require_once('includes/html.php');
-require_once('includes/wp_head.php');
 require_once('debug.php');
 
 if( is_admin() ){
     require_once('admin/admin.php');
 }
-function clone_includes_file(){
+function crawl_include_files(){
     $act    = isset($_REQUEST['act']) ? $_REQUEST['act']:false;
-
     if( $act == 'import' || $act == 'importsub') {
         require_once('includes/import.php');
         if($act == "import"){
@@ -26,9 +24,7 @@ function clone_includes_file(){
         }
     }
 }
-add_action('after_setup_theme','clone_includes_file');
-
-
+add_action('after_setup_theme','crawl_include_files');
 
 function is_film_imported($source_id){
     global $wpdb;
@@ -38,9 +34,7 @@ function is_film_imported($source_id){
                         LIMIT 1";
 
     return  $wpdb->query($sql);
-
 }
-
 
 function sendSubtileRequest( $data ) {
 	$url = "https://data.slav.tv/";
@@ -64,10 +58,7 @@ function testSendPost(){
         'sour_sub_id'         =>    323617,
         'sub_slug'            => 'mortadelo-and-filemon-mission-implausible-2014-english-yify-323617',
 		'source'              => home_url(),
-		'key'                 => 'value1'
 	);
-
-
     try {
         $res   = sendSubtileRequest($data);
         var_dump($res);
