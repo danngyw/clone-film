@@ -68,6 +68,15 @@ if( file_exists($file_log)){
 			<th scope="row"><label for="mailserver_url">Số Film Chưa update substitle:</label></th>
 			<td><?php echo $film->post_count;?></td>
 		</tr>
+
+		<tr>
+			<th scope="row"><p><label for="mailserver_url">Hiển thị link Source Site in menu:</label></p><span> Dễ dàng so sánh thông tin</span></th>
+			<td><select>
+				<option>Yes</option>
+				<option>No</option>
+			</select></td>
+		</tr>
+
 		<?php if($link_html){?>
 		<tr>
 			<th scope="row"><label for="mailserver_login">Check Log</label></th>
@@ -77,6 +86,7 @@ if( file_exists($file_log)){
 
 	</tbody>
 </table>
+<h2> NOTE</h2>
 <p>
 	Visit link: <a href="<?php echo home_url();?>/?act=import&ipage=2"><?php echo home_url();?>/?act=import&ipage=2</a> để import tất cả film của trang 2 từ site nguồn.
 </p>
