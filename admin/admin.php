@@ -48,7 +48,7 @@ function crawl_overview_output(){
 function Crwa_Overview_Info(){
 
 	$ajax_url = admin_url().'admin-ajax.php';
-	$ajax_url = str_ireplace( 'http:', 'https:', $ajax_url );
+	//$ajax_url = str_ireplace( 'http:', 'https:', $ajax_url );
 
 
 	$args = array(
