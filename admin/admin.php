@@ -55,6 +55,7 @@ if( file_exists($file_log)){
 	$log_file_link  =home_url().'/wp-content/log.css';
 	$link_html = "<a target='_blank' href='".$log_file_link."'>View Log file </a>";
 }
+$check = get_option('show_menu',$opt);
  ?>
 
 <table class="form-table" role="presentation">
@@ -72,8 +73,8 @@ if( file_exists($file_log)){
 		<tr>
 			<th scope="row"><p><label for="mailserver_url">Hiển thị link Source Site in menu:</label></p><span> Dễ dàng so sánh thông tin</span></th>
 			<td><select class="toggle-menu-link">
-				<option>Yes</option>
-				<option>No</option>
+				<option value="yes" <?php selected('yes',$check);?>>Yes</option>
+				<option value="no" <?php selected('no',$check);?>>No</option>
 			</select></td>
 		</tr>
 
@@ -101,26 +102,36 @@ if( file_exists($file_log)){
 	$(document).ready( function($) {
 		$(".toggle-menu-link").change(function(event){
 		var _this = $(event.currentTarget);
-
+			var opt = _this.val();
 			$.ajax({
 		        emulateJSON: true,
 		        method :'post',
-		        url : '<?php echo admin_url().'admin-ajax.php'; ?>'
+
+		        url : '<?php echo admin_url().'admin-ajax.php'; ?>',
 		        data: {
-		                action: 'sort_gateways',
-		                request: sorted,
+		        	action:'save_film_menu',
+		        	opt: opt,
 
 		        },
 		        beforeSend  : function(event){
 		        	console.log('Insert message');
 		        },
 		        success: function(res){
+		        	console.log(res);
 		        },
 		    });
-		}
+		});
 	});
 
 })(jQuery);
 </script>
 
 <?php }
+function save_film_menu(){
+	var_dump($_POST);
+	$opt = isset($_POST['opt'])?$_POST['opt']:'no';
+	update_option('show_menu',$opt);
+	wp_send_json(array('success'=>true,'msg'=>'Done'));
+}
+
+add_action( 'wp_ajax_save_film_menu','save_film_menu' );
