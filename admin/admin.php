@@ -121,7 +121,7 @@ $opt = get_option('show_menu','no');
 					        	action:'delete_log',
 					        },
 					        beforeSend  : function(event){ console.log('Insert message'); },
-					        success: function(res){ if( res.success){ alert('Log file has been deleted.'); $('.del-log').remove() } },
+					        success: function(res){  alert(res.msg); if(res.success ) $('.del-log').remove();  },
 					    });
 					});
 					return false;
@@ -138,7 +138,11 @@ function save_film_menu(){
 add_action( 'wp_ajax_save_film_menu','save_film_menu' );
 function film_delete_log_file(){
 	$file_log 	= WP_CONTENT_DIR.'/log.css';
-	unlink($file_log);
-	wp_send_json( array('success'=> true,'msg'=>'Log has been deleted') );
+	$deleted = unlink($file_log);
+	$resp = array('success'=> true,'msg'=>'Log has been deleted');
+	if(!$deleted){
+		$resp = array('success'=> false,'msg'=>'Delete fail. Can not delete log file.');
+	}
+	wp_send_json( $resp );
 }
 add_action( 'wp_ajax_delete_log','film_delete_log_file' );
