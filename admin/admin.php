@@ -48,8 +48,6 @@ function crawl_overview_output(){
 function Crwa_Overview_Info(){
 
 	$ajax_url = admin_url().'admin-ajax.php';
-	//$ajax_url = str_ireplace( 'http:', 'https:', $ajax_url );
-
 
 	$args = array(
 		'post_type' => 'film',
@@ -146,47 +144,46 @@ function Crwa_Overview_Info(){
 		</p>
 
 	</div>
-		<script type="text/javascript">
-			( function( $ ) {
-
-				$(document).ready( function($) {
-					$(".toggle-menu-link").change(function(event){
-					var _this = $(event.currentTarget);
-						var opt = _this.val();
-						$.ajax({
-					        emulateJSON: true,
-					        method :'post',
-					        url : '<?php echo $ajax_url;?>',
-					        data: {
-					        	action:'save_film_menu',
-					        	opt: opt,
-					        },
-					        beforeSend  : function(event){ console.log('Insert message'); },
-					        success: function(res){ console.log(res); },
-					    });
-					});
-					$(".del-log").click(function(event){
-						var answer = window.confirm("Are you sure?");
-						if( ! answer ){
-							return false;
-						}
-
-						$.ajax({
-					        emulateJSON: true,
-					        method :'post',
-					         url : '<?php echo $ajax_url;?>',
-					        data: {
-					        	action:'delete_log',
-					        },
-					        beforeSend  : function(event){ console.log('Insert message'); },
-					        success: function(res){  alert(res.msg); if(res.success ) $('.del-log').remove();  },
-					    });
-					});
-					return false;
+	<script type="text/javascript">
+		( function( $ ) {
+			$(document).ready( function($) {
+				$(".toggle-menu-link").change(function(event){
+				var _this = $(event.currentTarget);
+					var opt = _this.val();
+					$.ajax({
+				        emulateJSON: true,
+				        method :'post',
+				        url : '<?php echo $ajax_url;?>',
+				        data: {
+				        	action:'save_film_menu',
+				        	opt: opt,
+				        },
+				        beforeSend  : function(event){ console.log('Insert message'); },
+				        success: function(res){ console.log(res); },
+				    });
 				});
-			})(jQuery);
-		</script>
-		<?php
+				$(".del-log").click(function(event){
+					var answer = window.confirm("Are you sure?");
+					if( ! answer ){
+						return false;
+					}
+
+					$.ajax({
+				        emulateJSON: true,
+				        method :'post',
+				         url : '<?php echo $ajax_url;?>',
+				        data: {
+				        	action:'delete_log',
+				        },
+				        beforeSend  : function(event){ console.log('Insert message'); },
+				        success: function(res){  alert(res.msg); if(res.success ) $('.del-log').remove();  },
+				    });
+				});
+				return false;
+			});
+		})(jQuery);
+	</script>
+	<?php
 }
 function save_film_menu(){
 	$opt = isset($_POST['opt'])?$_POST['opt']:'no';
