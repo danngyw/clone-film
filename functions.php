@@ -11,6 +11,7 @@ require_once('includes/html.php');
 require_once('debug.php');
 
 if( is_admin() ){
+    require_once('includes/import.php');
     require_once('admin/admin.php');
 }
 function crawl_include_files(){

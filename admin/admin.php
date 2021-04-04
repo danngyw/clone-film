@@ -1,5 +1,5 @@
 <?php
-// require get_parent_theme_file_path( '/admin/film_column.php' );
+require get_parent_theme_file_path( '/admin/film_column.php' );
 function admin_film_menu_overview(){
 	$icon = get_stylesheet_directory_uri().'/images/spider.png';
     add_menu_page('Crawl Overview', 'Crawl Overview', 'manage_options', 'crawl-overview', 'crawl_overview_output',$icon, 3 );
@@ -9,6 +9,37 @@ function admin_film_menu_overview(){
 add_action('admin_menu', 'admin_film_menu_overview');
 function crawl_overview_output(){
 
+	$film_id = isset($_GET['film_id']) ? $_GET['film_id']: 0;
+	?>
+	<div class="wrap">
+		<h1>Cập nhật substile cho film</h1>
+		<br />
+		<p>
+		<?php
+		if($film_id){
+			$film 		= get_post($film_id);
+			if( $film && !is_wp_error($film) ){
+				$sub_news 	= reCrwalFilmImportSubtitle($film);
+				if($sub_news){
+					echo  "Film Có {$sub_news} subtiles mới và đã update date thành công.";
+				} else {
+					echo "Không có subtitle mới trong film này.";
+				}
+			} else {
+				echo  'Film không tồn tại.';
+			} ?>
+		</p>
+		</div>
+	<?php
+
+	} else {
+		Crwa_Overview_Info();
+	}
+
+
+}
+
+function Crwa_Overview_Info(){
 	$args = array(
 		'post_type' => 'film',
 		'post_status' => 'publish',
@@ -22,40 +53,40 @@ function crawl_overview_output(){
 
 	);
 
-$today = date( 'Y-m-d' );
-$args = array(
-    'post_type' => 'film',
-    'post_status' => 'publish',
-    'date_query' => array(
-        'after' => 'today',
-        'inclusive'         => true,
-    ),
-    'posts_per_page' => -1,
-);
-$query = new WP_Query( $args );
+	$today = date( 'Y-m-d' );
+	$args = array(
+	    'post_type' => 'film',
+	    'post_status' => 'publish',
+	    'date_query' => array(
+	        'after' => 'today',
+	        'inclusive'         => true,
+	    ),
+	    'posts_per_page' => -1,
+	);
+	$query = new WP_Query( $args );
 
-$args = array(
-	'post_type' => 'film',
-	'post_status' => 'publish',
-	'meta_query' => array(
-		array(
-            'key'     => 'is_full_updated',
-            'value'   => 'notyet',
+	$args = array(
+		'post_type' => 'film',
+		'post_status' => 'publish',
+		'meta_query' => array(
+			array(
+	            'key'     => 'is_full_updated',
+	            'value'   => 'notyet',
+			),
 		),
-	),
-    'posts_per_page' => -1,
+	    'posts_per_page' => -1,
 
-);
-$film 	= new WP_Query($args);
+	);
+	$film 	= new WP_Query($args);
 
-$file_log 	= WP_CONTENT_DIR.'/log.css';
-$link_html 	= false;
-if( file_exists($file_log) ){
-	$log_file_link  =home_url().'/wp-content/log.css';
-	$link_html = "<a target='_blank' href='".$log_file_link."'>View Log file </a>&nbsp; &nbsp; <a class='del-log' href='#'>Delete Log</span>";
-}
-$opt = get_option('show_menu','no');
-?>
+	$file_log 	= WP_CONTENT_DIR.'/log.css';
+	$link_html 	= false;
+	if( file_exists($file_log) ){
+		$log_file_link  =home_url().'/wp-content/log.css';
+		$link_html = "<a target='_blank' href='".$log_file_link."'>View Log file </a>&nbsp; &nbsp; <a class='del-log' href='#'>Delete Log</span>";
+	}
+	$opt = get_option('show_menu','no');
+	?>
 	<div class="wrap">
 		<h1>Crawl Overview</h1>
 
@@ -138,7 +169,8 @@ $opt = get_option('show_menu','no');
 				});
 			})(jQuery);
 		</script>
-<?php }
+		<?php
+}
 function save_film_menu(){
 	$opt = isset($_POST['opt'])?$_POST['opt']:'no';
 	update_option('show_menu',$opt);
