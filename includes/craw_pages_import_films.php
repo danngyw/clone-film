@@ -1,30 +1,22 @@
 <?php
-
 require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
-$ipage   = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
-
-$ul_css = ".col-md-8 ul.media-list";
-$site_url = $home_page =  "https://yifysubtitles.org/";
+$ipage      = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
+$ul_css     = ".col-md-8 ul.media-list";
+$site_url   = $home_page =  "https://yifysubtitles.org/";
 if($ipage){
     $site_url   = "https://yifysubtitles.org/browse/page-".$ipage;
     $ul_css     = "ul.media-list";
 }
 film_log('crawl site:'.$site_url);
-
 $html = new Document(file_get_contents($site_url));
-
-
 $list = $html->find($ul_css);
-$i = 1;
+
 foreach($list->find('li') as $li) {
 
     $link      = $li->getElementByTagName('a');
     $fiml_slug = $link->getAttribute("href");
-
-
-
     $id = explode("/movie-imdb/tt", $fiml_slug);
     $source_id = $id[1];
     $exist  = is_film_imported($source_id);
@@ -34,16 +26,10 @@ foreach($list->find('li') as $li) {
         $title = $li->find('h3');
         $img            = $li->getElementByTagName('img');
         $thumbnail_url  = $img->getAttribute("src");
-
-
         $movie_type     = $li->find(".movie-genre",0);
-
         $movie_type     = $movie_type->text();
-
         $movie_actors   = $li->find(".movie-actors",0);
         $movie_actors   = $movie_actors->text();
-
-
         $year   = $li->find(".movinfo-section",0);
         $year   = $year->text();
         $year   = substr($year, 0, 4);
@@ -59,9 +45,6 @@ foreach($list->find('li') as $li) {
         $film_desc = $li->find(".movie-desc");
 
         $film_excerpt = $film_desc->text();
-
-
-
         $args['post_excerpt']         = $film_excerpt;
         $args['source_thumbnail_url'] = $thumbnail_url;
         $args[FILM_SOURCE_ID]         = $source_id;
@@ -75,7 +58,4 @@ foreach($list->find('li') as $li) {
             import_film($args);
         }
     }
-    $i ++;
 }
-update_option('latest_page_crawl', $ipage);
-update_option('latest_time_crawl', time() );

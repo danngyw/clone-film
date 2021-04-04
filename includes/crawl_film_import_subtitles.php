@@ -21,10 +21,8 @@
 		while ($query->have_posts()) {
 			$query->the_post();
 			global $post;
-			$p_film = $post;
-			$film_id = $p_film->ID;
-
-
+			$p_film 		= $post;
+			$film_id 		= $p_film->ID;
 			$film_source_id = get_post_meta($film_id,'film_source_id', true);
 			$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
 			film_log('Crawl film url:'.$film_url);
@@ -36,8 +34,7 @@
 		  	$iframe = $element->__toString();
 
 		  	update_filmd_detail($film_id, $document);
-
-		 	update_post_meta($film_id, 'trailer_html',$iframe);
+			update_post_meta($film_id, 'trailer_html',$iframe);
 
 		 	$movie_desc     = $document->find(".movie-desc");
 		    $movie_content  = $movie_desc->text();
@@ -58,8 +55,6 @@
 
 					$rating_html = $tr->find('.label-success');
 					$rating_score =  $rating_html->text();
-
-
 					$td_subtitle = $tr->find("td",2);
 					$sub_slug = $td_subtitle->getElementByTagName('a');
 					$sub_slug = $sub_slug->getAttribute("href"); // full path: /subtitles/last-breath-2019-danish-yify-305528"
@@ -91,10 +86,7 @@
 
 				}
 
-
 			}
-
-
 		}
 	}
 

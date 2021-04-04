@@ -11,8 +11,6 @@ function render_latest_item($film){
 	$movie_actors 	= get_post_meta($film_id,'movie_actors', true);
 	$movie_type 	= get_post_meta($film_id,'movie_type', true);
 	$thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
-
-
 	?>
 	<div class="owl-item active" style="width: 235px;">
 		<a href="<?php the_permalink();?>" itemprop="url" class="slide-item-wrap">
@@ -56,7 +54,7 @@ function get_recent_films(){
 		echo 'No Post Found';
 	}?>
 
-	<?php 
+	<?php
 	if( function_exists('wp_pagenavi') ):
 		wp_pagenavi( array( 'query' => $query) );
 	endif;
@@ -100,4 +98,4 @@ function render_item_film($film){
 		</a>
 		</div>
 	</li>
-	<?php }
+<?php }
