@@ -1,7 +1,8 @@
 <?php
 // require get_parent_theme_file_path( '/admin/film_column.php' );
 function admin_film_menu_overview(){
-    add_menu_page('Crawl Overview', 'Crawl Overview', 'manage_options', 'crawl-overview', 'crawl_overview_output' );
+	$icon = get_stylesheet_directory_uri().'/images/spider.png';
+    add_menu_page('Crawl Overview', 'Crawl Overview', 'manage_options', 'crawl-overview', 'crawl_overview_output',$icon, 3 );
     // add_submenu_page('crawl-overview', 'Submenu Page Title', 'Whatever You Want', 'manage_options', 'my-menu' );
     // add_submenu_page('crawl-overview', 'Submenu Page Title2', 'Whatever You Want2', 'manage_options', 'my-menu2' );
 }
