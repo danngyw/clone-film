@@ -71,7 +71,7 @@ if( file_exists($file_log)){
 
 		<tr>
 			<th scope="row"><p><label for="mailserver_url">Hiển thị link Source Site in menu:</label></p><span> Dễ dàng so sánh thông tin</span></th>
-			<td><select>
+			<td><select class="toggle-menu-link">
 				<option>Yes</option>
 				<option>No</option>
 			</select></td>
@@ -93,6 +93,34 @@ if( file_exists($file_log)){
 <p>
 	Visit link: <a href="<?php echo home_url();?>/?act=importsub"><?php echo home_url();?>/?act=importsub</a> để import substile của những film chưa update. Mỗi lần chạy update subtile cho 2 film
 </p>
+<script type="text/javascript">
 
- <?php
-}
+	( function( $ ) {
+
+
+	$(document).ready( function($) {
+		$(".toggle-menu-link").change(function(event){
+		var _this = $(event.currentTarget);
+
+			$.ajax({
+		        emulateJSON: true,
+		        method :'post',
+		        url : '<?php echo admin_url().'admin-ajax.php'; ?>'
+		        data: {
+		                action: 'sort_gateways',
+		                request: sorted,
+
+		        },
+		        beforeSend  : function(event){
+		        	console.log('Insert message');
+		        },
+		        success: function(res){
+		        },
+		    });
+		}
+	});
+
+})(jQuery);
+</script>
+
+<?php }
