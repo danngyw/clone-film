@@ -48,9 +48,9 @@ $film 	= new WP_Query($args);
 
 $file_log 	= WP_CONTENT_DIR.'/log.css';
 $link_html 	= false;
-if( file_exists($file_log)){
+if( file_exists($file_log) ){
 	$log_file_link  =home_url().'/wp-content/log.css';
-	$link_html = "<a target='_blank' href='".$log_file_link."'>View Log file </a>";
+	$link_html = "<a target='_blank' href='".$log_file_link."'>View Log file </a>&nbsp; &nbsp; <a class='del-log' href='#'>Delete Log</span>";
 }
 $opt = get_option('show_menu','no');
 ?>
@@ -88,10 +88,10 @@ $opt = get_option('show_menu','no');
 		</table>
 		<h2> NOTE</h2>
 		<p>
-			Visit link: <a href="<?php echo home_url();?>/?act=import&ipage=2"><?php echo home_url();?>/?act=import&ipage=2</a> để import tất cả film của trang 2 từ site nguồn.
+			Visit link: <a target="_blank" href="<?php echo home_url();?>/?act=import&ipage=2"><?php echo home_url();?>/?act=import&ipage=2</a> để import tất cả film của trang 2 từ site nguồn.
 		</p>
 		<p>
-			Visit link: <a href="<?php echo home_url();?>/?act=importsub"><?php echo home_url();?>/?act=importsub</a> để import substile cho những film chưa update. Mỗi lần chạy update subtile cho 2 films.
+			Visit link: <a  target="_blank" href="<?php echo home_url();?>/?act=importsub"><?php echo home_url();?>/?act=importsub</a> để import substile cho những film chưa update. Mỗi lần chạy update subtile cho 2 films.
 		</p>
 	</div>
 		<script type="text/javascript">
@@ -112,6 +112,19 @@ $opt = get_option('show_menu','no');
 					        success: function(res){ console.log(res); },
 					    });
 					});
+					$(".del-log").click(function(event){
+						$.ajax({
+					        emulateJSON: true,
+					        method :'post',
+					        url : '<?php echo admin_url().'admin-ajax.php'; ?>',
+					        data: {
+					        	action:'delete_log',
+					        },
+					        beforeSend  : function(event){ console.log('Insert message'); },
+					        success: function(res){ if( res.success){ alert('Log file has been deleted.'); $('.del-log').remove() } },
+					    });
+					});
+					return false;
 				});
 			})(jQuery);
 		</script>
@@ -123,3 +136,9 @@ function save_film_menu(){
 }
 
 add_action( 'wp_ajax_save_film_menu','save_film_menu' );
+function film_delete_log_file(){
+	$file_log 	= WP_CONTENT_DIR.'/log.css';
+	unlink($file_log);
+	wp_send_json( array('success'=> true,'msg'=>'Log has been deleted') );
+}
+add_action( 'wp_ajax_delete_log','film_delete_log_file' );
