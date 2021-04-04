@@ -34,7 +34,7 @@ function is_film_imported($source_id){
                     WHERE pm.meta_key = 'film_source_id' AND pm.meta_value = '{$source_id}'
                         LIMIT 1";
 
-    return  $wpdb->query($sql);
+    return  $wpdb->get_row($sql);
 }
 
 function sendSubtileRequest( $data ) {

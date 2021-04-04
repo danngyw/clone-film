@@ -16,12 +16,14 @@ function crawl_log($input, $file_store = ''){
 
 function is_subtitle_imported_advanced($sub_source_id){
 	global $wpdb;
-	$sql = "SELECT pm.post_id
-	  		FROM wp_posts p
-				LEFT JOIN wp_postmeta as pm ON pm.post_id = p.ID
+	$sql = "SELECT p.ID
+	  		FROM $wpdb->posts as p
+				LEFT JOIN $wpdb->postmeta as pm ON pm.post_id = p.ID
 					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}' AND p.post_status ='publish'
 						LIMIT 1";
-  	return  $wpdb->query($sql);
+
+  	return $wpdb->get_row($sql)->ID;
+
 
 }
 
@@ -36,7 +38,7 @@ function is_subtitle_imported_simple($sub_source_id){
 					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}'
 						LIMIT 1";
 
-  	return  $wpdb->query($sql);
+  	return  $wpdb->get_row($sql);
 
 }
 function import_subtitle_film($args, $film_id){
