@@ -10,6 +10,10 @@ require_once('includes/default.php');
 require_once('includes/html.php');
 require_once('includes/wp_head.php');
 require_once('debug.php');
+
+if( is_admin() ){
+    require_once('admin/admin.php');
+}
 function clone_includes_file(){
     $act    = isset($_REQUEST['act']) ? $_REQUEST['act']:false;
 
