@@ -62,20 +62,7 @@ function import_subtitle_film($args, $film_id){
 	}
 
 }
-/**
- * check the substile imported or not.
-*/
 
-function is_subtitle_imported($sub_source_id){
-	global $wpdb;
-	$sql = "SELECT pm.post_id
-				FROM $wpdb->postmeta AS pm
-					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}'
-						LIMIT 1";
-
-  	return  $wpdb->query($sql);
-
-}
 
 /**
  * update company, idbm link, director ... of film. these information only show in the page detail url.

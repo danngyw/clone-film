@@ -16,6 +16,6 @@ function show_crawl_status($name) {
     $link = admin_url('?page=crawl-overview&film_id='.$post->ID);
     switch ($name) {
         case 'crawl_status':
-           echo '<a href="'.$link.'">Update subtitle</a>';
+           echo '<a target="_blank" href="'.$link.'">Update subtitle</a>';
     }
 }

@@ -105,6 +105,10 @@ function Crwa_Overview_Info(){
 					<th scope="row"><label for="mailserver_url">Số Film Chưa update substitle:</label></th>
 					<td><?php echo $film->post_count;?></td>
 				</tr>
+				<tr>
+					<th scope="row"><label for="mailserver_url">PHP Version Using:</label></th>
+					<td><?php echo phpversion();?></td>
+				</tr>
 
 				<tr>
 					<th scope="row"><p><label for="mailserver_url">Hiển thị link Source Site in menu:</label></p><span> Dễ dàng so sánh thông tin</span></th>
