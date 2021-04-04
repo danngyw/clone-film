@@ -77,6 +77,12 @@ if( file_exists($file_log)){
 
 	</tbody>
 </table>
+<p>
+	Visit link: <a href="<?php echo home_url();?>/?act=import&ipage=2"><?php echo home_url();?>/?act=import&ipage=2</a> để import tất cả film của trang 2 từ site nguồn.
+</p>
+<p>
+	Visit link: <a href="<?php echo home_url();?>/?act=importsub"><?php echo home_url();?>/?act=importsub</a> để import substile của những film chưa update. Mỗi lần chạy update subtile cho 2 film
+</p>
 
  <?php
 }
