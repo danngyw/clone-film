@@ -55,7 +55,7 @@ if( file_exists($file_log)){
 	$log_file_link  =home_url().'/wp-content/log.css';
 	$link_html = "<a target='_blank' href='".$log_file_link."'>View Log file </a>";
 }
-$check = get_option('show_menu',$opt);
+$opt = get_option('show_menu','no');
  ?>
 
 <table class="form-table" role="presentation">
@@ -73,8 +73,8 @@ $check = get_option('show_menu',$opt);
 		<tr>
 			<th scope="row"><p><label for="mailserver_url">Hiển thị link Source Site in menu:</label></p><span> Dễ dàng so sánh thông tin</span></th>
 			<td><select class="toggle-menu-link">
-				<option value="yes" <?php selected('yes',$check);?>>Yes</option>
-				<option value="no" <?php selected('no',$check);?>>No</option>
+				<option value="yes" <?php selected('yes',$opt);?>>Yes</option>
+				<option value="no" <?php selected('no',$opt);?>>No</option>
 			</select></td>
 		</tr>
 
