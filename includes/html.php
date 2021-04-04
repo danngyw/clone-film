@@ -56,7 +56,11 @@ function get_recent_films(){
 		echo 'No Post Found';
 	}?>
 
-	<?php wp_pagenavi( array( 'query' => $query) );?>
+	<?php 
+	if( function_exists('wp_pagenavi') ):
+		wp_pagenavi( array( 'query' => $query) );
+	endif;
+	?>
 	<div id="movie-browser-paginate" class="dataTables_paginate paging_simple_numbers"> </div>
 	<?php wp_reset_query();?>
 

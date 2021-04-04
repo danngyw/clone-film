@@ -1,4 +1,3 @@
-
 		<footer class="footer">
 			<div class="container text-center">
 				<div class="row">

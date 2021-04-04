@@ -91,7 +91,6 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="<?php echo home_url();?>/demo/">Demo</a></li>
 						<?php
 						if(is_single() ){
 							global $post;
