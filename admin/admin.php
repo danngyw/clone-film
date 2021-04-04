@@ -113,6 +113,11 @@ $opt = get_option('show_menu','no');
 					    });
 					});
 					$(".del-log").click(function(event){
+						var answer = window.confirm("Are you sure?");
+						if( ! answer ){
+							return false;
+						}
+
 						$.ajax({
 					        emulateJSON: true,
 					        method :'post',
