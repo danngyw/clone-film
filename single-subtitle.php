@@ -181,10 +181,10 @@ $(document).ready(function () {
         var loader = $("#ajaxloader");
 
         var width = $(window).width();
-        Cookies.set('ys-sw', width, { expires: 30, path: '/', domain: '.yifysubtitles.org' });
+        Cookies.set('ys-sw', width, { expires: 30, path: '/', domain: '.slav.tv' });
         $(window).resize(function() {
             width = $(window).width();
-            Cookies.set('ys-sw', width, { expires: 30, path: '/', domain: '.yifysubtitles.org' });
+            Cookies.set('ys-sw', width, { expires: 30, path: '/', domain: '.slav.tv' });
         });
 
         /*start select language dialog*/
@@ -206,7 +206,7 @@ $(document).ready(function () {
                         lang = lang + $( this ).attr("data-lang-id") + '-';
                         $('#fav-lng-divider').after('<li class="fav-lng-li"><a href="#" data-lang-id="'+$( this ).attr("data-lang-id")+'">'+$( this ).text()+'</a></li>');
                 });
-                Cookies.set('ys-lang', lang, { expires: 30, path: '/', domain: '.yifysubtitles.org' });
+                Cookies.set('ys-lang', lang, { expires: 30, path: '/', domain: '.slav.tv' });
         }
 
         $('#save-fav-lang').click(function() {
