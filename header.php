@@ -86,8 +86,19 @@
 			<div class="container">
 				<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="<?php echo home_url();?>"><h1>Subtitles for YIFY movie </h1>
-					<img src="<?php echo get_stylesheet_directory_uri();?>/images/misc/logo-small.png" alt="YIFYSubtitles"></a>
+				<a class="navbar-brand" href="<?php echo home_url();?>"><h1><?php echo $title;?></h1>
+					<?php
+
+					$url = get_stylesheet_directory_uri().'/images/misc/logo-small.png';
+					if( has_custom_logo() ){
+						$custom_logo_id  = get_theme_mod( 'custom_logo' );
+						$image 			 = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+						$url =  $image[0];
+					}
+					?>
+						<img src="<?php echo $url;?>" alt="<?php echo $title;?>">
+					</a>
+
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
