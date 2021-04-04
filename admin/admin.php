@@ -1,7 +1,7 @@
 <?php
 
 function my_menu_pages(){
-    add_menu_page('Crawl Overview', 'Clone Overview', 'manage_options', 'crawl-overview', 'crawl_overview_output' );
+    add_menu_page('Crawl Overview', 'Crawl Overview', 'manage_options', 'crawl-overview', 'crawl_overview_output' );
     // add_submenu_page('crawl-overview', 'Submenu Page Title', 'Whatever You Want', 'manage_options', 'my-menu' );
     // add_submenu_page('crawl-overview', 'Submenu Page Title2', 'Whatever You Want2', 'manage_options', 'my-menu2' );
 }
