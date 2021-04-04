@@ -122,7 +122,11 @@
 		</nav>
 		<?php get_search_form();?>
 
+<?php
+// global $wpdb;
+// $film_id = 10;
 
-
-
-
+// $sql = "DELETE FROM $wpdb->posts  WHERE `post_type` = 'subtitle' AND 'post_parent' = {$film_id}  ";
+// echo $sql;
+// crawl_log($sql);
+	?>

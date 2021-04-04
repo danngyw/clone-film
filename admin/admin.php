@@ -3,6 +3,7 @@
 use FastSimpleHTMLDom\Document;
 
 require get_parent_theme_file_path( '/admin/film_column.php' );
+require get_parent_theme_file_path( '/admin/init_dashboard.php' );
 function admin_film_menu_overview(){
 	$icon = get_stylesheet_directory_uri().'/images/spider.png';
     add_menu_page('Crawl Overview', 'Crawl Overview', 'manage_options', 'crawl-overview', 'crawl_overview_output',$icon, 3 );
