@@ -16,7 +16,7 @@ function admin_boardimport_substile_of_film($p_film, $update_film_detail = 0){
     $element = $document->find('iframe');
   	$iframe = $element->__toString();
 
-  	if($update_film_detail){
+  	if($update_film_detail){ // skip update film_content, imdblink, director rate, company ...
   		update_filmd_detail($film_id, $document);
 		update_post_meta($film_id, 'trailer_html',$iframe);
 	}
