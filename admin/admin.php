@@ -32,6 +32,7 @@ $args = array(
         'after' => 'today',
         'inclusive'         => true,
     ),
+    'posts_per_page' => -1,
 );
 $query = new WP_Query( $args );
 
