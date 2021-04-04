@@ -19,8 +19,7 @@ function is_subtitle_imported_advanced($sub_source_id){
 	$sql = "SELECT pm.post_id
 	  		FROM wp_posts p
 				LEFT JOIN wp_postmeta as pm ON pm.post_id = p.ID
-
-				WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}'
+					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}' AND p.post_status ='publish'
 						LIMIT 1";
   	return  $wpdb->query($sql);
 
