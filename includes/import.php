@@ -172,7 +172,9 @@ function import_film_thumbnail($args, $film_id = 0){
 	        );
 
         	$attach_id = wp_insert_attachment( $attachment, $results['file'], $film_id );
-        	set_post_thumbnail( $film_id, $attach_id );
+        	if(!is_wp_error($attach_id)){
+        		set_post_thumbnail( $film_id, $attach_id );
+        	}
 
 	    }
 

@@ -93,6 +93,9 @@ $opt = get_option('show_menu','no');
 		<p>
 			Visit link: <a  target="_blank" href="<?php echo home_url();?>/?act=importsub"><?php echo home_url();?>/?act=importsub</a> để import substile cho những film chưa update. Mỗi lần chạy update subtile cho 3 films.
 		</p>
+		<p>
+			Quick link to import homepage: <a target="_blank" href="<?php echo home_url();?>/?act=import">Visit </a> .
+		</p>
 	</div>
 		<script type="text/javascript">
 			( function( $ ) {

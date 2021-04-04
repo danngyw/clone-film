@@ -57,8 +57,11 @@ foreach($list->find('li') as $li) {
         $args['imdb_score']           = $imdb_score;
         $args['movie_actors']         = $movie_actors;
         $args['movie_type']           = $movie_type;
+
+
         if( function_exists('import_film') ){
-            import_film($args);
+           import_film($args);
         }
+
     }
 }
