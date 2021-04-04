@@ -62,7 +62,7 @@ $opt = get_option('show_menu','no');
 <table class="form-table" role="presentation">
 	<tbody>
 		<tr>
-			<th scope="row"><label for="mailserver_url">Số lượng film import hôm nay:</label></th>
+			<th scope="row"><label for="mailserver_url">Số lượng Film import hôm nay:</label></th>
 			<td><?php echo $query->post_count;?></td>
 		</tr>
 	<tbody>
@@ -93,7 +93,7 @@ $opt = get_option('show_menu','no');
 	Visit link: <a href="<?php echo home_url();?>/?act=import&ipage=2"><?php echo home_url();?>/?act=import&ipage=2</a> để import tất cả film của trang 2 từ site nguồn.
 </p>
 <p>
-	Visit link: <a href="<?php echo home_url();?>/?act=importsub"><?php echo home_url();?>/?act=importsub</a> để import substile của những film chưa update. Mỗi lần chạy update subtile cho 2 film
+	Visit link: <a href="<?php echo home_url();?>/?act=importsub"><?php echo home_url();?>/?act=importsub</a> để import substile cho những film chưa update. Mỗi lần chạy update subtile cho 2 film.
 </p>
 <script type="text/javascript">
 
