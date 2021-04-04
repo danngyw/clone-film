@@ -108,7 +108,7 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 <table class="table other-subs">
 	<thead>
 	<tr>
-		<th>rating</th><th>language</th><th>release</th><th>other</th><th>uploader</th>
+		<th>rating</th><th>language</th><th>release</th><th>uploader</th>
 	</tr>
 	</thead>
 <tbody>
@@ -137,7 +137,7 @@ if($query->have_posts()){
 			<td class="td-subtitle">
 			<a href="<?php the_permalink();?>"><span class="text-muted">subtitle</span> <?php the_title();?></a>
 			</td>
-			<td class="other-cell">&nbsp;</td>
+
 			<td class="uploader-cell"><a href="">Slav</a></td>
 		</tr>
 		<?php
