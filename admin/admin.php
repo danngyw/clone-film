@@ -117,7 +117,6 @@ $opt = get_option('show_menu','no');
 		</script>
 <?php }
 function save_film_menu(){
-	var_dump($_POST);
 	$opt = isset($_POST['opt'])?$_POST['opt']:'no';
 	update_option('show_menu',$opt);
 	wp_send_json(array('success'=>true,'msg'=>'Done'));
