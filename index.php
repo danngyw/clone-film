@@ -11,6 +11,7 @@ if($paged > 1){
 	<?php
 	if( is_home() || is_front_page() ){ ?>
 		<?php get_template_part('template/latest','movies');?>
+		<?php // get_template_part('template/test','flags');?>
 	<?php } ?>
 
 	<?php if( is_home() || is_front_page() ){ ?>

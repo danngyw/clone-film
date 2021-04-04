@@ -86,12 +86,18 @@ function get_flag_css($lang){
 		case 'Arabic':
 			$flag = 'sa';
 			break;
-
+		case 'Canada':
+			$flag = 'ca';
+			break;
+		case 'Croatia':
+			$flag = 'hr';
+			break;
+		case 'German':  //germany
+			$flag = 'de';
+			break;
 		case 'Romanian':
 			$flag = 'ro';
 			break;
-
-
 		case 'Indonesian':
 			$flag = 'id';
 			break;
