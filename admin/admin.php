@@ -231,9 +231,9 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 0){
 		}
 		$sub_source_id = $tr->__get('data-id');
 
-		$exists = is_subtitle_imported($sub_source_id);
+		$exists = is_subtitle_imported_advanced($sub_source_id);
 
-		if(! $exists ){
+		if( !$exists ){
 			$sub_title = $tr->find('td',2);
 
 			$rating_html = $tr->find('.label-success');
