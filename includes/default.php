@@ -1,5 +1,5 @@
 <?php
-function film_log($input, $file_store = ''){
+function crawl_log($input, $file_store = ''){
 
     $file_store = WP_CONTENT_DIR.'/log.css';
 
