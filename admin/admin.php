@@ -55,41 +55,28 @@ if( file_exists($file_log)){
 	$log_file_link  =home_url().'/wp-content/log.css';
 	$link_html = "<a target='_blank' href='".$log_file_link."'>View Log file </a>";
 }
-
-?>
-
-
+ ?>
 
 <table class="form-table" role="presentation">
-<tbody>
-	<tr>
-		<th scope="row"><label for="mailserver_url">Số lượng film import hôm nay:</label></th>
-		<td><?php echo $query->post_count;?></td>
-	</tr>
-<tbody>
-	<tr>
-		<th scope="row"><label for="mailserver_url">Số Film Chưa update substitle:</label></th>
-		<td><?php echo $film->post_count;?></td>
-	</tr>
-	<?php if($link_html){?>
-	<tr>
-		<th scope="row"><label for="mailserver_login">Check Log</label></th>
-		<td><?php echo $link_html;?></td>
-	</tr>
-	<?php } ?>
+	<tbody>
+		<tr>
+			<th scope="row"><label for="mailserver_url">Số lượng film import hôm nay:</label></th>
+			<td><?php echo $query->post_count;?></td>
+		</tr>
+	<tbody>
+		<tr>
+			<th scope="row"><label for="mailserver_url">Số Film Chưa update substitle:</label></th>
+			<td><?php echo $film->post_count;?></td>
+		</tr>
+		<?php if($link_html){?>
+		<tr>
+			<th scope="row"><label for="mailserver_login">Check Log</label></th>
+			<td><?php echo $link_html;?></td>
+		</tr>
+		<?php } ?>
 
-</tbody></table>
+	</tbody>
+</table>
 
-<h2 class="title">Update Services</h2>
-
-
-	<p><label for="ping_sites">
-		When you publish a new post, WordPress automatically notifies the following site update services. For more about this, see <a href="https://wordpress.org/support/article/update-services/">Update Services</a> on the Codex. Separate multiple service URLs with line breaks.	</label></p>
-
-
-
-
-
-
-	<?php
+ <?php
 }
