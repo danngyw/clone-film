@@ -1,4 +1,7 @@
 <?php
+
+use FastSimpleHTMLDom\Document;
+
 require get_parent_theme_file_path( '/admin/film_column.php' );
 function admin_film_menu_overview(){
 	$icon = get_stylesheet_directory_uri().'/images/spider.png';
@@ -18,7 +21,7 @@ function crawl_overview_output(){
 		if($film_id){
 			$film 		= get_post($film_id);
 			if( $film && !is_wp_error($film) ){
-				$sub_news 	= ManualCrwalFilmImportSubtitle($film);
+				$sub_news 	= ManualCrwalFilmImportSubtitle($film, 0);
 				if($sub_news){
 					echo  "Film Có {$sub_news} subtiles mới và đã update date thành công.";
 				} else {
@@ -189,3 +192,72 @@ function film_delete_log_file(){
 	wp_send_json( $resp );
 }
 add_action( 'wp_ajax_delete_log','film_delete_log_file' );
+
+function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 0){
+	$count_new 		= 0;
+	$film_id 		= $p_film->ID;
+	$film_source_id = get_post_meta($film_id,'film_source_id', true);
+	$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
+	crawl_log('Manually Crawl film to update subtiles. URL: '.$film_url);
+
+	$html 			= file_get_contents($film_url);
+	$document 		= new Document($html);
+    $node = $document->getDocument()->documentElement;
+    $element = $document->find('iframe');
+  	$iframe = $element->__toString();
+
+  	if($update_film_detail){ // skip update film_content, imdblink, director rate, company ...
+  		update_filmd_detail($film_id, $document);
+		update_post_meta($film_id, 'trailer_html',$iframe);
+	}
+
+	$list = $document->find('.table-responsive .other-subs');
+	$count = 0;
+
+	foreach($list->find('tr') as $key=> $tr) { // tr = element type
+		if( $key == 0){
+			continue;
+		}
+		$sub_source_id = $tr->__get('data-id');
+
+		$exists = is_subtitle_imported($sub_source_id);
+
+		if(! $exists ){
+			$sub_title = $tr->find('td',2);
+
+			$rating_html = $tr->find('.label-success');
+			$rating_score =  $rating_html->text();
+			$td_subtitle = $tr->find("td",2);
+			$sub_slug = $td_subtitle->getElementByTagName('a');
+			$sub_slug = $sub_slug->getAttribute("href"); // full path: /subtitles/last-breath-2019-danish-yify-305528"
+			$sub_slug = substr($sub_slug, 11, 100); // cut off to :last-breath-2019-danish-yify-305528"
+
+
+			$sub_title = $td_subtitle->text();
+			$sub_title = substr($sub_title, 9, -1); // remove [subtitle ] in the text;
+
+			if( empty($sub_title) ){
+				$sub_title = $sub_slug;
+			}
+			$td_langue = $tr->find('.sub-lang');
+			$sub_language =  $td_langue->text();
+
+			$td_uploader = $tr->find(".uploader-cell a");
+			$sub_uploader = $td_uploader->text();
+
+			$args['post_title'] 	= $sub_title;
+			$args['sub_source_id'] 	= $sub_source_id;
+			$args['film_source_id'] = $film_source_id;
+			$args['m_sub_language'] = $sub_language;
+			$args['m_sub_uploader'] = $sub_uploader;
+			$args['m_sub_slug'] 	= $sub_slug;
+			$args['m_rating_score'] = (int) $rating_score;
+
+
+			import_subtitle_film($args, $film_id);
+			$count_new++;
+
+		}
+	}
+	return $count_new;
+}
