@@ -23,13 +23,14 @@ function crawl_overview_output(){
 			$film 		= get_post($film_id);
 			if( $film && !is_wp_error($film) ){
 				$sub_news 	= ManualCrwalFilmImportSubtitle($film, 0);
+				$link_film  = "<a target='_blank' href='".get_permalink($film->ID)." '> ".$film->post_title."</a>";
 				if($sub_news){
-					echo  "Film Có {$sub_news} subtiles mới và đã update date thành công.";
+					echo  "Film {$link_film} Có {$sub_news} subtiles mới và đã update date thành công";
 				} else {
-					echo "Không có subtitle mới trong film này.";
+					echo "Không có subtitle mới trong film  {$link_film}";
 				}
 
-				echo "<a target='_blank' href='".get_permalink($film->ID)."'> View Film </a>";
+				echo " | <a target='_blank' href='".get_permalink($film->ID)."'> View Detail Film </a>";
 			} else {
 				echo  'Film không tồn tại.';
 			} ?>
