@@ -25,6 +25,8 @@ function crawl_overview_output(){
 				} else {
 					echo "Không có subtitle mới trong film này.";
 				}
+
+				echo "<a target='_blank' href='".get_permalink($film->ID)."'> View Film </a>";
 			} else {
 				echo  'Film không tồn tại.';
 			} ?>
