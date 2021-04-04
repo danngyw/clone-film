@@ -3,7 +3,7 @@
 
 function crawl_columns($columns){
     $columns['manual_crawl'] = 'Manual Crawl';
-    $columns['crawl_status'] = 'Full Subtitle';
+    $columns['crawl_status'] = 'Crawled Status';
     return $columns;
 }
 add_filter('manage_edit-film_columns', 'crawl_columns',99);
