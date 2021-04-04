@@ -35,3 +35,7 @@ form,body, div, span, strong, br,a,ul,li{
 .table tbody tr td.td-subtitle{
 	white-space:initial;
 }
+.rating-cell .label-success{
+	top: 15px;
+	position: relative;
+}
