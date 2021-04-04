@@ -108,11 +108,9 @@
 								$sub_slug = get_post_meta($post->ID,'m_sub_slug', true);
 								$source_url 	= "https://yifysubtitles.org/subtitles/".$sub_slug;
 							}?>
-
-
-							<li><a href="<?php echo $source_url;?>" target="_blank">Source Post</a></li>
+								<li><a rel="nofollow"   href="<?php echo $source_url;?>" target="_blank">Source Post</a></li>
 							<?php } else { ?>
-								<li><a href="https://yifysubtitles.org/" target="_blank">Source Site</a></li><?php
+								<li><a rel="nofollow"  href="https://yifysubtitles.org/" target="_blank">Source Site</a></li><?php
 							}
 						}?>
 
