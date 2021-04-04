@@ -22,9 +22,7 @@ function is_subtitle_imported_advanced($sub_source_id){
 					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}' AND p.post_status ='publish'
 						LIMIT 1";
 
-  	return $wpdb->get_row($sql)->ID;
-
-
+  	return $wpdb->get_row($sql);
 }
 
 /**
