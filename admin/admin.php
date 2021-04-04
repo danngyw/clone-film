@@ -44,6 +44,11 @@ function crawl_overview_output(){
 }
 
 function Crwa_Overview_Info(){
+
+	$ajax_url = admin_url().'admin-ajax.php';
+	$ajax_url = str_ireplace( 'http:', 'https:', $ajax_url );
+
+
 	$args = array(
 		'post_type' => 'film',
 		'post_status' => 'publish',
@@ -137,9 +142,11 @@ function Crwa_Overview_Info(){
 		<p>
 			Quick link to import homepage: <a target="_blank" href="<?php echo home_url();?>/?act=import">Visit </a> .
 		</p>
+
 	</div>
 		<script type="text/javascript">
 			( function( $ ) {
+
 				$(document).ready( function($) {
 					$(".toggle-menu-link").change(function(event){
 					var _this = $(event.currentTarget);
@@ -147,7 +154,7 @@ function Crwa_Overview_Info(){
 						$.ajax({
 					        emulateJSON: true,
 					        method :'post',
-					        url : '<?php echo admin_url().'admin-ajax.php'; ?>',
+					        url : '<?php echo $ajax_url;?>',
 					        data: {
 					        	action:'save_film_menu',
 					        	opt: opt,
@@ -165,7 +172,7 @@ function Crwa_Overview_Info(){
 						$.ajax({
 					        emulateJSON: true,
 					        method :'post',
-					        url : '<?php echo admin_url().'admin-ajax.php'; ?>',
+					         url : '<?php echo $ajax_url;?>',
 					        data: {
 					        	action:'delete_log',
 					        },

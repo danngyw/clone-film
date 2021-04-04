@@ -24,6 +24,44 @@ function is_subtitle_imported($sub_source_id){
   	return  $wpdb->query($sql);
 
 }
+function import_subtitle_film($args, $film_id){
+
+	$args['post_type'] 		= 'subtitle';
+	$args['post_status'] 	= 'publish';
+	$args['post_parent']  	= $film_id;
+
+	$sub_id = wp_insert_post($args);
+
+	if( ! is_wp_error($sub_id) ){
+
+		update_post_meta( $sub_id,'subtitle_source_id', $args['sub_source_id']);
+		update_post_meta( $sub_id,'m_sub_language', $args['m_sub_language']);
+		update_post_meta( $sub_id,'m_sub_uploader', $args['m_sub_uploader']);
+		update_post_meta( $sub_id,'m_sub_slug', $args['m_sub_slug']);
+		update_post_meta( $sub_id, 'm_rating_score', $args['m_rating_score']);
+
+
+		$data = array(
+			'import'              => 'subtitle',
+	        'sub_id'              =>  $sub_id,
+	        'sub_slug'            =>$args['m_sub_slug'],
+			'source'              => home_url(),
+		);
+
+		try {
+	        $res   = sendSubtileRequest($data);
+	       	if( $res->url ){
+				update_post_meta( $sub_id,'sub_zip_url', $res->url);
+			} else {
+				update_post_meta($sub_id,'sub_zip_url','empty');
+			}
+	    } catch (Exception $e) {
+
+	    }
+	}
+
+}
+
 
 function get_flag_css($lang){
 	$flag = '';
