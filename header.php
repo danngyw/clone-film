@@ -5,16 +5,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php
-
 		$title = get_bloginfo('name');
 		$description = get_bloginfo('description');
-
 		?>
-
 		<title><?php echo $title;?></title>
 		<meta name="description" content="<?php echo $description;?>">
-		<meta name="keywords" content="subtitle, movie, yify">
-		<meta property="og:title" content="YIFYSubtitles.org - ultimate subtitles source" />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="<?php echo home_url();?>" />
 		<meta property="og:image" content="<?php echo get_stylesheet_directory_uri();?>/images/screenshots/screenshot01.jpg" />
@@ -22,8 +17,6 @@
 		<meta property="fb:app_id" content="1" />
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,800italic,800' rel='stylesheet' type='text/css'>
 		<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-
-
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
