@@ -1,6 +1,6 @@
 <?php
 
-get zip ulr:
+	get zip ulr:
 
 	$sub_url = "https://yifysubtitles.org/subtitles/".$args['m_sub_slug'];
 	$html = new Document(file_get_contents($sub_url));

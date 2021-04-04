@@ -29,9 +29,6 @@ function manually_update_filmd_thumbnail(){
 }
  add_action('wp_footer','manually_update_filmd_thumbnail', 99);
 
-
-
-
 function auto_update_film_thumbnail($film_id){
     $source_id = get_post_meta($film_id,'film_source_id', true);
     $movie_url = "https://yifysubtitles.org/movie-imdb/tt".$source_id;
