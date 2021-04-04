@@ -3,7 +3,7 @@
 use FastSimpleHTMLDom\Document;
 use FastSimpleHTMLDom\Element;
 
-function admin_boardimport_substile_of_film($p_film, $update_film_detail = 0){
+function admin_board_import_substiles_of_film($p_film, $update_film_detail = 0){
 	$count_new 		= 0;
 	$film_id 		= $p_film->ID;
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
@@ -71,9 +71,9 @@ function admin_boardimport_substile_of_film($p_film, $update_film_detail = 0){
 	}
 	return $count_new;
 }
-function reCrwalFilmImportSubtitle($film){
+function ManualCrwalFilmImportSubtitle($film){
 
-	return admin_boardimport_substile_of_film($film);
+	return admin_board_import_substiles_of_film($film);
 
 }
 function import_film($args){

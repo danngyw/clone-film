@@ -13,13 +13,12 @@ function crawl_overview_output(){
 	?>
 	<div class="wrap">
 		<h1>Cập nhật substile cho film</h1>
-		<br />
-		<p>
+		<br /><p>
 		<?php
 		if($film_id){
 			$film 		= get_post($film_id);
 			if( $film && !is_wp_error($film) ){
-				$sub_news 	= reCrwalFilmImportSubtitle($film);
+				$sub_news 	= ManualCrwalFilmImportSubtitle($film);
 				if($sub_news){
 					echo  "Film Có {$sub_news} subtiles mới và đã update date thành công.";
 				} else {
