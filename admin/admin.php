@@ -115,8 +115,6 @@ $opt = get_option('show_menu','no');
 				});
 			})(jQuery);
 		</script>
-		<
-
 <?php }
 function save_film_menu(){
 	var_dump($_POST);
