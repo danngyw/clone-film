@@ -3,8 +3,6 @@
 use FastSimpleHTMLDom\Document;
 use FastSimpleHTMLDom\Element;
 
-
-
 function import_film($args){
 
 	$args['post_type'] = 'film';
@@ -34,6 +32,7 @@ function import_subtitle_film($args, $film_id){
 	$sub_id = wp_insert_post($args);
 
 	if( ! is_wp_error($sub_id) ){
+
 		update_post_meta( $sub_id,'subtitle_source_id', $args['sub_source_id']);
 		update_post_meta( $sub_id,'m_sub_language', $args['m_sub_language']);
 		update_post_meta( $sub_id,'m_sub_uploader', $args['m_sub_uploader']);
@@ -61,6 +60,9 @@ function import_subtitle_film($args, $film_id){
 	}
 
 }
+/**
+ * check the substile imported or not.
+*/
 
 function is_subtitle_imported($sub_source_id){
 	global $wpdb;
@@ -73,10 +75,9 @@ function is_subtitle_imported($sub_source_id){
 
 }
 
-
-
-// add_action('wp_footer','check_sub_of_filme');
-
+/**
+ * update company, idbm link, director ... of film. these information only show in the page detail url.
+*/
 function update_filmd_detail( $film_id, $html){
 
 	$movie_desc     = $html->find(".movie-desc");
@@ -111,7 +112,6 @@ function update_filmd_detail( $film_id, $html){
 	if( ! has_post_thumbnail($film_id) ){
     	$thumbnail = $html->find(".img-responsive");
 	    $aml = $html->find(".slide-item-wrap");
-
 	    $thumb = $html->find('img',1);
 	    $thumbnail_url  = $thumb->getAttribute("src");
 	    $args['source_thumbnail_url'] = $thumbnail_url;
