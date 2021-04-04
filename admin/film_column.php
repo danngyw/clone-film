@@ -2,7 +2,7 @@
 
 
 function crawl_columns($columns){
-    $columns['crawl_status'] = 'Crawl Status';
+    $columns['crawl_status'] = 'Manual Crawl';
      return $columns;
 }
 add_filter('manage_edit-film_columns', 'crawl_columns',99);
