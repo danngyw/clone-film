@@ -13,22 +13,21 @@ function film_custom_post_type() {
             'has_archive' => true,
             'rewrite'     => array( 'slug' => 'film' ), // my custom slug
             'supports'  => array( 'title', 'editor','custom-fields','thumbnail', 'author','excerpt'),
-            'taxonomies' => array('genre'),
         )
     );
 }
-add_action('init', 'film_custom_post_type', 99);
+add_action('init', 'film_custom_post_type', 10);
 
 function register_film_tax() {
     register_taxonomy( 'genre', 'film', array(
         'public'        => true,
         'label'        => __( 'Genre', 'textdomain' ),
-        'rewrite'      => array( 'slug' => 'genre', 'with_front' => true,'hierarchical' => true  ),
+        'rewrite'      => array( 'slug' => 'genre' ),
         'hierarchical' => true,
         'query_var' => true,
     ) );
 }
-add_action( 'init', 'register_film_tax', 5 );
+add_action( 'init', 'register_film_tax',99 );
 
 function subtitle_custom_post_type() {
     register_post_type('subtitle',
