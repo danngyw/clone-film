@@ -50,7 +50,7 @@ function update_filmd_detail( $film_id, $html){
 		if ( $tag !== 0 && $tag !== null ) {
 			$tag_director[] = (int) $tag['term_id'];
 		} else {
-			$tag 	= wp_insert_term($director,'post_tag', array('description' => 'Tag of director '.$actor));
+			$tag 	= wp_insert_term($director,'post_tag', array('description' => 'Tag of director '.$director));
 			if( $tag && ! is_wp_error($tag)){
 				$tag_director[] = (int)  $tag['term_id'];
 			}
