@@ -11,6 +11,7 @@ for ($page = $oldest; $page >= 0; $page--) {
     $crawl_log  = "Crawl page {$page} to import film";
     $home_page  =  "https://yifysubtitles.org/";
     if($page == 0){
+        $crawl_log  = "Crawl home page to import film";
         $ul_css     = ".col-md-8 ul.media-list";
         $site_url   = "https://yifysubtitles.org/";
     }
