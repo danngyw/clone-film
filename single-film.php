@@ -138,7 +138,7 @@ if($query->have_posts()){
 			<a href="<?php the_permalink();?>"><span class="text-muted">subtitle</span> <?php the_title();?></a>
 			</td>
 
-			<td class="uploader-cell"><a href="">Slav</a></td>
+			<td class="uploader-cell"><a href="">&nbsp; &nbsp;Slav</a></td>
 		</tr>
 		<?php
 	}
