@@ -72,9 +72,9 @@ function get_recent_films(){
             'terms'    => array( $lang ),
 		);
 	}
-	echo '<pre>';
-	var_dump($args);
-	echo '</pre>';
+	// echo '<pre>';
+	// var_dump($args);
+	// echo '</pre>';
 
 	$query = new WP_Query($args);
 	if($query->have_posts()){
