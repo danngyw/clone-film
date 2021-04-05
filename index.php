@@ -10,7 +10,7 @@ if($paged > 1){
 <div class="container">
 	<?php
 	if( is_home() || is_front_page() ){ ?>
-		<?php get_template_part('template/latest','movies');?>
+		<?php //get_template_part('template/latest','movies');?>
 		<?php // get_template_part('template/test','flags');?>
 	<?php } ?>
 
@@ -23,9 +23,9 @@ if($paged > 1){
 			<?php if( is_home() || is_front_page() ){?>
 				<h4 class="section-title">Recently added movies</h4>
 			<?php } ?>
-		 	<?php get_recent_films();?>
+		 	<?php // get_recent_films();?>
 		</div>
-		<?php if($show_sidebar) get_sidebar();?>
+		<?php if($show_sidebar) // get_sidebar();?>
 	</div>
 </div>
 <?php get_footer(); ?>
