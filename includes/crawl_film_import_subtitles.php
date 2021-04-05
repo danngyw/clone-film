@@ -52,10 +52,8 @@
 
 
 				if( $sub_id_exists ){
-
 					$text_log = "Skip -- sub sourceid imported in db. Sub Source ID: ";
-					crawl_log($text_log.$sub_source_id);
-
+					//crawl_log($text_log.$sub_source_id);
 				}
 
 				if(! $sub_id_exists ){
@@ -92,7 +90,7 @@
 
 					import_subtitle_film($args, $film_id);
 					$text = "DONE: sub_source_id ".$sub_source_id." has been imported successful.";
-					crawl_log($text);
+					//crawl_log($text);
 				}
 				$count++;
 
