@@ -5,12 +5,7 @@ use FastSimpleHTMLDom\Document;
 $ipage      = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
 $ul_css     = ".col-md-8 ul.media-list";
 $site_url   = $home_page =  "https://yifysubtitles.org/";
-$crawl_log = "Crawl home page to import fiml: ";
-if($ipage){
-    $site_url   = "https://yifysubtitles.org/browse/page-".$ipage;
-    $ul_css     = "ul.media-list";
-    $crawl_log = "Crawl page {$ipage} to import film";
-}
+$crawl_log  = "Crawl home page to import fiml: ";
 
 
 $html = new Document(file_get_contents($site_url));

@@ -3,6 +3,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title><?php wp_title( '|', true, 'right' );?></title>
 		<?php
 		// $title 			= get_bloginfo('name');
 		// $description 	= get_bloginfo('description');

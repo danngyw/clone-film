@@ -19,7 +19,13 @@ function crawl_include_files(){
     if( $act == 'import' || $act == 'importsub') {
         require_once('includes/import.php');
         if($act == "import"){
-            include ("includes/craw_pages_import_films.php");
+            $ipage      = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
+            if($ipage){
+
+            }else{
+                include ("includes/crawl_pages_import_films.php");
+            }
+
         } else if($act =="importsub"){
             include ("includes/crawl_film_import_subtitles.php");
         }
