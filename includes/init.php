@@ -85,3 +85,17 @@ function film_theme_enqueue_styles() {
 
 }
 add_action( 'wp_enqueue_scripts', 'film_theme_enqueue_styles' );
+
+
+function crawl_theme_slug_widgets_init() {
+    register_sidebar( array(
+        'name'          => __( 'Main Sidebar', 'textdomain' ),
+        'id'            => 'home_sidebar',
+        'description'   => __( 'Widgets in this area will be shown on home page.', 'textdomain' ),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</li>',
+        'before_title'  => '<h4 class="section-title">',
+        'after_title'   => '</h4>',
+    ) );
+}
+add_action( 'widgets_init', 'crawl_theme_slug_widgets_init' );

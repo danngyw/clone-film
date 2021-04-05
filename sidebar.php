@@ -50,6 +50,13 @@
 			}
 	    endif;?>
 		</ul>
+
+		<?php if ( is_active_sidebar( 'home_sidebar' ) ) { ?>
+		    <ul id="sidebar" class="sidebar">
+		        <?php dynamic_sidebar('home_sidebar'); ?>
+		    </ul>
+		<?php } ?>
+
 		<!-- <h4 class="section-title">Language</h4>
 		<ul class="list-group row default-list">
 			<li class="list-group-item col-xs-6"><a href="/language/albanian">Albanian</a></li>

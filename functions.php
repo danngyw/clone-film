@@ -70,3 +70,12 @@ function testSendPost(){
 
 }
 // add_action('wp_footer','testSendPost');
+
+
+add_filter( 'widget_tag_cloud_args', 'custom_widget_tag_cloud_args' );
+function custom_widget_tag_cloud_args( $args ) {
+    $args['largest'] = 160;
+    $args['smallest'] = 80;
+    $args['unit'] = '%';
+    return $args;
+}
