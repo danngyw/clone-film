@@ -29,8 +29,13 @@ function import_film($args){
 
 				$list[] = (int) $term['term_id'];
 			} else {
-				$term = wp_insert_term($term_slug,'genre', array());
-				$list[] = (int) $term->term_id;
+				$term 	= wp_insert_term($term_slug,'genre', array());
+				if( $term && ! is_wp_error($term)){
+					$list[] = (int) $term->term_id;
+				} else {
+					var_dump($term);
+					die();
+				}
 			}
 		}
 
