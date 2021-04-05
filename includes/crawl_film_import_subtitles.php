@@ -12,7 +12,7 @@
 	            'value'   => 'notyet',
 			),
 		),
-	    'posts_per_page' => 20,
+	    'posts_per_page' => 3,
 
 	);
 	$query = new WP_Query($args);
@@ -41,7 +41,7 @@
 
 		    $list = $document->find('.table-responsive .other-subs');
 			$count = (int) get_post_meta($film_id,'number_substitle', true);
-
+			$lang_ids = array();
 			foreach($list->find('tr') as $key=> $tr) { // tr = element type
 				if( $key == 0){
 					continue;
@@ -49,6 +49,9 @@
 				$sub_source_id = $tr->__get('data-id');
 
 				$sub_id_exists = is_subtitle_imported_advanced($sub_source_id);
+
+				$td_langue = $tr->find('.sub-lang');
+				$sub_language =  $td_langue->text();
 
 
 				if( $sub_id_exists ){
@@ -73,8 +76,7 @@
 					if( empty($sub_title) ){
 						$sub_title = $sub_slug;
 					}
-					$td_langue = $tr->find('.sub-lang');
-					$sub_language =  $td_langue->text();
+
 
 					$td_uploader = $tr->find(".uploader-cell a");
 					$sub_uploader = $td_uploader->text();
@@ -93,8 +95,35 @@
 					//crawl_log($text);
 				}
 				$count++;
+				$tag = term_exists( $sub_language, 'language' );
+
+				if ( $tag !== 0 && $tag !== null ) {
+					$lang_ids[] = (int) $tag['term_id'];
+				} else {
+					$tag 	= wp_insert_term($sub_language,'language', array('description' => 'Film Language '.$sub_language));
+					if( $tag && ! is_wp_error($tag)){
+						$lang_ids[] = (int)  $tag['term_id'];
+					} else {
+						crawl_log("Add Language Fail. Language : ".$sub_language);
+					}
+				}
+
+
+
 
 			}
+
+			if( $lang_ids ){
+				//$t = wp_set_object_terms( $film_id, $lang_ids, 'language', false );
+				// wp_add_object_terms();
+				$t = wp_add_object_terms( $film_id, $lang_ids, $language );
+				if( $t && !is_wp_error($t)){
+					crawl_log("Set tax language |".$language."| for film_id ".$film_id." Success");
+				} else {
+					crawl_log("Set tax language |".$language."| for film_id ".$film_id." Fail");
+				}
+			}
+
 			update_post_meta($film_id,'number_substitle', $count);
 		}
 	}

@@ -38,24 +38,80 @@ function film_custom_post_type() {
 add_action('init', 'film_custom_post_type', 5);
 
 function register_film_tax() {
-    register_taxonomy( 'genre', 'film', array(
-        'public'        => true,
-        'label'        => __( 'Genre', 'textdomain' ),
-        'rewrite'      => array( 'slug' => 'genre' ),
-        'hierarchical' => true,
-        'query_var' => true,
-        )
+    // register_taxonomy( 'genre', 'film', array(
+    //     'public'        => true,
+    //     'label'        => __( 'Genre', 'textdomain' ),
+    //     'rewrite'      => array( 'slug' => 'genre' ),
+    //     'hierarchical' => true,
+    //     'query_var' => true,
+    //     )
+    // );
+
+    $labels = array(
+        'name'              => _x( 'Genres', 'taxonomy general name', 'textdomain' ),
+        'singular_name'     => _x( 'Genre', 'taxonomy singular name', 'textdomain' ),
+        'search_items'      => __( 'Search Genres', 'textdomain' ),
+        'all_items'         => __( 'All Genres', 'textdomain' ),
+        'parent_item'       => __( 'Parent Genre', 'textdomain' ),
+        'parent_item_colon' => __( 'Parent Genre:', 'textdomain' ),
+        'edit_item'         => __( 'Edit Genre', 'textdomain' ),
+        'update_item'       => __( 'Update Genre', 'textdomain' ),
+        'add_new_item'      => __( 'Add New Genre', 'textdomain' ),
+        'new_item_name'     => __( 'New Genre Name', 'textdomain' ),
+        'menu_name'         => __( 'Genre', 'textdomain' ),
     );
 
-    register_taxonomy( 'language', 'film', array(
-        'public'        => true,
-        'label'         => __( 'Languages', 'textdomain' ),
-        'rewrite'       => array( 'slug' => 'language' ),
-        'hierarchical'  => true,
-        'query_var'     => true,
-        )
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'genre' ),
     );
 
+    register_taxonomy( 'genre', array( 'book' ), $args );
+
+    unset( $args );
+    unset( $labels );
+
+
+    // register_taxonomy( 'language', 'film', array(
+    //     'public'        => true,
+    //     'label'         => __( 'Languages', 'textdomain' ),
+    //     'rewrite'       => array( 'slug' => 'language' ),
+    //     'hierarchical'  => true, // true =  category, false = tag.
+    //     'query_var'     => true,
+    //     )
+    // );
+
+    $labels = array(
+        'name'              => _x( 'Languages', 'taxonomy general name', 'textdomain' ),
+        'singular_name'     => _x( 'Language', 'taxonomy singular name', 'textdomain' ),
+        'search_items'      => __( 'Search Language', 'textdomain' ),
+        'all_items'         => __( 'All Languages', 'textdomain' ),
+        'parent_item'       => __( 'Parent Language', 'textdomain' ),
+        'parent_item_colon' => __( 'Parent Language:', 'textdomain' ),
+        'edit_item'         => __( 'Edit Language', 'textdomain' ),
+        'update_item'       => __( 'Update Language', 'textdomain' ),
+        'add_new_item'      => __( 'Add New Language', 'textdomain' ),
+        'new_item_name'     => __( 'New Language Name', 'textdomain' ),
+        'menu_name'         => __( 'Languages', 'textdomain' ),
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'language' ),
+    );
+
+    register_taxonomy( 'language', array( 'film' ), $args );
+
+    unset( $args );
+    unset( $labels );
 }
 add_action( 'init', 'register_film_tax',99 );
 
