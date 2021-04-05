@@ -82,7 +82,7 @@ function Crwa_Overview_Info(){
 	$file_log 	= WP_CONTENT_DIR.'/log.css';
 	$link_html 	= false;
 	if( file_exists($file_log) ){
-		$log_file_link  =home_url().'/wp-content/log.css';
+		$log_file_link  =home_url().'/wp-content/log.css?rand'=.rand();
 		$link_html = "<a target='_blank' href='".$log_file_link."'>View Log file </a>&nbsp; &nbsp; <a class='del-log' href='#'>Delete Log</span>";
 	}
 	$opt = get_option('show_menu','no');
