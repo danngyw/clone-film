@@ -9,7 +9,7 @@ function render_latest_item($film){
 	$imdb_score  	= get_post_meta($film_id,'imdb_score', true);
 	$source_id 		= get_post_meta($film_id,'film_source_id', true);
 	$movie_actors 	= get_post_meta($film_id,'movie_actors', true);
-	$movie_type 	= get_post_meta($film_id,'movie_type', true);
+	$movie_genre 	= get_post_meta($film_id,'movie_genre', true);
 	$thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
 	?>
 	<div class="owl-item active" style="width: 235px;">
@@ -17,7 +17,7 @@ function render_latest_item($film){
 			<img class="img-responsive" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" itemprop="image">
 			<div class="movie-item-overlay">
 				<h3 class="title" itemprop="name"><?php the_title();?><br><?php echo $year_release;?></h3>
-				<span class="genre" itemprop="genre"><?php echo $movie_type;?></span>
+				<span class="genre" itemprop="genre"><?php echo $movie_genre;?></span>
 				<small class="actors" itemprop="actors"><?php echo $movie_actors;?></small>
 				<div class="meter">
 					<span class="value" style="color:#FFBA00;"><?php echo $imdb_score;?></span>
@@ -41,6 +41,22 @@ function get_recent_films(){
 	if($keyword){
 		$args['s'] = $keyword;
 	}
+	$term_id= 0;
+	$name = get_query_var( 'term' );
+	if($name){
+	$term = get_term_by( 'slug', $name,'genre');
+		$term_id = $term->term_id;
+		$args['tax_query'] = array(
+		        array(
+		            'taxonomy' => 'genre',
+		            'field'    => 'slug',
+		            'terms'    => array( $name ),
+		        ),
+
+		    );
+
+	}
+
 	$query = new WP_Query($args);
 	if($query->have_posts()){
 		echo '<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">';
@@ -71,7 +87,7 @@ function render_item_film($film){
 	$imdb_score  	= get_post_meta($film->ID,'imdb_score', true);
 	$source_id 		= get_post_meta($film->ID,'film_source_id', true);
 	$movie_actors 	= get_post_meta($film->ID,'movie_actors', true);
-	$movie_type 	= get_post_meta($film->ID,'movie_type', true);
+	$movie_genre 	= get_post_meta($film->ID,'movie_genre', true);
 
 	?>
 	<li class="media media-movie-clickable film-id-<?php echo $film->ID;?> source-id-<?php echo $source_id;?>">
@@ -83,7 +99,7 @@ function render_item_film($film){
 			<div class="col-xs-12">
 			<h3 class="media-heading" itemprop="name"><?php the_title();?></h3>
 			</div>
-			<div class="col-sm-6 col-xs-12 movie-genre" itemprop="genre"><?php echo $movie_type;?></div>
+			<div class="col-sm-6 col-xs-12 movie-genre" itemprop="genre"><?php echo $movie_genre;?></div>
 			<div class="col-sm-6 col-xs-12 movie-genre">
 				<span class="movinfo-section"><?php echo $year_release;?><small>year</small></span>
 				<span class="movinfo-section"><?php echo $length_time;?><small>min</small></span>

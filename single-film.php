@@ -10,7 +10,7 @@ $year_release  	= get_post_meta($film->ID,'year_release', true);
 $length_time  	= (int) get_post_meta($film->ID,'length_time', true);
 $imdb_score  	= get_post_meta($film->ID,'imdb_score', true);
 $movie_actors  	= get_post_meta($film->ID,'movie_actors', true);
-$movie_type  	= get_post_meta($film->ID,'movie_type', true);
+$movie_genre  	= get_post_meta($film->ID,'movie_genre', true);
 
 $hour = 0;
 $minutes = $length_time;
@@ -41,7 +41,7 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 <div class="row">
 	<div class="col-xs-12 text-center">
 	<h2 class="movie-main-title"><?php the_title();?> (<?php echo $year_release;?>)</h2>
-	<div class="movie-genre"><?php echo $movie_type;?></div>
+	<div class="movie-genre"><?php echo $movie_genre;?></div>
 	</div>
 </div>
 <div class="row">

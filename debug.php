@@ -69,4 +69,4 @@ function manual_film_debug(){
 		wp_set_post_terms( $film_id, $list, 'genre' );
 	}
 }
- add_action('wp_footer','manual_film_debug');
+//add_action('wp_footer','manual_film_debug');
