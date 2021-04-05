@@ -135,7 +135,7 @@ function Crwa_Overview_Info(){
 		</table>
 		<h2> NOTE</h2>
 		<p>
-			Visit link: <a target="_blank" href="<?php echo home_url();?>/?act=import&ipage=2"><?php echo home_url();?>/?act=import&ipage=2</a> để import tất cả film của trang 2 từ site nguồn.
+			Visit link: <a target="_blank" href="<?php echo home_url();?>/?act=import&ipage=5"><?php echo home_url();?>/?act=import&ipage=5</a> để import tất cả film của trang 5,4,3,2,1 từ site nguồn.
 		</p>
 		<p>
 			Visit link: <a  target="_blank" href="<?php echo home_url();?>/?act=importsub"><?php echo home_url();?>/?act=importsub</a> để import substile cho những film chưa update. Mỗi lần chạy update subtile cho 20 films.
