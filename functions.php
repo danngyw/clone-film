@@ -87,17 +87,24 @@ function film_create_admin_bar_menus() {
     $wp_admin_bar->add_menu(array('id' => $menu_id, 'title' => __('Crawl Overview'), 'href' => $url));
     $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Crawl Overview'), 'id' => 'overview-panel', 'href' => $url));
 
-    $file_log   = WP_CONTENT_DIR.'/log.css';
 
-    if( file_exists($file_log) ){
-        $log_file_link  = home_url().'/wp-content/log.css?rand='.rand();
-        $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Check Log'), 'id' => 'dwb-home', 'href' => $log_file_link, 'meta' => array('target' => '_blank')));
-    }
+
+
+
+    $wp_admin_bar->add_menu( array('parent' => $menu_id, 'title' => __('Crwal Home'), 'id' => 'quick-link-home', 'href' => 'https://yifysubtitles.org/?act=import' , 'meta' => array('target' => '_blank') ));
+
+    $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Import Subtitles'), 'id' => 'quick-link-subtile', 'href' => 'https://yifysubtitles.org/?act=importsub' , 'meta' => array('target' => '_blank') ));
+
     $url = admin_url( 'edit.php?post_type=film');
 
     $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Link Films'), 'id' => 'admin-link-film', 'href' => $url));
     $subtitle = admin_url( 'edit.php?post_type=subtitle');
 
     $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Subtitles'), 'id' => 'admin-link-subtitle', 'href' => $subtitle));
+    $file_log   = WP_CONTENT_DIR.'/log.css';
+    if( file_exists($file_log) ){
+        $log_file_link  = home_url().'/wp-content/log.css?rand='.rand();
+        $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Check Log'), 'id' => 'dwb-home', 'href' => $log_file_link, 'meta' => array('target' => '_blank')));
+    }
 }
 add_action('admin_bar_menu', 'film_create_admin_bar_menus', 2000);
