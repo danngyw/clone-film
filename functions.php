@@ -1,17 +1,17 @@
 <?php
 define('FILM_SOURCE_ID','film_source_id');
+require_once('includes/init.php');
 
 
 require_once "vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 
-require_once('includes/init.php');
 require_once('includes/default.php');
 require_once('includes/html.php');
 require_once('debug.php');
 
 if( is_admin() ){
-    require_once('includes/import.php');
+    include('includes/import.php');
     require_once('admin/admin.php');
 }
 function crawl_include_files(){
@@ -19,13 +19,13 @@ function crawl_include_files(){
     if( $act == 'import' || $act == 'importsub') {
         require_once('includes/import.php');
         if($act == "import"){
-            require_once ("includes/craw_pages_import_films.php");
+            include ("includes/craw_pages_import_films.php");
         } else if($act =="importsub"){
-            require_once ("includes/crawl_film_import_subtitles.php");
+            include ("includes/crawl_film_import_subtitles.php");
         }
     }
 }
-add_action('after_setup_theme','crawl_include_files');
+add_action('after_setup_theme','crawl_include_files', 99);
 
 function is_film_imported($source_id){
     global $wpdb;

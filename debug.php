@@ -41,7 +41,7 @@ function manual_film_debug(){
 		}
 	}
 
-	$text = "Adventure, Comedy, Family, Horror";
+	$text = "Adventure";
 	$genre = $text;
 	$terms = explode(",", $genre);
 
@@ -50,23 +50,24 @@ function manual_film_debug(){
 
 		$term = term_exists( $term_slug, 'genre' );
 		if ( $term !== 0 && $term !== null ) {
-			var_dump($term['term_id']);
+
 			$list[] = (int) $term['term_id'];
 		} else {
 			$term = wp_insert_term($term_slug,'genre', array());
-			echo '<pre>';
-			echo 'insert term';
-			//var_dump($term->term_id);
-			echo '</pre>';
-			$list[] = (int) $term->term_id;
+			if( ! is_wp_error( $term )){
+				$list[] = (int) $term->term_id;
+			}
 		}
-		echo '<pre>';
-		var_dump($list);
-		echo '</pre>';
 	}
 	$film_id = 1296;
 	if($list){
-		wp_set_post_terms( $film_id, $list, 'genre' );
+		// wp_set_post_terms( $film_id, $list, 'genre' );
 	}
+
+	$term 	= wp_insert_term('Action A','genre', array());
+	var_dump($term);
+
+	$check = taxonomy_exists( 'genre' );
+	var_dump($check);
 }
-//add_action('wp_footer','manual_film_debug');
+add_action('wp_footer','manual_film_debug');

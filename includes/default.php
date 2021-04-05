@@ -10,6 +10,52 @@ function crawl_log($input, $file_store = ''){
         error_log( date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ). ': '. $input . "\n" , 3, $file_store);
     }
 }
+
+
+function import_film($args){
+
+	$args['post_type'] = 'film';
+	$args['post_status'] = 'publish';
+
+	$film_id = wp_insert_post($args);
+	if( ! is_wp_error($film_id) ){
+		update_post_meta($film_id,FILM_SOURCE_ID, $args[FILM_SOURCE_ID]);
+		update_post_meta($film_id,'year_release', $args['year_release']);
+		update_post_meta($film_id,'length_time', $args['length_time']);
+		update_post_meta($film_id,'imdb_score', $args['imdb_score']);
+		update_post_meta($film_id,'movie_actors', $args['movie_actors']);
+		update_post_meta($film_id,'movie_genre', $args['movie_genre']);
+
+		$genre 	= $args['movie_genre'];
+		$terms 	= explode(",", $genre);
+		$list 	= array();
+		foreach ($terms as $key => $term_slug) {
+
+			$term = term_exists( $term_slug, 'genre' );
+			if ( $term !== 0 && $term !== null ) {
+				$list[] = (int) $term['term_id'];
+			} else {
+				$term 	= wp_insert_term($term_slug,'genre', array('description' => 'Term of'.$term_slug));
+				if( $term && ! is_wp_error($term)){
+					$list[] = (int) $term->term_id;
+				} else {
+					var_dump($term_slug);
+					var_dump($term);
+					die('111');
+				}
+			}
+		}
+
+		if( $list ){
+			wp_set_post_terms( $film_id, $list, 'genre' );
+		}
+
+		import_film_thumbnail($args, $film_id);
+	}
+	update_post_meta($film_id,'is_full_updated','notyet');
+
+}
+
 /**
  * check the substile imported or not.
 */

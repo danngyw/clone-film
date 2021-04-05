@@ -13,10 +13,22 @@ function film_custom_post_type() {
             'has_archive' => true,
             'rewrite'     => array( 'slug' => 'film' ), // my custom slug
             'supports'  => array( 'title', 'editor','custom-fields','thumbnail', 'author','excerpt'),
+            'taxonomies' => array('genre'),
         )
     );
 }
-add_action('init', 'film_custom_post_type');
+add_action('init', 'film_custom_post_type', 99);
+
+function register_film_tax() {
+    register_taxonomy( 'genre', 'film', array(
+        'public'        => true,
+        'label'        => __( 'Genre', 'textdomain' ),
+        'rewrite'      => array( 'slug' => 'genre', 'with_front' => true,'hierarchical' => true  ),
+        'hierarchical' => true,
+        'query_var' => true,
+    ) );
+}
+add_action( 'init', 'register_film_tax', 999 );
 
 function subtitle_custom_post_type() {
     register_post_type('subtitle',
@@ -48,14 +60,7 @@ function wpdocs_setup_theme() {
 add_action( 'after_setup_theme', 'wpdocs_setup_theme' );
 
 
-function crawl_create_film_tax() {
-    register_taxonomy( 'genre', 'film', array(
-        'label'        => __( 'Genre', 'textdomain' ),
-        'rewrite'      => array( 'slug' => 'genre' ),
-        'hierarchical' => true,
-    ) );
-}
-add_action( 'init', 'crawl_create_film_tax', 0 );
+
 
 function film_theme_enqueue_styles() {
 
