@@ -153,6 +153,7 @@ function get_flag_css($text){
 			$flag = 'sa';
 			break;
 		case 'Brazillian':
+		case 'Brazilian':
 			$flag = 'br';
 			break;
 
@@ -256,6 +257,10 @@ function get_flag_css($text){
 			$flag = 'ir';
 			break;
 
+		case 'Urdu':
+		case 'Pakistan':
+			$flag = 'pk';
+			break;
 
 		case 'Portuguese':
 			$flag = 'pt';
