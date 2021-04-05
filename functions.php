@@ -82,9 +82,10 @@ function testSendPost(){
 function film_create_admin_bar_menus() {
     global $wp_admin_bar;
 
-    $menu_id = 'crawl_panel';
-    $url = admin_url( 'admin.php?page=crawl-overview');
+    $menu_id        = 'crawl_panel';
+    $url            = admin_url( 'admin.php?page=crawl-overview');
     $wp_admin_bar->add_menu(array('id' => $menu_id, 'title' => __('Crawl Overview'), 'href' => $url));
+    $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Crawl Overview'), 'id' => 'overview-panel', 'href' => $url));
 
     $file_log   = WP_CONTENT_DIR.'/log.css';
 
