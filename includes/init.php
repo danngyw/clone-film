@@ -3,6 +3,7 @@
 function film_custom_post_type() {
     add_theme_support( 'post-thumbnails', array( 'post', 'page' ) );
 
+
     register_post_type('film',
         array(
             'labels'      => array(
@@ -14,10 +15,27 @@ function film_custom_post_type() {
             'rewrite'     => array( 'slug' => 'film' ), // my custom slug
             'supports'  => array( 'title', 'editor','custom-fields','thumbnail', 'author','excerpt'),
             'taxonomies' => array('post_tag','genre','language'),
+            'menu_position' => 2
         )
     );
+    register_post_type('subtitle',
+        array(
+            'labels'      => array(
+                'name'          => __( 'Subtitles', 'textdomain' ),
+                'singular_name' => __( 'Subtitle', 'textdomain' ),
+            ),
+            'public'      => true,
+            'has_archive' => true,
+            'rewrite'     => array( 'slug' => 'subtitle' ), // my custom slug
+            'supports'  => array( 'title', 'editor','custom-fields', 'author','excerpt'),
+            'menu_position' => 3
+        )
+    );
+
+
+
 }
-add_action('init', 'film_custom_post_type', 10);
+add_action('init', 'film_custom_post_type', 5);
 
 function register_film_tax() {
     register_taxonomy( 'genre', 'film', array(
@@ -43,21 +61,7 @@ add_action( 'init', 'register_film_tax',99 );
 
 
 
-function subtitle_custom_post_type() {
-    register_post_type('subtitle',
-        array(
-            'labels'      => array(
-                'name'          => __( 'Subtitles', 'textdomain' ),
-                'singular_name' => __( 'Subtitle', 'textdomain' ),
-            ),
-            'public'      => true,
-            'has_archive' => true,
-            'rewrite'     => array( 'slug' => 'subtitle' ), // my custom slug
-            'supports'  => array( 'title', 'editor','custom-fields', 'author','excerpt'),
-        )
-    );
-}
-add_action('init', 'subtitle_custom_post_type');
+
 
 function wpdocs_setup_theme() {
     add_theme_support( 'post-thumbnails', array( 'post', 'film' ) );
