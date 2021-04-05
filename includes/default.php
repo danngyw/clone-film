@@ -126,8 +126,8 @@ function import_subtitle_film($args, $film_id){
 
 			$tag = term_exists( $language, 'language' );
 
-			if ( $language !== 0 && $language !== null ) {
-				$lang_ids[] = (int) $language['term_id'];
+			if ( $tag !== 0 && $tag !== null ) {
+				$lang_ids[] = (int) $tag['term_id'];
 			} else {
 				$tag 	= wp_insert_term($language,'language', array('description' => 'Film Language '.$language));
 				if( $tag && ! is_wp_error($tag)){
@@ -138,7 +138,7 @@ function import_subtitle_film($args, $film_id){
 			}
 
 			if( $lang_ids ){
-				wp_set_post_terms( $film_id, $tag_actors, 'post_tag' );
+				wp_set_post_terms( $film_id, $lang_ids, 'language' );
 			}
 		}
 
