@@ -31,10 +31,10 @@ function show_crawl_status($name) {
               $result = $wpdb->get_results($sql, OBJECT );
               if( $result ) echo $result[0]->total.'(subtitles)';
 
-              $number_substitle = (int) get_post_meta($post->ID,'number_substitle', true);
-              if($number_substitle<1){
-                update_post_meta($post->ID,'number_substitle', $number_substitle);
-              }
+              $number_substitle = (int) get_post_meta($film_id,'number_substitle', true);
+              //if($number_substitle<1){
+                update_post_meta($post->ID,'number_substitle', $result[0]->total);
+             // }
 
 
           	} else {
