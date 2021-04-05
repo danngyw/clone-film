@@ -138,7 +138,7 @@ function import_subtitle_film($args, $film_id){
 			}
 
 			if( $lang_ids ){
-				wp_set_post_terms( $film_id, $lang_ids, 'language' );
+				wp_set_object_terms( $film_id, $lang_ids, 'language' );
 				crawl_log("Set tax language |".$language."| for film_id ".$film_id." success");
 			}
 		}
