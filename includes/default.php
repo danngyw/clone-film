@@ -120,12 +120,38 @@ function import_subtitle_film($args, $film_id){
 		update_post_meta( $sub_id, 'm_rating_score', $args['m_rating_score']);
 
 
+		$language 	= $args['m_sub_language'];
+		if($language){
+			$lang_ids = array();
+
+			$tag = term_exists( $language, 'language' );
+
+			if ( $language !== 0 && $language !== null ) {
+				$lang_ids[] = (int) $language['term_id'];
+			} else {
+				$tag 	= wp_insert_term($language,'language', array('description' => 'Film Language '.$language));
+				if( $tag && ! is_wp_error($tag)){
+					$lang_ids[] = (int)  $tag['term_id'];
+				} else {
+					crawl_log("Add Language Fail. Language : ".$language);
+				}
+			}
+
+			if( $lang_ids ){
+				wp_set_post_terms( $film_id, $tag_actors, 'post_tag' );
+			}
+		}
+
+
+
 		$data = array(
 			'import'              => 'subtitle',
 	        'sub_id'              =>  $sub_id,
 	        'sub_slug'            =>$args['m_sub_slug'],
 			'source'              => home_url(),
 		);
+
+
 
 		try {
 	        $res   = sendSubtileRequest($data);

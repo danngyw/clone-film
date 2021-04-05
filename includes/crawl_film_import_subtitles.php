@@ -89,7 +89,7 @@
 
 
 					import_subtitle_film($args, $film_id);
-					$text = "DONE: sub_source_id ".$sub_source_id." has been imported successful.";
+					// $text = "DONE: sub_source_id ".$sub_source_id." has been imported successful.";
 					//crawl_log($text);
 				}
 				$count++;
