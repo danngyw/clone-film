@@ -14,6 +14,8 @@ if( is_admin() ){
     include('includes/import.php');
     require_once('admin/admin.php');
 }
+
+
 function crawl_include_files(){
     $act    = isset($_REQUEST['act']) ? $_REQUEST['act']:false;
     if( $act == 'import' || $act == 'importsub') {
@@ -78,10 +80,21 @@ function testSendPost(){
 // add_action('wp_footer','testSendPost');
 
 
-add_filter( 'widget_tag_cloud_args', 'custom_widget_tag_cloud_args' );
-function custom_widget_tag_cloud_args( $args ) {
-    $args['largest'] = 160;
-    $args['smallest'] = 80;
-    $args['unit'] = '%';
-    return $args;
+function film_create_admin_bar_menus() {
+    global $wp_admin_bar;
+
+    $menu_id = 'crawl_panel';
+    $url = admin_url( 'admin.php?page=crawl-overview');
+    $wp_admin_bar->add_menu(array('id' => $menu_id, 'title' => __('Crawl Overview'), 'href' => $url));
+
+    $file_log   = WP_CONTENT_DIR.'/log.css';
+
+    if( file_exists($file_log) ){
+        $log_file_link  = home_url().'/wp-content/log.css?rand='.rand();
+        $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Check Log'), 'id' => 'dwb-home', 'href' => $log_file_link, 'meta' => array('target' => '_blank')));
+    }
+    $url = admin_url( 'edit.php?post_type=film');
+
+    $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Link Films'), 'id' => 'dwb-pending', 'href' => $url));
 }
+add_action('admin_bar_menu', 'film_create_admin_bar_menus', 2000);

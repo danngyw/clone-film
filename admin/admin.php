@@ -4,17 +4,27 @@ use FastSimpleHTMLDom\Document;
 
 require get_parent_theme_file_path( '/admin/film_column.php' );
 require get_parent_theme_file_path( '/admin/init_dashboard.php' );
+
+
+
+
 function admin_film_menu_overview(){
 	$icon = get_stylesheet_directory_uri().'/images/spider.png';
     add_menu_page('Crawl Overview', 'Crawl Overview', 'manage_options', 'crawl-overview', 'crawl_overview_output',$icon, 3 );
 }
 add_action('admin_menu', 'admin_film_menu_overview');
+
+
+
+
 function crawl_overview_output(){
 
 	$film_id = isset($_GET['film_id']) ? $_GET['film_id']: 0; ?>
-	<div class="wrap">
-		<h1>Cập nhật substile cho film</h1> <br /><p> <?php
-		if( $film_id ){
+	 <?php
+		if( $film_id ){ ?>
+			<div class="wrap">
+			<h1>Cập nhật substile cho film</h1> <br /><p>
+			<?php
 			$film 		= get_post($film_id);
 			if( $film && !is_wp_error($film) ){
 				$sub_news 	= ManualCrwalFilmImportSubtitle($film, 0);
@@ -29,7 +39,7 @@ function crawl_overview_output(){
 			} else {
 				echo  'Film không tồn tại.';
 			} ?>
-		</p>
+			</p>
 		</div> <?php
 	} else {
 		Crwa_Overview_Info();
