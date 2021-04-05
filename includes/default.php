@@ -52,7 +52,7 @@ function import_film($args){
 					crawl_log('Dien vien exit');
 					$list[] = (int) $tag['term_id'];
 				} else {
-					$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor'.$actor));
+					$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor '.$actor));
 
 					if( $tag && ! is_wp_error($tag)){
 						$tag_actors[] = (int)  $tag['term_id'];
