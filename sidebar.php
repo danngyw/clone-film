@@ -13,45 +13,24 @@
 		</ul>
 		<h4 class="section-title">Genre</h4>
 		<ul class="list-group row default-list">
-		<li class="list-group-item col-xs-4"><a href="/genre/action">Action</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/adventure">Adventure</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/animation">Animation</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/biography">Biography</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/comedy">Comedy</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/crime">Crime</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/documentary">Documentary</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/drama">Drama</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/family">Family</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/fantasy">Fantasy</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/film-noir">Film-Noir</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/game-show">Game-Show</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/history">History</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/horror">Horror</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/music">Music</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/musical">Musical</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/mystery">Mystery</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/news">News</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/reality-tv">Reality-TV</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/romance">Romance</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/sci-fi">Sci-Fi</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/sport">Sport</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/talk-show">Talk-Show</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/thriller">Thriller</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/war">War</a></li>
-		<li class="list-group-item col-xs-4"><a href="/genre/western">Western</a></li>
-		</ul>
-		<h4 class="section-title">Language</h4>
-		<ul class="list-group row default-list">
-		<li class="list-group-item col-xs-6"><a href="/language/albanian">Albanian</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/arabic">Arabic</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/bengali">Bengali</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/brazilian-portuguese">Brazilian Portuguese</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/bulgarian">Bulgarian</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/chinese">Chinese</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/slovenian">Slovenian</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/spanish">Spanish</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/swedish">Swedish</a></li>
-		<li class="list-group-item col-xs-6"><a href="/language/thai">Thai</a></li>
+		<?php
+		$terms = get_terms( array(
+		    'taxonomy' => 'genre',
+		    'hide_empty' => false,
+		) );
+		if ( !empty($terms) ) :
 
+		    foreach( $terms as $term ) {
+		    	$link = get_term_link($term,'genre');
+		     	echo '<li class="list-group-item col-xs-4"><a href="'.$link.'">'.$term->name.'</a></li>';
+			}
+	    endif;?>
 		</ul>
+		<!-- <h4 class="section-title">Language</h4>
+		<ul class="list-group row default-list">
+			<li class="list-group-item col-xs-6"><a href="/language/albanian">Albanian</a></li>
+			<li class="list-group-item col-xs-6"><a href="/language/arabic">Arabic</a></li>
+			<li class="list-group-item col-xs-6"><a href="/language/bengali">Bengali</a></li>
+
+		</ul> -->
 	</div>
