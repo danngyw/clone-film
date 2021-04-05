@@ -71,6 +71,22 @@ function get_recent_films(){
 		    );
 
 	}
+	$lang = get_query_var( 'language' );
+
+	if($lang){
+		$term = get_term_by( 'slug', $lang,'language');
+		// $term_id = $term->term_id;
+		$args['tax_query'][] =
+		        array(
+		            'taxonomy' => 'language',
+		            'field'    => 'slug',
+		            'terms'    => array( $lang ),
+
+
+		    );
+
+	}
+
 
 	$query = new WP_Query($args);
 	if($query->have_posts()){
