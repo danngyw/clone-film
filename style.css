@@ -39,3 +39,7 @@ form,body, div, span, strong, br,a,ul,li{
 	top: 15px;
 	position: relative;
 }
+.flag-cell .sub-lang{
+	position: relative;
+	top:9px;
+}
