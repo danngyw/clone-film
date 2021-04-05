@@ -42,7 +42,7 @@
 		    'taxonomy' => 'genre',
 		    'hide_empty' => false,
 		) );
-		if ( !empty($terms) ) :
+		if ( !empty($terms) && !is_wp_error($terms) ) :
 
 		    foreach( $terms as $term ) {
 		    	$link = get_term_link($term,'genre');
@@ -57,7 +57,7 @@
 			    'taxonomy' => 'language',
 			    'hide_empty' => false,
 			) );
-			if ( !empty($langs) ) :
+			if ( !empty($langs) && !is_wp_error($langs) ) :
 				foreach( $langs as $term ) {
 			    	$link = get_term_link($term,'language');
 			     	echo '<li class="list-group-item col-xs-6"><a href="'.$link.'">'.$term->name.'</a></li>';

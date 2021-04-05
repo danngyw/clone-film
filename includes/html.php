@@ -60,31 +60,22 @@ function get_recent_films(){
 	$tag_name = get_query_var( 'tag' );
 
 	if($tag_name){
-		//$tag = get_term_by( 'slug', $tag_name,'post_tag');
-		// $term_id = $term->term_id;
-		$args['tax_query'][] =
-		        array(
-		            'taxonomy' => 'post_tag',
-		            'field'    => 'slug',
-		            'terms'    => array( $tag_name ),
-
-		    );
-
+		$args['tax_query'][] = array(
+            'taxonomy' => 'post_tag',
+            'field'    => 'slug',
+            'terms'    => array( $tag_name ),
+		);
 	}
 	$lang = get_query_var( 'language' );
 
 	if($lang){
 		$term = get_term_by( 'slug', $lang,'language');
 		// $term_id = $term->term_id;
-		$args['tax_query'][] =
-		        array(
-		            'taxonomy' => 'language',
-		            'field'    => 'slug',
-		            'terms'    => array( $lang ),
-
-
-		    );
-
+		$args['tax_query'][] = array(
+            'taxonomy' => 'language',
+            'field'    => 'slug',
+            'terms'    => array( $lang ),
+		);
 	}
 
 
