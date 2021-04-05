@@ -72,7 +72,6 @@ function testSendPost(){
         $res   = sendSubtileRequest($data);
         var_dump($res);
     } catch (Exception $e) {
-        var_dump($e);
     }
 
 
