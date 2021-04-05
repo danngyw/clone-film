@@ -48,14 +48,17 @@
 				}
 				$sub_source_id = $tr->__get('data-id');
 
-				$sub_id = is_subtitle_imported_simple($sub_source_id);
+				$sub_id_exists = is_subtitle_imported_advanced($sub_source_id);
 
-				if( $sub_id ){
-					$text_log = 'Skip: sub_source_id '.$sub_source_id.' exists in db. sub_id = '.$sub_id;
-					crawl_log($text_log);
+
+				if( $sub_id_exists ){
+
+					$text_log = "Skip -- sub sourceid imported in db. Sub Source ID: ";
+					crawl_log($text_log.$sub_source_id);
+
 				}
 
-				if(! $sub_id ){
+				if(! $sub_id_exists ){
 					$sub_title = $tr->find('td',2);
 
 					$rating_html = $tr->find('.label-success');
