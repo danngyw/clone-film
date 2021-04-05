@@ -49,16 +49,12 @@ function import_film($args){
 				$tag = term_exists( $actor, 'post_tag' );
 
 				if ( $tag !== 0 && $tag !== null ) {
-					crawl_log('Dien vien exit');
 					$list[] = (int) $tag['term_id'];
 				} else {
 					$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor '.$actor));
 
 					if( $tag && ! is_wp_error($tag)){
 						$tag_actors[] = (int)  $tag['term_id'];
-						crawl_log('Thêm mới diễn viên lỗi. ');
-					} else {
-						crawl_log('Thêm mới diễn viên thành công.');
 					}
 				}
 			}
