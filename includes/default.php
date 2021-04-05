@@ -26,9 +26,9 @@ function import_film($args){
 		update_post_meta($film_id,'movie_actors', $args['movie_actors']);
 		update_post_meta($film_id,'movie_genre', $args['movie_genre']);
 
-		$genre 	= $args['movie_genre'];
-		$terms 	= explode(",", $genre);
-		$list 	= array();
+		$genre_string 	= $args['movie_genre'];
+		$terms 	= explode(",", $genre_string);
+		$list 	= $tag_actors = array();
 		foreach ($terms as $key => $term_slug) {
 
 			$term = term_exists( $term_slug, 'genre' );
@@ -38,16 +38,36 @@ function import_film($args){
 				$term 	= wp_insert_term($term_slug,'genre', array('description' => 'Term of'.$term_slug));
 				if( $term && ! is_wp_error($term)){
 					$list[] = (int)  $term['term_id'];
-				} else {
-					var_dump($term_slug);
-					var_dump($term);
-					die('111');
 				}
 			}
 		}
+		$actor_sring 	= $args['movie_actors'];
+		$tags 	= explode(",", $actor_sring);
+		if( $tags && count($tags) > 0 ){
+			foreach ($tags as $key => $actor) {
 
+				$tag = term_exists( $actor, 'post_tag' );
+
+				if ( $tag !== 0 && $tag !== null ) {
+					crawl_log('Dien vien exit');
+					$list[] = (int) $tag['term_id'];
+				} else {
+					$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor'.$actor));
+
+					if( $tag && ! is_wp_error($tag)){
+						$tag_actors[] = (int)  $tag['term_id'];
+						crawl_log('Thêm mới diễn viên lỗi. ');
+					} else {
+						crawl_log('Thêm mới diễn viên thành công.');
+					}
+				}
+			}
+		}
 		if( $list ){
 			wp_set_post_terms( $film_id, $list, 'genre' );
+		}
+		if( $tag_actors ){
+			wp_set_post_terms( $film_id, $tag_actors, 'post_tag' );
 		}
 
 		import_film_thumbnail($args, $film_id);

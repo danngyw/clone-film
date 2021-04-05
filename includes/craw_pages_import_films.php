@@ -58,7 +58,6 @@ foreach($list->find('li') as $li) {
         $args['movie_actors']         = $movie_actors;
         $args['movie_genre']           = $movie_genre;
 
-
         if( function_exists('import_film') ){
            import_film($args);
         }
