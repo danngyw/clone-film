@@ -253,6 +253,12 @@ function get_flag_css($text){
 		case 'Malay':
 			$flag = 'my';
 			break;
+
+		case 'Slovenian':
+			$flag = 'si';
+			break;
+
+
 		case 'Farsi/Persian':
 			$flag = 'ir';
 			break;
