@@ -45,17 +45,18 @@ function import_film($args){
 		$tags 	= explode(",", $actor_sring);
 		if( $tags && count($tags) > 0 ){
 			foreach ($tags as $key => $actor) {
+				if($actor){
+					$tag = term_exists( $actor, 'post_tag' );
 
-				$tag = term_exists( $actor, 'post_tag' );
-
-				if ( $tag !== 0 && $tag !== null ) {
-					$list[] = (int) $tag['term_id'];
-				} else {
-					$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor '.$actor));
-					if( $tag && ! is_wp_error($tag)){
-						$tag_actors[] = (int)  $tag['term_id'];
+					if ( $tag !== 0 && $tag !== null ) {
+						$list[] = (int) $tag['term_id'];
 					} else {
-						crawl_log("Add actor fail. Name Actor: ".$actor);
+						$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor '.$actor));
+						if( $tag && ! is_wp_error($tag)){
+							$tag_actors[] = (int)  $tag['term_id'];
+						} else {
+							crawl_log("Add actor fail. Name Actor: ".$actor);
+						}
 					}
 				}
 			}

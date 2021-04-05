@@ -21,9 +21,9 @@ function crawl_include_files(){
         if($act == "import"){
             $ipage      = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
             if($ipage){
-
-            }else{
                 include ("includes/crawl_pages_import_films.php");
+            } else{
+                include ("includes/crawl_home_page_import_films.php");
             }
 
         } else if($act =="importsub"){
