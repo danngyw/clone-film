@@ -25,7 +25,7 @@ function crawl_include_files(){
         }
     }
 }
-add_action('after_setup_theme','crawl_include_files', 99);
+add_action('init','crawl_include_files', 99);
 
 function is_film_imported($source_id){
     global $wpdb;

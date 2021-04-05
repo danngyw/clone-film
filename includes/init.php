@@ -28,7 +28,7 @@ function register_film_tax() {
         'query_var' => true,
     ) );
 }
-add_action( 'init', 'register_film_tax', 999 );
+add_action( 'init', 'register_film_tax', 5 );
 
 function subtitle_custom_post_type() {
     register_post_type('subtitle',

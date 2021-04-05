@@ -37,7 +37,7 @@ function import_film($args){
 			} else {
 				$term 	= wp_insert_term($term_slug,'genre', array('description' => 'Term of'.$term_slug));
 				if( $term && ! is_wp_error($term)){
-					$list[] = (int) $term->term_id;
+					$list[] = (int)  $term['term_id'];
 				} else {
 					var_dump($term_slug);
 					var_dump($term);

@@ -64,10 +64,5 @@ function manual_film_debug(){
 		// wp_set_post_terms( $film_id, $list, 'genre' );
 	}
 
-	$term 	= wp_insert_term('Action A','genre', array());
-	var_dump($term);
-
-	$check = taxonomy_exists( 'genre' );
-	var_dump($check);
 }
 add_action('wp_footer','manual_film_debug');
