@@ -41,6 +41,28 @@ function update_filmd_detail( $film_id, $html){
 
 
 
+
+
+   	if($director){
+   		$tag_director = array();
+		$tag = term_exists( $director, 'post_tag' );
+
+		if ( $tag !== 0 && $tag !== null ) {
+			$list[] = (int) $tag['term_id'];
+		} else {
+			$tag 	= wp_insert_term($director,'post_tag', array('description' => 'Tag of director '.$actor));
+			if( $tag && ! is_wp_error($tag)){
+				$tag_actors[] = (int)  $tag['term_id'];
+				crawl_log('Thêm mới diễn viên lỗi. ');
+			}
+		}
+
+		if( $tag_actors ){
+			wp_set_post_terms( $film_id, $tag_director, 'post_tag' );
+		}
+	}
+
+
 	// if( ! has_post_thumbnail($film_id) ){
  //    	$thumbnail = $html->find(".img-responsive");
 	//     $aml = $html->find(".slide-item-wrap");
