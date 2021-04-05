@@ -12,7 +12,7 @@ if($ipage){
     $crawl_log = "Crawl page {$ipage} to import film. Url Crawl:{$site_url}";
 }
 
-crawl_log($crawl_log);
+
 $html = new Document(file_get_contents($site_url));
 $list = $html->find($ul_css);
 
@@ -23,7 +23,7 @@ foreach($list->find('li') as $li) {
     $id = explode("/movie-imdb/tt", $fiml_slug);
     $source_id = $id[1];
     $exist  = is_film_imported($source_id);
-
+    $count = 0;
     if( !$exist ){
 
         $title = $li->find('h3');
@@ -62,6 +62,9 @@ foreach($list->find('li') as $li) {
         if( function_exists('import_film') ){
            import_film($args);
         }
+        $count ++;
 
     }
 }
+$crawl_log.=". Imported {$count} Films";
+crawl_log($crawl_log);

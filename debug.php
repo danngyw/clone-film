@@ -65,4 +65,4 @@ function manual_film_debug(){
 	}
 
 }
-add_action('wp_footer','manual_film_debug');
+// add_action('wp_footer','manual_film_debug');
