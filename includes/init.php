@@ -49,10 +49,10 @@ function register_film_tax() {
 
     register_taxonomy( 'language', 'film', array(
         'public'        => true,
-        'label'        => __( 'Language', 'textdomain' ),
-        'rewrite'      => array( 'slug' => 'language' ),
-        'hierarchical' => true,
-        'query_var' => true,
+        'label'         => __( 'Languages', 'textdomain' ),
+        'rewrite'       => array( 'slug' => 'language' ),
+        'hierarchical'  => true,
+        'query_var'     => true,
         )
     );
 
