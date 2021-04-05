@@ -5,11 +5,11 @@ use FastSimpleHTMLDom\Document;
 $ipage      = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
 $ul_css     = ".col-md-8 ul.media-list";
 $site_url   = $home_page =  "https://yifysubtitles.org/";
-$crawl_log = "Crawl home page to import fiml. URL: ".$site_url;
+$crawl_log = "Crawl home page to import fiml: ";
 if($ipage){
     $site_url   = "https://yifysubtitles.org/browse/page-".$ipage;
     $ul_css     = "ul.media-list";
-    $crawl_log = "Crawl page {$ipage} to import film. Url Crawl:{$site_url}";
+    $crawl_log = "Crawl page {$ipage} to import film.";
 }
 
 
@@ -66,5 +66,5 @@ foreach($list->find('li') as $li) {
 
     }
 }
-$crawl_log.=". Imported {$count} Films";
+$crawl_log.=". Imported {$count} Films. URL Crawl:".$site_url;
 crawl_log($crawl_log);
