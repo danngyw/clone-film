@@ -17,7 +17,23 @@ function import_film($args){
 		update_post_meta($p_id,'length_time', $args['length_time']);
 		update_post_meta($p_id,'imdb_score', $args['imdb_score']);
 		update_post_meta($p_id,'movie_actors', $args['movie_actors']);
-		update_post_meta($p_id,'movie_type', $args['movie_type']);
+		update_post_meta($p_id,'movie_genre', $args['movie_genre']);
+		$genre = $args['movie_genre'];
+		$terms = explode(",", $genre);
+		$list = array();
+		foreach ($terms as $key => $term) {
+
+			$term_id = term_exists( $genre, 'genre' );
+			if ( $term_id !== 0 && $term_id !== null ) {
+				$list[] = $term_id;
+			} else {
+				// insetr term
+			}
+		}
+
+		if( $list ){
+			wp_set_post_terms( $p_id, $list, 'genre' );
+		}
 
 		import_film_thumbnail($args, $p_id);
 	}

@@ -29,8 +29,8 @@ foreach($list->find('li') as $li) {
         $title = $li->find('h3');
         $img            = $li->getElementByTagName('img');
         $thumbnail_url  = $img->getAttribute("src");
-        $movie_type     = $li->find(".movie-genre",0);
-        $movie_type     = $movie_type->text();
+        $movie_genre     = $li->find(".movie-genre",0);
+        $movie_genre     = $movie_genre->text();
         $movie_actors   = $li->find(".movie-actors",0);
         $movie_actors   = $movie_actors->text();
         $year   = $li->find(".movinfo-section",0);
@@ -56,7 +56,7 @@ foreach($list->find('li') as $li) {
         $args['length_time']          = $length;
         $args['imdb_score']           = $imdb_score;
         $args['movie_actors']         = $movie_actors;
-        $args['movie_type']           = $movie_type;
+        $args['movie_genre']           = $movie_genre;
 
 
         if( function_exists('import_film') ){

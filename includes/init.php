@@ -47,6 +47,16 @@ function wpdocs_setup_theme() {
 }
 add_action( 'after_setup_theme', 'wpdocs_setup_theme' );
 
+
+function crawl_create_film_tax() {
+    register_taxonomy( 'genre', 'film', array(
+        'label'        => __( 'Genre', 'textdomain' ),
+        'rewrite'      => array( 'slug' => 'genre' ),
+        'hierarchical' => true,
+    ) );
+}
+add_action( 'init', 'crawl_create_film_tax', 0 );
+
 function film_theme_enqueue_styles() {
 
     $parent_style = 'jobcareertheme';
