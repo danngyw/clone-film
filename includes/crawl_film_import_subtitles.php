@@ -40,7 +40,7 @@
 		    $movie_content  = $movie_desc->text();
 
 		    $list = $document->find('.table-responsive .other-subs');
-			$count = 0;
+			$count = (int) get_post_meta($film_id,'number_substitle', true);
 
 			foreach($list->find('tr') as $key=> $tr) { // tr = element type
 				if( $key == 0){
@@ -85,8 +85,10 @@
 					import_subtitle_film($args, $film_id);
 
 				}
+				$count++;
 
 			}
+			update_post_meta($film_id,'number_substitle', $count);
 		}
 	}
 

@@ -1,15 +1,37 @@
 <div class="col-md-4">
 		<h4 class="section-title">Popular</h4>
 		<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">
-			<li class="media media-movie-clickable mmc-tiny">
-			<div class="media-left media-middle"> <a href="/movie-imdb/tt3281548" itemprop="url"> <img class="media-object" src="https://img.yts.mx/assets/images/movies/little_women_2019/small-cover.jpg" alt="Little Women" height="42" itemprop="image"> </a> </div>
-			<div class="media-body">
-			 <a href="/movie-imdb/tt3281548">
-			<h5 class="media-heading" itemprop="name">Little Women (2019)</h5>
-			<small itemprop="genre">Drama, Romance</small>
-			</a>
-			</div>
-			</li>
+			<?php
+
+			$args = array(
+			    'post_type'  => 'film',
+			    'meta_key'   => 'number_substitle',
+			    'orderby'    => 'meta_value_num',
+			    'order'      => 'ASC',
+			);
+			$popular = new WP_Query( $args );
+			if($popular->have_posts() ){
+				while ($popular->have_posts()) {
+					$popular->the_post();
+					global $post;
+					$film_id = $post->ID;
+					$year_release  	= get_post_meta($film_id,'year_release', true);
+					$movie_genre 	= get_post_meta($film_id,'movie_genre', true);
+					$thumbnail_url 	= get_the_post_thumbnail_url($film_id);
+					 ?>
+					<li class="media media-movie-clickable mmc-tiny">
+						<div class="media-left media-middle"> <a href="<?php the_permalink();?>" itemprop="url"> <img class="media-object" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" height="42" itemprop="image"> </a> </div>
+						<div class="media-body">
+						 	<a href="/movie-imdb/tt3281548">
+								<h5 class="media-heading" itemprop="name"><?php the_title();?>(<?php echo $year_release;?>)</h5>
+								<small itemprop="genre"><?php echo $movie_genre;?></small>
+						</a>
+						</div>
+					</li>
+					<?php
+				}
+			}?>
+
 		</ul>
 		<h4 class="section-title">Genre</h4>
 		<ul class="list-group row default-list">
