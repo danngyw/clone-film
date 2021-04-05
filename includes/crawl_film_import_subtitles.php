@@ -12,7 +12,7 @@
 	            'value'   => 'notyet',
 			),
 		),
-	    'posts_per_page' => 1,
+	    'posts_per_page' => 20,
 
 	);
 	$query = new WP_Query($args);
@@ -104,11 +104,10 @@
 					if( $tag && ! is_wp_error($tag)){
 						$lang_ids[] = (int)  $tag['term_id'];
 					} else {
-						crawl_log("Add Language Fail. Language : ".$sub_language);
+						//crawl_log("Add Language Fail. Language : ".$sub_language);
 					}
 				}
-				crawl_log('list IDS: ');
-				crawl_log($lang_ids);
+
 
 			}
 
@@ -117,11 +116,11 @@
 				// wp_add_object_terms();
 				$t = wp_add_object_terms( $film_id, $lang_ids, 'language' );
 				if( $t && !is_wp_error($t)){
-					crawl_log("Set tax language  for film_id ".$film_id.". Success");
-					crawl_log($lang_ids);
+					// crawl_log("Set tax language  for film_id ".$film_id.". Success");
+					// crawl_log($lang_ids);
 				} else {
-					crawl_log("Set tax language  for film_id ".$film_id.". Fail");
-					crawl_log($lang_ids);
+					// crawl_log("Set tax language  for film_id ".$film_id.". Fail");
+					// crawl_log($lang_ids);
 				}
 			}
 
