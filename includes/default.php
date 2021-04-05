@@ -62,10 +62,10 @@ function import_film($args){
 			}
 		}
 		if( $list ){
-			wp_set_post_terms( $film_id, $list, 'genre' );
+			wp_set_object_terms( $film_id, $list, 'genre' );
 		}
 		if( $tag_actors ){
-			wp_set_post_terms( $film_id, $tag_actors, 'post_tag' );
+			wp_set_object_terms( $film_id, $tag_actors, 'post_tag' );
 		}
 
 		import_film_thumbnail($args, $film_id);
