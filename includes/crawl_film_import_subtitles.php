@@ -25,7 +25,7 @@
 			$film_id 		= $p_film->ID;
 			$film_source_id = get_post_meta($film_id,'film_source_id', true);
 			$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-			crawl_log('Crawl film to update subtiles. URL: '.$film_url);
+			crawl_log('Crawl film ID[{$fim_id}] to update subtiles. URL: '.$film_url);
 
 			$html 			= file_get_contents($film_url);
 			$document 		= new Document($html);
@@ -48,9 +48,12 @@
 				}
 				$sub_source_id = $tr->__get('data-id');
 
-				$exists = is_subtitle_imported_simple($sub_source_id);
-
-				if(! $exists ){
+				$sub_id = is_subtitle_imported_simple($sub_source_id);
+				if($sub_id){
+					$text = "Skip: sub_source_id {$sub_source_id) has imported in db. sub_id = ".$sub_id;
+					crawl_log($text);
+				}
+				if(! $sub_id ){
 					$sub_title = $tr->find('td',2);
 
 					$rating_html = $tr->find('.label-success');
@@ -83,7 +86,8 @@
 
 
 					import_subtitle_film($args, $film_id);
-
+					$text = "DONE: sub_source_id {$sub_source_id) has imported successful.";
+					crawl_log($text);
 				}
 				$count++;
 
