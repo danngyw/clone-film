@@ -25,7 +25,7 @@
 						<div class="media-left media-middle"> <a href="<?php the_permalink();?>" itemprop="url"> <img class="media-object" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" height="42" itemprop="image"> </a> </div>
 						<div class="media-body">
 						 	<a href="<?php the_permalink();?>">
-								<h5 class="media-heading" itemprop="name"><?php the_title();?>(<?php echo $year_release;?>) <?php echo $number_substitle;?></h5>
+								<h5 class="media-heading" itemprop="name"><?php the_title();?>(<?php echo $year_release;?>)</h5>
 								<small itemprop="genre"><?php echo $movie_genre;?></small>
 						</a>
 						</div>
