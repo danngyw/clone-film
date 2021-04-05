@@ -50,14 +50,12 @@ function import_film($args){
 
 				if ( $tag !== 0 && $tag !== null ) {
 					$list[] = (int) $tag['term_id'];
-					crawl_log("Actor exists.");
 				} else {
 					$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor '.$actor));
 					if( $tag && ! is_wp_error($tag)){
-						crawl_log("Add actor success.");
 						$tag_actors[] = (int)  $tag['term_id'];
 					} else {
-						crawl_log("Add actor fail.");
+						crawl_log("Add actor fail. Name Actor: ".$actor);
 					}
 				}
 			}

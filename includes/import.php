@@ -53,6 +53,8 @@ function update_filmd_detail( $film_id, $html){
 			$tag 	= wp_insert_term($director,'post_tag', array('description' => 'Tag of director '.$director));
 			if( $tag && ! is_wp_error($tag)){
 				$tag_director[] = (int)  $tag['term_id'];
+			} else{
+				crawl_log("Add director fail. Name Director: ".$director);
 			}
 		}
 
