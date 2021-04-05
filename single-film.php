@@ -108,7 +108,7 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 <table class="table other-subs">
 	<thead>
 	<tr>
-		<th>rating</th><th>language</th><th>release</th><th>uploader</th>
+		<th>Rating</th><th>Language</th><th>Release</th><th>Uploader</th>
 	</tr>
 	</thead>
 <tbody>
