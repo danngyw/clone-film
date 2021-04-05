@@ -257,6 +257,9 @@ function get_flag_css($text){
 		case 'Slovenian':
 			$flag = 'si';
 			break;
+		case 'Serbian':
+			$flag = 'rs';
+			break;
 
 
 		case 'Farsi/Persian':
