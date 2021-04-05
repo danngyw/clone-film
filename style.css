@@ -43,3 +43,6 @@ form,body, div, span, strong, br,a,ul,li{
 	position: relative;
 	top:9px;
 }
+.page-content{
+	padding-bottom: 68px;
+}
