@@ -152,6 +152,12 @@ function get_flag_css($text){
 		case 'Arabic':
 			$flag = 'sa';
 			break;
+		case 'Brazillian':
+			$flag = 'br';
+			break;
+
+
+
 		case 'Canada':
 			$flag = 'ca';
 			break;
@@ -181,6 +187,38 @@ function get_flag_css($text){
 			$flag = 'bd';
 			break;
 
+		case 'Swedish':
+			$flag = 'se';
+			break;
+
+		case 'Russian':
+			$flag = 'ru';
+			break;
+
+		case 'Norwegian':
+			$flag = 'no';
+			break;
+
+
+
+		case 'Korean':
+			$flag = 'kr';
+			break;
+		case 'Italian':
+			$flag = 'it';
+			break;
+		case 'Greek':
+			$flag = 'gr';
+			break;
+
+
+		case 'Icelandic':
+			$flag = 'is';
+			break;
+
+		case 'Japanese':
+			$flag = 'jp';
+			break;
 
 
 		case 'German':
