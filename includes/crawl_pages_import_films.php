@@ -12,6 +12,7 @@ for ($page = $oldest; $page >= 0; $page--) {
     $home_page  =  "https://yifysubtitles.org/";
     if($page == 0){
         $ul_css     = ".col-md-8 ul.media-list";
+        $site_url   = "https://yifysubtitles.org/";
     }
 
     $html = new Document(file_get_contents($site_url));
