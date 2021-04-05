@@ -7,7 +7,7 @@
 			    'post_type'  => 'film',
 			    'meta_key'   => 'number_substitle',
 			    'orderby'    => 'meta_value_num',
-			    'order'      => 'ASC',
+			    'order'      => 'DESC',
 			);
 			$popular = new WP_Query( $args );
 			if($popular->have_posts() ){
