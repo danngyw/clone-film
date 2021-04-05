@@ -142,8 +142,10 @@ function import_subtitle_film($args, $film_id){
 }
 
 
-function get_flag_css($lang){
+function get_flag_css($text){
 	$flag = '';
+	$text =  explode(" ", $text);
+	$lang =  $text[0];
 	switch ($lang) {
 
 
@@ -153,9 +155,13 @@ function get_flag_css($lang){
 		case 'Canada':
 			$flag = 'ca';
 			break;
-		case 'Croatia':
+		case 'Croatian':
 			$flag = 'hr';
 			break;
+		case 'Czech':
+			$flag = 'cz';
+			break;
+
 		case 'German':  //germany
 			$flag = 'de';
 			break;
@@ -171,6 +177,12 @@ function get_flag_css($lang){
 		case 'Bulgarian':
 			$flag = 'bg';
 			break;
+		case 'Bengali':
+			$flag = 'bd';
+			break;
+
+
+
 		case 'German':
 			$flag = 'gb';
 			break;
@@ -198,6 +210,15 @@ function get_flag_css($lang){
 		case 'Finnish':
 			$flag = 'fi';
 			break;
+
+		case 'Malay':
+			$flag = 'my';
+			break;
+		case 'Farsi/Persian':
+			$flag = 'ir';
+			break;
+
+
 		case 'Portuguese':
 			$flag = 'pt';
 			break;
