@@ -51,7 +51,7 @@
 				$sub_id = is_subtitle_imported_simple($sub_source_id);
 
 				if( $sub_id ){
-					$text = "Skip: sub_source_id {$sub_source_id} has imported in db. sub_id = ".$sub_id;
+					$text = "Skip: sub_source_id ".$sub_source_id."has imported in db. sub_id = ".$sub_id;
 					crawl_log($text);
 				}
 
@@ -88,7 +88,7 @@
 
 
 					import_subtitle_film($args, $film_id);
-					$text = "DONE: sub_source_id {$sub_source_id) has imported successful.";
+					$text = "DONE: sub_source_id {$sub_source_id} has imported successful.";
 					crawl_log($text);
 				}
 				$count++;
