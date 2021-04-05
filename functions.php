@@ -95,6 +95,9 @@ function film_create_admin_bar_menus() {
     }
     $url = admin_url( 'edit.php?post_type=film');
 
-    $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Link Films'), 'id' => 'dwb-pending', 'href' => $url));
+    $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Link Films'), 'id' => 'admin-link-film', 'href' => $url));
+    $subtitle = admin_url( 'edit.php?post_type=subtitle');
+
+    $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Subtitles'), 'id' => 'admin-link-subtitle', 'href' => $subtitle));
 }
 add_action('admin_bar_menu', 'film_create_admin_bar_menus', 2000);
