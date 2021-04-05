@@ -50,6 +50,21 @@
 			}
 	    endif;?>
 		</ul>
+		<h4 class="section-title">Language</h4>
+		<ul class="list-group row default-list">
+			<?php
+			$langs = get_terms( array(
+			    'taxonomy' => 'language',
+			    'hide_empty' => false,
+			) );
+			if ( !empty($langs) ) :
+				foreach( $langs as $term ) {
+			    	$link = get_term_link($term,'language');
+			     	echo '<li class="list-group-item col-xs-6"><a href="'.$link.'">'.$term->name.'</a></li>';
+				}
+		    endif;?>
+
+		</ul>
 
 		<?php if ( is_active_sidebar( 'home_sidebar' ) ) { ?>
 		    <ul id="sidebar" class="sidebar">
@@ -57,11 +72,5 @@
 		    </ul>
 		<?php } ?>
 
-		<!-- <h4 class="section-title">Language</h4>
-		<ul class="list-group row default-list">
-			<li class="list-group-item col-xs-6"><a href="/language/albanian">Albanian</a></li>
-			<li class="list-group-item col-xs-6"><a href="/language/arabic">Arabic</a></li>
-			<li class="list-group-item col-xs-6"><a href="/language/bengali">Bengali</a></li>
 
-		</ul> -->
 	</div>
