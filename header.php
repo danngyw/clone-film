@@ -4,8 +4,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php
-		$title = get_bloginfo('name');
-		$description = get_bloginfo('description');
+		// $title 			= get_bloginfo('name');
+		// $description 	= get_bloginfo('description');
 		wp_head(); ?>
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="<?php echo home_url();?>" />
