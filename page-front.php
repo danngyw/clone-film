@@ -4,7 +4,7 @@
  */
 
 get_header();
-$paged = get_query_var('paged');
+$paged = get_query_var('page');
 $css_class = "col-md-8";
 $show_sidebar = 1;
 

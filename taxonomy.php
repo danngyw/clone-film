@@ -2,7 +2,7 @@
 
 get_header();
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 0;
-var_dump($paged);
+
 
 $css_class = "col-md-8";
 $show_sidebar = 1;
@@ -29,6 +29,7 @@ if($paged > 1){
 				<br />
 			<?php } ?>
 		 	<?php  get_recent_films();?>
+
 		</div>
 		<?php if($show_sidebar) get_sidebar();?>
 	</div>

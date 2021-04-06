@@ -1,4 +1,16 @@
 <?php
+function fix_taxonomy_pagination ( $query ) {
+  // not an admin page and it is the main query
+  if (!is_admin() && $query->is_main_query()){
+
+    if(is_tax()){
+      // where 24 is number of posts per page on custom taxonomy pages
+      $query->set('posts_per_page', 15);
+
+    }
+  }
+}
+add_action( 'pre_get_posts', 'fix_taxonomy_pagination' );
 
 function film_custom_post_type() {
     add_theme_support( 'post-thumbnails', array( 'post', 'page' ) );
@@ -64,8 +76,6 @@ function register_film_tax() {
 
     register_taxonomy( 'genre', array( 'film' ), $args );
 
-    unset( $args );
-    unset( $labels );
 
     $labels = array(
         'name'              => _x( 'Languages', 'taxonomy general name', 'textdomain' ),
@@ -87,7 +97,12 @@ function register_film_tax() {
         'show_ui'           => true,
         'show_admin_column' => true,
         'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'language' ),
+       // 'rewrite'           => array( 'slug' => 'language' ),
+        'rewrite' => array(
+            'slug'          => 'language',
+            'with_front'    => true,
+            'hierarchical'  => true
+        ),
     );
 
     register_taxonomy( 'language', array( 'film' ), $args );

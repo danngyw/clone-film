@@ -30,13 +30,16 @@ function render_latest_item($film){
 }
 function get_recent_films(){
 
-	$paged = (get_query_var('page')) ? get_query_var('page') : 1;
+	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+	if( is_home() || is_front_page() ){
+		$paged = (get_query_var('page')) ? get_query_var('page') : 1;
+	}
 	$keyword = get_query_var('s');
 	$args = array(
-		'post_type' => 'film',
-		'post_status' => 'publish',
-		'paged' => $paged,
-		'posts_per_page' => 3,
+		'post_type' 	=> 'film',
+		'post_status' 	=> 'publish',
+		'paged' 		=> $paged,
+		'posts_per_page'=> 15,
 	);
 	if($keyword){
 		$args['s'] = $keyword;
@@ -93,7 +96,18 @@ function get_recent_films(){
 	if( function_exists('wp_pagenavi') ):
 		wp_pagenavi( array( 'query' => $query) );
 	endif;
-	?>
+
+
+	// $big = 9999;
+	// echo paginate_links( array(
+	// 'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+	// 'format' => '?paged=%#%',  // or   '/paged=%#%',  // if using pretty permalink
+	// 'current' => max( 1, get_query_var('paged') ),
+	// 'total' => $query->max_num_pages ) );
+
+                   ?>
+
+
 	<div id="movie-browser-paginate" class="dataTables_paginate paging_simple_numbers"> </div>
 	<?php wp_reset_query();?>
 
