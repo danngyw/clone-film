@@ -42,11 +42,11 @@ function crawl_overview_output(){
 			</p>
 		</div> <?php
 	} else {
-		Crwa_Overview_Info();
+		Crawl_Overview_Info();
 	}
 }
 
-function Crwa_Overview_Info(){
+function Crawl_Overview_Info(){
 
 	$ajax_url = admin_url().'admin-ajax.php';
 
