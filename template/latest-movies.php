@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<h4 class="section-title text-center">Latest movies</h4>
-
+		<br />
 
 		<div class="owl-carousel owl-theme owl-loaded owl-drag">
 			<?php
