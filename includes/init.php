@@ -38,14 +38,6 @@ function film_custom_post_type() {
 add_action('init', 'film_custom_post_type', 5);
 
 function register_film_tax() {
-    // register_taxonomy( 'genre', 'film', array(
-    //     'public'        => true,
-    //     'label'        => __( 'Genre', 'textdomain' ),
-    //     'rewrite'      => array( 'slug' => 'genre' ),
-    //     'hierarchical' => true,
-    //     'query_var' => true,
-    //     )
-    // );
 
     $labels = array(
         'name'              => _x( 'Genres', 'taxonomy general name', 'textdomain' ),
@@ -74,16 +66,6 @@ function register_film_tax() {
 
     unset( $args );
     unset( $labels );
-
-
-    // register_taxonomy( 'language', 'film', array(
-    //     'public'        => true,
-    //     'label'         => __( 'Languages', 'textdomain' ),
-    //     'rewrite'       => array( 'slug' => 'language' ),
-    //     'hierarchical'  => true, // true =  category, false = tag.
-    //     'query_var'     => true,
-    //     )
-    // );
 
     $labels = array(
         'name'              => _x( 'Languages', 'taxonomy general name', 'textdomain' ),

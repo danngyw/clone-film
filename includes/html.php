@@ -30,7 +30,7 @@ function render_latest_item($film){
 }
 function get_recent_films(){
 
-	$paged  = get_query_var('paged');
+	$paged = (get_query_var('page')) ? get_query_var('page') : 1;
 	$keyword = get_query_var('s');
 	$args = array(
 		'post_type' => 'film',
