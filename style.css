@@ -59,3 +59,7 @@ ul.sidebar{
 span.uploader{
 	color: #ffba00;
 }
+.single-subtitle span.uploader {
+    position: relative;
+    right: 63px;
+}
