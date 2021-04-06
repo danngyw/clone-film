@@ -304,6 +304,9 @@ function get_flag_css($text){
 			$flag = 'vn';
 			break;
 
+		case 'Ukrainian':
+			$flag = 'ua';
+			break;
 
 		default:
 			# code...
