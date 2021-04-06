@@ -154,6 +154,10 @@ function get_flag_css($text){
 		case 'Arabic':
 			$flag = 'sa';
 			break;
+		case 'Albanian':
+			$flag = 'al';
+			break;
+
 		case 'Brazillian':
 		case 'Brazilian':
 			$flag = 'br';
