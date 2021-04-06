@@ -53,6 +53,9 @@ ul.sidebar{
 .sidebar li{
 	list-style: none;
 }
-..list-group{
+.list-group{
 	padding-left: 6px !important;
+}
+span.uploader{
+	color: #ffba00;
 }

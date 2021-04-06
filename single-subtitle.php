@@ -43,7 +43,7 @@ $film_link      = get_permalink($film_id);
 <span class="pull-right" style="padding-right: 40px;"><?php echo $m_sub_language;?><span class="flag flag-" style="position:absolute;right:10px;top:5px;"></span></span>
 <span class="text-muted text-uppercase">Language:</span></li>
 <li class="list-group-item">
-<span class="pull-right"><a href="/user/Ceyx">Ceyx</a></span>
+<span class="pull-right"><span class="uploader">Slav</span></span>
 <span class="text-muted text-uppercase">Uploader:</span></li>
 </ul>
 </div>
