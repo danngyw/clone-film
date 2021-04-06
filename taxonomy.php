@@ -1,10 +1,9 @@
 <?php
-/**
- *Template Name: Front Page
- */
 
 get_header();
-$paged = get_query_var('paged');
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 0;
+var_dump($paged);
+
 $css_class = "col-md-8";
 $show_sidebar = 1;
 

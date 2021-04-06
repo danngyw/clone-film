@@ -62,7 +62,7 @@ function register_film_tax() {
         'rewrite'           => array( 'slug' => 'genre' ),
     );
 
-    register_taxonomy( 'genre', array( 'book' ), $args );
+    register_taxonomy( 'genre', array( 'film' ), $args );
 
     unset( $args );
     unset( $labels );

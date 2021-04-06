@@ -1,4 +1,22 @@
 <?php
+
+// add_action('pre_get_posts', function ($query) {
+
+//     if ($query->is_main_query() && is_front_page()) {
+
+//         // get the page query string value.
+//         $paged = ( get_query_var('page') ) ? get_query_var('page') : 1;
+
+//         // set current page query string.
+//         $query->set('paged', $paged);
+
+//         // set posts_per_page
+//         $query->set('posts_per_page', 5); // remove if already assigned.
+//     }
+
+// }, 88);
+
+
 function crawl_log($input, $file_store = ''){
 
     $file_store = WP_CONTENT_DIR.'/log.css';
