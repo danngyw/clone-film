@@ -204,7 +204,7 @@ function film_delete_log_file(){
 }
 add_action( 'wp_ajax_delete_log','film_delete_log_file' );
 
-function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 0){
+function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 	$count_new 		= 0;
 	$film_id 		= $p_film->ID;
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
