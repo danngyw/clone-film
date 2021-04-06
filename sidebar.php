@@ -6,7 +6,8 @@
 			$args = array(
 			    'post_type'  => 'film',
 			    'meta_key'   => 'number_substitle',
-			    'orderby'    => 'meta_value_num',
+			    //'orderby'    => 'meta_value_num',
+			    'orderby' 	 =>' meta_value_num date',
 			    'order'      => 'DESC',
 			);
 			$popular = new WP_Query( $args );
