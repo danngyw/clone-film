@@ -104,7 +104,7 @@
 					if( $tag && ! is_wp_error($tag)){
 						$lang_ids[] = (int)  $tag['term_id'];
 					} else {
-						crawl_log("Add Language Sub Fail. Language : ".$sub_language);
+						crawl_log("Add Film Language Fail. Language : ".$sub_language);
 					}
 				}
 

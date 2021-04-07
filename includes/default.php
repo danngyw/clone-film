@@ -134,10 +134,11 @@ function import_subtitle_film($args, $film_id){
 		if ( $term !== 0 && $term !== null ) {
 			$list[] = (int) $term['term_id'];
 		} else {
-			$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$term_slug));
+			$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$language));
 			if( $term && ! is_wp_error($term)){
 				$list[] = (int)  $term['term_id'];
-			}
+			} else Ơ
+			crawl_log("Set tax language fail. ".$language);
 		}
 
 		if( $list ){
