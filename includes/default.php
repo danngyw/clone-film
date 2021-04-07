@@ -137,7 +137,7 @@ function import_subtitle_film($args, $film_id){
 			$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$language));
 			if( $term && ! is_wp_error($term)){
 				$list[] = (int)  $term['term_id'];
-			} else Ơ
+			} else{
 			crawl_log("Set tax language fail. ".$language);
 		}
 
