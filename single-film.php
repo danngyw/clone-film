@@ -52,7 +52,7 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 
 			$genre = get_term_by( 'slug', $text, 'genre' );
 			if($genre ){
-				$html.='<a href="'.ger_term_link($genre).'">'.$genre->name.'</a>';
+				$html.='<a href="'.get_term_link($genre,'genre').'">'.$genre->name.'</a>';
 			}
 			if($i < $total){
 				$html.=", ";
