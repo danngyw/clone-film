@@ -23,6 +23,13 @@ if($length_time > 60){
 	$length = $hours.'h'.$minutes.'m';
 }
 
+$list = explode(",", $movie_genre);
+$first_genre = $list[0];
+$term_genre = get_term_by( 'slug', $first_genre, 'genre' );
+if($term_genre){
+	//$term = $term_genre;
+}
+
 $imdb_link 	= get_post_meta($film_id, 'imdb_link', true);
 $director 	= get_post_meta($film_id, 'director', true);
 $dvd_release= get_post_meta($film_id, 'dvd_release', true);
@@ -36,6 +43,8 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
 <ul class="breadcrumb">
 <li><a href="<?php echo home_url();?>">Home</a></li>
+<li><a href="<?php echo get_term_link($term_genre,'genre');?>"><?php echo $term_genre->name;?></a></li>
+
 <li class="active"><?php the_title();?></li>
 </ul>
 <div class="row">
@@ -44,7 +53,7 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 	<div class="movie-genre">
 		<?php
 
-		$list = explode(",", $movie_genre);
+
 		$i 	= 0;
 		$total = count($list)-1;
 		$html = '';
