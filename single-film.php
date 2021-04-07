@@ -33,10 +33,12 @@ if($term_genre){
 $imdb_link 	= get_post_meta($film_id, 'imdb_link', true);
 $director 	= get_post_meta($film_id, 'director', true);
 $dvd_release= get_post_meta($film_id, 'dvd_release', true);
+$box_office = get_post_meta($film_id, 'box_office', 'N/A');
 $released 	= get_post_meta($film_id, 'released', true);
 $rated 		= get_post_meta($film_id, 'rated', true);
 $company 	= get_post_meta($film_id, 'company', true);
 $writer 	= get_post_meta($film_id, 'writer', true);
+$website 	= get_post_meta($film_id, 'website', true);
 
 
 ?>
@@ -117,14 +119,14 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 			<ul class="list-group text-left">
 				<li class="list-group-item"><span class="pull-right"> <?php if($released) echo $released; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Released:</span></li>
 				<li class="list-group-item"><span class="pull-right"><?php if($dvd_release) echo $dvd_release; else echo 'N/A';?></span> <span class="text-muted text-uppercase">DVD Release:</span></li>
-				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Box office:</span></li>
+				<li class="list-group-item"><span class="pull-right"><?php if($box_office) echo $box_office; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Box office:</span></li>
 			</ul>
 		</div>
 		<div class="col-md-6 col-sm-12">
 			<ul class="list-group text-left">
 				<li class="list-group-item"><span class="pull-right">  <?php if($writer) echo $writer; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Writer:</span></li>
 				<li class="list-group-item"><span class="pull-right"><?php if($director) echo $director; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Director:</span></li>
-				<li class="list-group-item"><span class="pull-right">N/A</span> <span class="text-muted text-uppercase">Website:</span></li>
+				<li class="list-group-item"><span class="pull-right"><?php if($website) echo $website; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Website:</span></li>
 			</ul>
 		</div>
 	</div>

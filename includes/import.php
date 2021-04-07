@@ -24,12 +24,16 @@ function update_filmd_detail( $film_id, $html){
 
 
    	//$dvd_release = $html->find(".list-group-item span", 8)->text(); // DVD RELEASE:
-   	$director = $html->find(".list-group-item .pull-right", 7)->text(); // director
-   	$dvd_release = $html->find(".list-group-item .pull-right", 4)->text(); // dvd_release
-   	$released = $html->find(".list-group-item .pull-right", 3)->text(); // RELEASED
+
    	$rated = $html->find(".list-group-item .pull-right", 1)->text(); // RATED
+   	$released = $html->find(".list-group-item .pull-right", 3)->text(); // RELEASED
+   	$dvd_release = $html->find(".list-group-item .pull-right", 4)->text(); // dvd_release
+   	$box_office = $html->find(".list-group-item .pull-right", 5)->text(); // box_office
    	$company = $html->find(".list-group-item .pull-right", 0)->text(); // company
    	$writer = $html->find(".list-group-item .pull-right", 6)->text(); // WRITER:
+   	$director = $html->find(".list-group-item .pull-right", 7)->text(); // director
+
+   	$website = $html->find(".list-group-item .pull-right", 8)->text(); // website:
 
 
    	update_post_meta($film_id,'director', $director);
@@ -38,6 +42,9 @@ function update_filmd_detail( $film_id, $html){
    	update_post_meta($film_id,'rated', $rated);
    	update_post_meta($film_id,'company', $company);
    	update_post_meta($film_id,'writer', $writer);
+   	update_post_meta($film_id,'website', $website);
+   	update_post_meta($film_id,'box_office', $box_office);
+
 
 
 
