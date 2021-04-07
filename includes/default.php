@@ -127,6 +127,25 @@ function import_subtitle_film($args, $film_id){
 			'source'              => home_url(),
 		);
 
+		$language 	= $args['m_sub_language'];
+
+		$list = array();
+		$term = term_exists( $language, 'language' );
+		if ( $term !== 0 && $term !== null ) {
+			$list[] = (int) $term['term_id'];
+		} else {
+			$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$term_slug));
+			if( $term && ! is_wp_error($term)){
+				$list[] = (int)  $term['term_id'];
+			}
+		}
+
+		if( $list ){
+			wp_set_object_terms( $sub_id, $list, 'language' );
+		}
+
+
+
 
 
 		try {

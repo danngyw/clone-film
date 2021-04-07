@@ -40,7 +40,8 @@ function film_custom_post_type() {
             'has_archive' => true,
             'rewrite'     => array( 'slug' => 'subtitle' ), // my custom slug
             'supports'  => array( 'title', 'editor','custom-fields', 'author','excerpt'),
-            'menu_position' => 3
+            'menu_position' => 3,
+            'taxonomies' => array('language'),
         )
     );
 
@@ -105,7 +106,7 @@ function register_film_tax() {
         ),
     );
 
-    register_taxonomy( 'language', array( 'film' ), $args );
+    register_taxonomy( 'language', array( 'film', 'subtitle' ), $args );
 
     unset( $args );
     unset( $labels );

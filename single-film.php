@@ -40,7 +40,7 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 </ul>
 <div class="row">
 	<div class="col-xs-12 text-center">
-	<h2 class="movie-main-title"><?php the_title();?> (<?php echo $year_release;?>)</h2>
+	<h1 class="movie-main-title"><?php the_title();?> (<?php echo $year_release;?>)</h1>
 	<div class="movie-genre">
 		<?php
 
