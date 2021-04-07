@@ -12,7 +12,7 @@
 	            'value'   => 'notyet',
 			),
 		),
-	    'posts_per_page' => 20,
+	    'posts_per_page' => 2,
 
 	);
 	$query = new WP_Query($args);

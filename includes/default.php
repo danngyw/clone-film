@@ -128,6 +128,7 @@ function import_subtitle_film($args, $film_id){
 		);
 
 		$language 	= $args['m_sub_language'];
+		$language = '';
 		if ( !empty($language) ){
 			$list = array();
 			$term = term_exists( $language, 'language' );
@@ -144,7 +145,7 @@ function import_subtitle_film($args, $film_id){
 
 			}
 			if( $list ){
-				wp_set_object_terms( $sub_id, $list, 'language' );
+				//wp_set_object_terms( $sub_id, $list, 'language' );
 			}
 		}
 

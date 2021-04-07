@@ -18,7 +18,7 @@ function show_crawl_status($name) {
         case 'manual_crawl':
            	echo '<a target="_blank" href="'.$link.'">Update subtitle</a>';
            	break;
-          	case 'crawl_status':
+        case 'crawl_status':
             global $wpdb;
           	$is_full_update = get_post_meta($post->ID,'is_full_updated', true);
 
@@ -41,5 +41,15 @@ function show_crawl_status($name) {
           		echo 'No';
           	}
            break;
+          case 'sub_language':
+            $language = get_post_meta($post->ID,'m_sub_language', true);
+            echo $language;
+          break;
     }
 }
+
+function subtitle_language_columns($columns){
+  $columns['sub_language'] = 'Language';
+    return $columns;
+}
+add_filter('manage_edit-subtitle_columns', 'subtitle_language_columns',99);

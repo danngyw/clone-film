@@ -106,7 +106,7 @@ function register_film_tax() {
         ),
     );
 
-    register_taxonomy( 'language', array( 'film', 'subtitle' ), $args );
+    register_taxonomy( 'language', array( 'film', ), $args );
 
     unset( $args );
     unset( $labels );
