@@ -91,7 +91,7 @@ function film_create_admin_bar_menus() {
 
 
 
-    $wp_admin_bar->add_menu( array('parent' => $menu_id, 'title' => __('Crwal Home'), 'id' => 'quick-link-home', 'href' => home_url().'/?act=import' , 'meta' => array('target' => '_blank') ));
+    $wp_admin_bar->add_menu( array('parent' => $menu_id, 'title' => __('Crawl Home'), 'id' => 'quick-link-home', 'href' => home_url().'/?act=import' , 'meta' => array('target' => '_blank') ));
 
     $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('Import Subtitles'), 'id' => 'quick-link-subtile', 'href' => home_url().'/?act=importsub' , 'meta' => array('target' => '_blank') ));
 
