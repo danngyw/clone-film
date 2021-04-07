@@ -41,7 +41,30 @@ $writer 	= get_post_meta($film_id, 'writer', true);
 <div class="row">
 	<div class="col-xs-12 text-center">
 	<h2 class="movie-main-title"><?php the_title();?> (<?php echo $year_release;?>)</h2>
-	<div class="movie-genre"><?php echo $movie_genre;?></div>
+	<div class="movie-genre">
+		<?php
+
+		$list = explode(",", $movie_genre);
+		$i 	= 0;
+		$total = count($list)-1;
+		$html = '';
+		foreach ($list as $text) {
+
+			$genre = get_term_by( 'slug', $text, 'genre' );
+			if($genre ){
+				$html.='<a href="'.ger_term_link($genre).'">'.$genre->name.'</a>';
+			}
+			if($i < $total){
+				$html.=",";
+			}
+			$i++;
+		}
+		echo $html;
+
+		 ?>
+
+
+		</div>
 	</div>
 </div>
 <div class="row">
