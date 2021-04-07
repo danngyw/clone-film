@@ -128,24 +128,25 @@ function import_subtitle_film($args, $film_id){
 		);
 
 		$language 	= $args['m_sub_language'];
+		if ( !empty($language) ){
+			$list = array();
+			$term = term_exists( $language, 'language' );
+			if ( $term !== 0 && $term !== null ) {
+				$list[] = (int) $term['term_id'];
+			} else {
+					$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$language));
+					if( $term && ! is_wp_error($term)){
+						$list[] = (int)  $term['term_id'];
+					} else{
+					crawl_log("Set tax language for SUB fail. ".$language);
+				}
 
-		$list = array();
-		$term = term_exists( $language, 'language' );
-		if ( $term !== 0 && $term !== null ) {
-			$list[] = (int) $term['term_id'];
-		} else {
-			$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$language));
-			if( $term && ! is_wp_error($term)){
-				$list[] = (int)  $term['term_id'];
-			} else{
-			crawl_log("Set tax language for SUB fail. ".$language);
+
+			}
+			if( $list ){
+				wp_set_object_terms( $sub_id, $list, 'language' );
+			}
 		}
-
-		if( $list ){
-			wp_set_object_terms( $sub_id, $list, 'language' );
-		}
-
-
 
 
 
