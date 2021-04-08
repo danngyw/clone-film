@@ -29,9 +29,18 @@ $first_genre = $list[0];
 
 
 $term_genre = get_term_by('name',$first_genre, 'genre');
-$genre_link = 0;
-if($term_genre){
+$genre_link = '';
+
+if( $term_genre ){
 	$genre_link = "<li><a href='".get_term_link($term_genre,'genre')."'>{$term_genre->name}</a></li>";
+} else if( isset($list[1] ) ){
+	if( !empty($list[1]) ){
+		$term_genre = get_term_by('name',$list[1] , 'genre');
+		if($term_genre){
+			$genre_link = "<li><a href='".get_term_link($term_genre,'genre')."'>{$term_genre->name}</a></li>";
+		}
+	}
+
 }
 
 $imdb_link 	= get_post_meta($film_id, 'imdb_link', true);
