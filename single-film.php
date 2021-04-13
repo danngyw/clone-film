@@ -165,6 +165,8 @@ $args = array(
 	'post_parent' => $film_id,
 	'post_status' =>'publish',
 	'posts_per_page' => -1,
+	'orderby' 	=> 'title',
+	'order' => 'ASC',// abc 1, 2 3
 );
 wp_reset_query();
 $query  = new WP_Query($args);
