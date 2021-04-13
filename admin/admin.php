@@ -1,5 +1,6 @@
 <?php
 use FastSimpleHTMLDom\Document;
+require get_parent_theme_file_path('includes/import.php');
 require get_parent_theme_file_path( '/admin/film_column.php' );
 require get_parent_theme_file_path( '/admin/init_dashboard.php' );
 
@@ -8,9 +9,6 @@ function admin_film_menu_overview(){
     add_menu_page('Crawl Overview', 'Crawl Overview', 'manage_options', 'crawl-overview', 'crawl_overview_output',$icon, 2 );
 }
 add_action('admin_menu', 'admin_film_menu_overview');
-
-
-
 
 function crawl_overview_output(){
 
