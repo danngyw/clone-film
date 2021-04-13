@@ -4,9 +4,6 @@ use FastSimpleHTMLDom\Document;
 use FastSimpleHTMLDom\Element;
 
 
-
-
-
 /**
  * update company, idbm link, director ... of film. these information only show in the page detail url.
 */
@@ -46,11 +43,7 @@ function update_filmd_detail( $film_id, $html){
    	update_post_meta($film_id,'box_office', $box_office);
 
 
-
-
-
-
-   	if($director){
+	if($director){
    		$tag_director = array();
 		$tag = term_exists( $director, 'post_tag' );
 
@@ -70,15 +63,6 @@ function update_filmd_detail( $film_id, $html){
 		}
 	}
 
-
-	// if( ! has_post_thumbnail($film_id) ){
- //    	$thumbnail = $html->find(".img-responsive");
-	//     $aml = $html->find(".slide-item-wrap");
-	//     $thumb = $html->find('img',1);
-	//     $thumbnail_url  = $thumb->getAttribute("src");
-	//     $args['source_thumbnail_url'] = $thumbnail_url;
- //       // import_film_thumbnail($args, $film_id);
- //    }
 
     update_post_meta($film_id, 'is_full_updated','full');
 }
@@ -122,6 +106,7 @@ function import_film_thumbnail($args, $film_id = 0){
 
 
 	    if ( !empty( $results['error'] ) ) {
+	    	crawl_log('wp_handle_sideload Fail');
 	        // Insert any error handling here
 	        update_post_meta($film_id,'no_thumbnail',1);
 	    } else {
@@ -136,6 +121,9 @@ function import_film_thumbnail($args, $film_id = 0){
         	$attach_id = wp_insert_attachment( $attachment, $results['file'], $film_id );
         	if(!is_wp_error($attach_id)){
         		set_post_thumbnail( $film_id, $attach_id );
+        		crawl_log('set_post_thumbnail DONE');
+        	}else{
+        		crawl_log('wp_insert_attachment Fail');
         	}
 
 	    }

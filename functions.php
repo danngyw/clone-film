@@ -11,7 +11,7 @@ require_once('includes/html.php');
 require_once('debug.php');
 
 if( is_admin() ){
-    include('includes/import.php');
+    require_once('includes/import.php');
     require_once('admin/admin.php');
 }
 

@@ -22,7 +22,7 @@ function crawl_overview_output(){
 			<?php
 			$film 		= get_post($film_id);
 			if( $film && !is_wp_error($film) ){
-				$sub_news 	= ManualCrwalFilmImportSubtitle($film, 0);
+				$sub_news 	= ManualCrwalFilmImportSubtitle($film, 1);
 				$link_film  = "<a target='_blank' href='".get_permalink($film->ID)." '> ".$film->post_title."</a>";
 				if($sub_news){
 					echo  "Film {$link_film} Có {$sub_news} subtiles mới và đã update date thành công";
