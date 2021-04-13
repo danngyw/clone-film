@@ -165,8 +165,18 @@ $args = array(
 	'post_parent' => $film_id,
 	'post_status' =>'publish',
 	'posts_per_page' => -1,
-	'orderby' 	=> 'title',
 	'order' => 'ASC',// abc 1, 2 3
+	'meta_query' => array(
+
+        'city_clause' => array(
+            'key' => 'm_sub_language',
+            'compare' => 'EXISTS',
+        ),
+    ),
+    'orderby' => array(
+        'city_clause' => 'ASC',
+    ),
+
 );
 wp_reset_query();
 $query  = new WP_Query($args);
