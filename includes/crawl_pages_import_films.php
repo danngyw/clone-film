@@ -82,7 +82,7 @@ for ($page = $oldest; $page >= 0; $page--) {
     $url = home_url().'/?act=import&ipage='.$new_page;
 
     if ( ! headers_sent() ) {
-        crawl_log('Redirect to new page: '.$url);
+        //crawl_log('Redirect to new page: '.$url);
         wp_redirect($url);
         // header("Location: $url");
         exit;
