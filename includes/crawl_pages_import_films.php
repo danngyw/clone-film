@@ -16,7 +16,10 @@ for ($page = $oldest; $page >= 0; $page--) {
         $site_url   = "https://yifysubtitles.org/";
     }
 
+    $html = NULL;
+
     $html = new Document(file_get_contents($site_url));
+
     $list = $html->find($ul_css);
     $count = 0;
     foreach($list->find('li') as $li) {
@@ -63,13 +66,18 @@ for ($page = $oldest; $page >= 0; $page--) {
             if( function_exists('import_film') ){
               import_film($args);
             }
+            unset($args);
             $count ++;
         } // import a film done.
+        unset($li);
 
     } // end for find li
 
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
     crawl_log($crawl_log);
-    flush();
+    $html = NULL;
+    $list = NULL;
+    unset($html);
+    unset($list);
     sleep(6);
 }
