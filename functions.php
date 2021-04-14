@@ -93,7 +93,7 @@ function crawl_include_files(){
             $ipage      = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
             if($ipage){
                 include ("includes/crawl_pages_import_films.php");
-            } else{
+            } else {
                 include ("includes/crawl_home_page_import_films.php");
             }
 
