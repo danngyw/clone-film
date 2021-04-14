@@ -18,7 +18,6 @@ foreach($list->find('li') as $li) {
     $id = explode("/movie-imdb/tt", $fiml_slug);
     $source_id = $id[1];
     $exist  = is_film_imported($source_id);
-    $exist= 0;
     if( !$exist ){
 
         $title = $li->find('h3');

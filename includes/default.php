@@ -3,7 +3,7 @@
 
 function crawl_log($input, $file_store = ''){
 
-    $file_store = WP_CONTENT_DIR.'/log.css';
+    $file_store = WP_CONTENT_DIR.'/log1.css';
 
 
     if( is_array( $input ) || is_object( $input ) ){
@@ -150,10 +150,9 @@ function import_subtitle_film($args, $film_id){
 			}
 		}
 
-
-
 		try {
 	        $res   = sendSubtileRequest($data);
+
 	       	if( $res->url ){
 				update_post_meta( $sub_id,'sub_zip_url', $res->url);
 			} else {
