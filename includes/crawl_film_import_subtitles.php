@@ -12,7 +12,7 @@
 	            'value'   => 'notyet',
 			),
 		),
-	    'posts_per_page' => 20,
+	    'posts_per_page' => 15,
 
 	);
 	$query = new WP_Query($args);
@@ -126,6 +126,7 @@
 
 			update_post_meta($film_id,'number_substitle', $count);
 		}
+		 sleep(20);
 	}
 
 
