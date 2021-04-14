@@ -65,11 +65,10 @@ for ($page = $oldest; $page >= 0; $page--) {
             }
             $count ++;
         } // import a film done.
-        die();
 
     } // end for find li
 
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
     crawl_log($crawl_log);
-    sleep(20);
+    sleep(15);
 }
