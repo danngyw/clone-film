@@ -126,5 +126,5 @@ if( $query->have_posts() ){
 
 		update_post_meta($film_id,'number_substitle', $count);
 	}
-	 sleep(20);
+	 sleep(9);
 }

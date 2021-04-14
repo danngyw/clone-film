@@ -71,5 +71,5 @@ for ($page = $oldest; $page >= 0; $page--) {
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
     crawl_log($crawl_log);
     flush();
-    sleep(15);
+    sleep(6);
 }
