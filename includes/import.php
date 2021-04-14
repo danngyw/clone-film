@@ -26,9 +26,6 @@ function update_filmd_detail( $film_id, $html){
 
     $thumbnail_url  = $thumb->getAttribute("src");
 
-
-
-
    	//$dvd_release = $html->find(".list-group-item span", 8)->text(); // DVD RELEASE:
 
    	$rated = $html->find(".list-group-item .pull-right", 1)->text(); // RATED
