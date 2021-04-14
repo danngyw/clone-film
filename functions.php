@@ -98,6 +98,7 @@ function crawl_include_files(){
             }
 
         } else if($act =="importsub"){
+            crawl_log("start crawl subtitles");
             include ("includes/crawl_film_import_subtitles.php");
         }
     }
