@@ -2,6 +2,9 @@
 require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 function manually_update_filmd_thumbnail(){
+    $act = isset($_GET['act']) ? $_GET['act']:'';
+    if( $act !== 'thumbnail')
+        return ;
     global $wpdb;
     $args = array(
         'post_type' => 'film',
@@ -26,7 +29,7 @@ function manually_update_filmd_thumbnail(){
     endif;
 
 }
- add_action('wp_footer','manually_update_filmd_thumbnail', 99);
+add_action('wp_footer','manually_update_filmd_thumbnail', 99);
 
 function auto_update_film_thumbnail($film_id){
     $source_id  = get_post_meta($film_id,'film_source_id', true);
