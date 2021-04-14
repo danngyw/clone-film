@@ -263,5 +263,6 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 
 		}
 	}
+	update_post_meta($film_id,'is_full_updated','full');
 	return $count_new;
 }
