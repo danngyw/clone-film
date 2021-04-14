@@ -12,7 +12,7 @@ $args = array(
             'value'   => 'notyet',
 		),
 	),
-    'posts_per_page' => 12,
+    'posts_per_page' => 3,
 
 );
 $query = new WP_Query($args);
@@ -132,6 +132,7 @@ if( $query->have_posts() ){
 $url = home_url().'/?act=importsub';
 
 if ( ! headers_sent() ) {
+	crawl_log('new  session to crawl sub: URL:'.$url);
     wp_redirect($url);
     exit;
 }

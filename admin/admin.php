@@ -231,8 +231,6 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 	$film_id 		= $p_film->ID;
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-	crawl_log('Manually Crawl film to update subtiles. URL: '.$film_url);
-
 	$html 			= file_get_contents($film_url);
 	$document 		= new Document($html);
     $node = $document->getDocument()->documentElement;
