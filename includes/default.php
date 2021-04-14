@@ -70,7 +70,8 @@ function import_film($args){
 			wp_set_object_terms( $film_id, $tag_actors, 'post_tag' );
 		}
 
-		import_film_thumbnail($args, $film_id);
+		$url =  $args['source_thumbnail_url'];
+		crawl_insert_attachment_from_url($url, $film_id);
 	}
 	update_post_meta($film_id,'is_full_updated','notyet');
 

@@ -69,6 +69,7 @@ function update_filmd_detail( $film_id, $html){
 
 
 function import_film_thumbnail($args, $film_id = 0){
+	crawl_log('import_thumbnail. URL: '.$args['source_thumbnail_url']);
 	$url =  $args['source_thumbnail_url'];
 	require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
@@ -110,7 +111,7 @@ function import_film_thumbnail($args, $film_id = 0){
 	        // Insert any error handling here
 	        update_post_meta($film_id,'no_thumbnail',1);
 	    } else {
-
+	    	crawl_log('wp_handle_sideload Success');
 	    	$attachment = array(
 	            'post_mime_type' => $results['type'],
 	            'post_title' => basename($url),
@@ -128,5 +129,8 @@ function import_film_thumbnail($args, $film_id = 0){
 
 	    }
 
+	} else {
+		crawl_log('download_url thumbnail fail');
+		crawl_log($temp_file);
 	}
 }

@@ -26,7 +26,6 @@ for ($page = $oldest; $page >= 0; $page--) {
         $id = explode("/movie-imdb/tt", $fiml_slug);
         $source_id = $id[1];
         $exist  = is_film_imported($source_id);
-
         if( !$exist ){
 
             $title = $li->find('h3');
@@ -62,12 +61,13 @@ for ($page = $oldest; $page >= 0; $page--) {
             $args['movie_genre']           = $movie_genre;
 
             if( function_exists('import_film') ){
-               import_film($args);
+              import_film($args);
             }
             $count ++;
-
         }
+
     }
+
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
     crawl_log($crawl_log);
     sleep(20);
