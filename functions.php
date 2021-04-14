@@ -58,13 +58,13 @@ function crawl_insert_attachment_from_url($url, $film_id = 0) {
 
 
     // Include image.php
-    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+    // require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
-    // Define attachment metadata
-    $attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
+    // // Define attachment metadata
+    // $attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
 
-    // Assign metadata to attachment
-    wp_update_attachment_metadata( $attach_id,  $attach_data );
+    // // Assign metadata to attachment
+    // wp_update_attachment_metadata( $attach_id,  $attach_data );
 
     return $attach_id;
 
