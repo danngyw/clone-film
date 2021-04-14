@@ -3,7 +3,7 @@ require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 function manually_update_filmd_thumbnail(){
     $act = isset($_GET['act']) ? $_GET['act']:'';
-    if( $act !== 'thumbnail')
+    if( $act !== 'update_thumb')
         return ;
     global $wpdb;
     $args = array(
