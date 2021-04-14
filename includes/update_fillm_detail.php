@@ -11,14 +11,13 @@ function manually_update_filmd_thumbnail(){
              'compare' => 'NOT EXISTS'
             ),
         ),
-        'posts_per_page' => 1,
+        'posts_per_page' => 15,
     );
     $the_query = new WP_Query($args);
     if ( $the_query->have_posts() ) :
         while($the_query->have_posts()){
 
             $the_query->the_post();
-            get_the_title();
             global $post;
             $p_id = $post->ID;
             auto_update_film_thumbnail($p_id);
@@ -30,10 +29,10 @@ function manually_update_filmd_thumbnail(){
  add_action('wp_footer','manually_update_filmd_thumbnail', 99);
 
 function auto_update_film_thumbnail($film_id){
-    $source_id = get_post_meta($film_id,'film_source_id', true);
-    $movie_url = "https://yifysubtitles.org/movie-imdb/tt".$source_id;
-    $html   = new Document(file_get_contents($movie_url));
-    $thumb = $html->find('img',1);
+    $source_id  = get_post_meta($film_id,'film_source_id', true);
+    $movie_url  = "https://yifysubtitles.org/movie-imdb/tt".$source_id;
+    $html       = new Document(file_get_contents($movie_url));
+    $thumb      = $html->find('img',1);
 
     $thumbnail_url  = $thumb->getAttribute("src");
     $args['source_thumbnail_url'] = $thumbnail_url;
