@@ -5,7 +5,6 @@ use FastSimpleHTMLDom\Document;
 $oldest      = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
 for ($page = $oldest; $page >= 0; $page--) {
 
-
     $site_url   = "https://yifysubtitles.org/browse/page-".$page;
     $ul_css     = "ul.media-list";
     $crawl_log  = "Crawl page {$page} to import film. ";

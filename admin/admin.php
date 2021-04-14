@@ -115,7 +115,7 @@ function Crawl_Overview_Info(){
 				<tr>
 
 					<th scope="row"><label for="mailserver_url">max_execution_time:</label></th>
-					<td><?php echo ini_get('max_execution_time');?></td>
+					<td><?php echo ini_get('max_execution_time');?>(seconds)</td>
 
 
 				</tr>
