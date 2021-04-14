@@ -74,20 +74,19 @@ for ($page = $oldest; $page >= 0; $page--) {
 
     } // end for find li
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
-    crawl_log($crawl_log);
-    crawl_log('Memory_usage: '. ( (memory_get_usage() / 1024) / 1024).'(MB)');
+    // crawl_log($crawl_log);
+    // crawl_log('Memory_usage: '. ( (memory_get_usage() / 1024) / 1024).'(MB)');
     $html = NULL;
     $list = NULL;
     unset($html);
     unset($list);
-    //sleep(6);
     $new_page = $page - 1;
     $url = home_url().'/?act=import&ipage='.$new_page;
 
-
     if ( ! headers_sent() ) {
-        crawl_log('redirect to new page: '.$url);
-        header("Location: $url");
+        crawl_log('Redirect to new page: '.$url);
+        wp_redirect($url);
+        // header("Location: $url");
         exit;
     } else {
         echo "<meta http-equiv=\"refresh\" content=\"0;url=$url\">\r\n";
