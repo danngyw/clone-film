@@ -147,6 +147,10 @@ function Crawl_Overview_Info(){
 		<p>
 			Quick link to import homepage: <a target="_blank" href="<?php echo home_url();?>/?act=import">Visit </a> .
 		</p>
+		<p>
+			Manual update post thumbnail: <a target="_blank" href="<?php echo home_url();?>/?act=update_thumb">Manual update thumbnail </a> .
+			Mỗi lần chạy link này, hệ thống tự kiểm tra và update 15 film chưa có thumbnail. Một số trường hợp bị timeout/overload nên không thêm upload được hình ảnh. Function này để giải quyết vấn đề trên.
+		</p>
 
 	</div>
 	<script type="text/javascript">
