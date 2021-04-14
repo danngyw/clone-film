@@ -64,9 +64,9 @@ for ($page = $oldest; $page >= 0; $page--) {
               import_film($args);
             }
             $count ++;
-        }
+        } // import a film done.
 
-    }
+    } // end for find li
 
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
     crawl_log($crawl_log);
