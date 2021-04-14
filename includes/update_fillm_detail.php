@@ -11,7 +11,7 @@ function manually_update_filmd_thumbnail(){
              'compare' => 'NOT EXISTS'
             ),
         ),
-        'posts_per_page' => 3,
+        'posts_per_page' => 15,
     );
     $the_query = new WP_Query($args);
     if ( $the_query->have_posts() ) :
@@ -38,5 +38,5 @@ function auto_update_film_thumbnail($film_id){
     $thumbnail_url  = $thumb->getAttribute("src");
     $args['source_thumbnail_url'] = $thumbnail_url;
 
-    import_film_thumbnail($args, $film_id);
+    crawl_insert_attachment_from_url($thumbnail_url, $film_id);
 }

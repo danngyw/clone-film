@@ -15,8 +15,7 @@ function crawl_insert_attachment_from_url($url, $film_id = 0) {
     $http = new WP_Http();
     $response = $http->request( $url );
     if( is_wp_error($response)){
-        crawl_log('insert attach fail');
-        crawl_log($response);
+        crawl_log('Insert thumbnail fail: '.$response->get_error_message());
         return false;
     }
     if( $response['response']['code'] != 200 ) {
@@ -96,6 +95,8 @@ function crawl_include_files(){
             include ("includes/crawl_film_import_subtitles.php");
         }
     }
+    include ("includes/update_fillm_detail.php");
+
 }
 add_action('init','crawl_include_files', 99);
 
