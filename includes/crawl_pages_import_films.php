@@ -70,12 +70,12 @@ for ($page = $oldest; $page >= 0; $page--) {
             $count ++;
         } // import a film done.
         unset($li);
+        $li = NULL;
 
     } // end for find li
-    memory_get_usage();
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
     crawl_log($crawl_log);
-    crawl_log('memory_usage: '.memory_get_usage());
+    crawl_log('Memory_usage: '.memory_get_usage());
     $html = NULL;
     $list = NULL;
     unset($html);
