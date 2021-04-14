@@ -128,3 +128,10 @@ if( $query->have_posts() ){
 	}
 	// sleep(9);
 }
+
+$url = home_url().'/?act=importsub';
+
+if ( ! headers_sent() ) {
+    wp_redirect($url);
+    exit;
+}
