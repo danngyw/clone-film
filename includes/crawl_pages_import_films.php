@@ -65,6 +65,7 @@ for ($page = $oldest; $page >= 0; $page--) {
             }
             $count ++;
         } // import a film done.
+        die();
 
     } // end for find li
 
