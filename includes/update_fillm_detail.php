@@ -11,7 +11,7 @@ function manually_update_filmd_thumbnail(){
              'compare' => 'NOT EXISTS'
             ),
         ),
-        'posts_per_page' => 15,
+        'posts_per_page' => 1,
     );
     $the_query = new WP_Query($args);
     if ( $the_query->have_posts() ) :

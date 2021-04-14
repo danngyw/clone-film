@@ -15,8 +15,13 @@ function crawl_insert_attachment_from_url($url, $film_id = 0) {
     $http = new WP_Http();
     $response = $http->request( $url );
     if( is_wp_error($response)){
-        crawl_log('Insert thumbnail fail: '.$url.'. Error:'.$response->get_error_message());
-        return false;
+
+        $url = str_replace("https://", "http://", $url, $count);
+        $response = $http->request( $url );
+        if( is_wp_error($response) ){
+             crawl_log('Insert thumbnail fail: '.$url.'. Error:'.$response->get_error_message());
+        }
+
     }
     if( $response['response']['code'] != 200 ) {
         return false;
