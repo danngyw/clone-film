@@ -19,6 +19,15 @@ function update_filmd_detail( $film_id, $html){
     $imdb_link = $imdb_link->innerHtml();
    	update_post_meta($film_id,'imdb_link',$imdb_link );
 
+   	// $img            = $li->getElementByTagName('img');
+    // $thumbnail_url  = $img->getAttribute("src");
+
+    $thumb 	= $html->find('img',1);
+
+    $thumbnail_url  = $thumb->getAttribute("src");
+
+
+
 
    	//$dvd_release = $html->find(".list-group-item span", 8)->text(); // DVD RELEASE:
 
@@ -28,7 +37,7 @@ function update_filmd_detail( $film_id, $html){
    	$box_office = $html->find(".list-group-item .pull-right", 5)->text(); // box_office
    	$company = $html->find(".list-group-item .pull-right", 0)->text(); // company
    	$writer = $html->find(".list-group-item .pull-right", 6)->text(); // WRITER:
-   	$director = $html->find(".list-group-item .pull-right", 7)->text(); // director
+   	$director = $html->find(".list-group-item .pull-right", 7)->text(); // director111
 
    	$website = $html->find(".list-group-item .pull-right", 8)->text(); // website:
 
@@ -63,7 +72,7 @@ function update_filmd_detail( $film_id, $html){
 		}
 	}
 
-
+	crawl_insert_attachment_from_url($thumbnail_url, $film_id);
     update_post_meta($film_id, 'is_full_updated','full');
 }
 
