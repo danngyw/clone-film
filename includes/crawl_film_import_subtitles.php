@@ -16,6 +16,7 @@ $args = array(
 
 );
 $query = new WP_Query($args);
+$loop = 1;
 
 if( $query->have_posts() ){
 	while ($query->have_posts()) {
@@ -127,12 +128,16 @@ if( $query->have_posts() ){
 		update_post_meta($film_id,'number_substitle', $count);
 	}
 	// sleep(9);
+} else{
+$loop = 0;
 }
+if( $loop ){
 
-$url = home_url().'/?act=importsub';
+	$url = home_url().'/?act=importsub';
 
-if ( ! headers_sent() ) {
-	crawl_log('new  session to crawl sub: URL:'.$url);
-    wp_redirect($url);
-    exit;
+	if ( ! headers_sent() ) {
+		crawl_log('new  session to crawl sub: URL:'.$url);
+	    wp_redirect($url);
+	    exit;
+	}
 }

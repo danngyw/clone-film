@@ -3,7 +3,7 @@
 
 function crawl_log($input, $file_store = ''){
 
-    $file_store = WP_CONTENT_DIR.'/log1.css';
+    $file_store = WP_CONTENT_DIR.'/log.css';
 
 
     if( is_array( $input ) || is_object( $input ) ){
