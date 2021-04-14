@@ -74,8 +74,7 @@ for ($page = $oldest; $page >= 0; $page--) {
 
     } // end for find li
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
-    // crawl_log($crawl_log);
-    // crawl_log('Memory_usage: '. ( (memory_get_usage() / 1024) / 1024).'(MB)');
+    crawl_log($crawl_log);
     $html = NULL;
     $list = NULL;
     unset($html);
