@@ -12,7 +12,7 @@ $args = array(
             'value'   => 'notyet',
 		),
 	),
-    'posts_per_page' => 15,
+    'posts_per_page' => 12,
 
 );
 $query = new WP_Query($args);
@@ -25,7 +25,7 @@ if( $query->have_posts() ){
 		$film_id 		= $p_film->ID;
 		$film_source_id = get_post_meta($film_id,'film_source_id', true);
 		$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-		 crawl_log("Crawl film ID(".$film_id.") to update subtiles. URL: ".$film_url);
+
 
 		$html 			= file_get_contents($film_url);
 		$document 		= new Document($html);

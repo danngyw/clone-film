@@ -113,18 +113,19 @@ function Crawl_Overview_Info(){
 
 					<th scope="row"><label for="mailserver_url">Server Configuation:</label></th>
 					<td>
+
 					<p>
 						<label for="mailserver_url">Memory Limit:</label>
 						<?php echo ini_get('memory_limit');?>
 					</p>
 					<p>
-						upload_max_filesize:<?php echo ini_get('upload_max_filesize');?> Suggest: 64M
+						upload_max_filesize: <?php echo ini_get('upload_max_filesize');?> &nbsp; &nbsp;Suggest: 64M
 					</p>
 					<p>
-						max_execution_time:<?php echo ini_get('max_execution_time');?>(Seconds) Suggest: 300 <br />
+						max_execution_time: <?php echo ini_get('max_execution_time');?> &nbsp; &nbsp;Suggest: 300 <br />
 
-						max_input_time:<?php echo ini_get('max_input_time');?> Suggest: 1000 <br />
-						post_max_size:<?php echo ini_get('post_max_size');?> Suggest: 64M
+						max_input_time: <?php echo ini_get('max_input_time');?> &nbsp; &nbsp; Suggest: 1000 <br />
+						post_max_size: <?php echo ini_get('post_max_size');?> &nbsp; &nbsp;Suggest: 64M
 
 					</p>
 
