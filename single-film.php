@@ -56,67 +56,58 @@ $website 	= get_post_meta($film_id, 'website', true);
 
 ?>
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
-<ul class="breadcrumb">
-<li><a href="<?php echo home_url();?>">Home</a></li>
-<?php echo $genre_link;?>
+	<ul class="breadcrumb">
+		<li><a href="<?php echo home_url();?>">Home</a></li>
+		<?php echo $genre_link;?>
 
-<li class="active"><?php the_title();?></li>
-</ul>
-<div class="row">
-	<div class="col-xs-12 text-center">
-	<h1 class="movie-main-title"><?php the_title();?> (<?php echo $year_release;?>)</h1>
-	<div class="movie-genre">
-		<?php
+		<li class="active"><?php the_title();?></li>
+	</ul>
+	<div class="row">
+		<div class="col-xs-12 text-center">
+		<h1 class="movie-main-title"><?php the_title();?> (<?php echo $year_release;?>)</h1>
+		<div class="movie-genre">
+			<?php
+			$i 	= 0; $total = count($list)-1; $html = '';
+			foreach ($list as $text) {
 
-
-		$i 	= 0;
-		$total = count($list)-1;
-		$html = '';
-		foreach ($list as $text) {
-
-			$genre = get_term_by( 'slug', $text, 'genre' );
-			if($genre ){
-				$html.='<a href="'.get_term_link($genre,'genre').'">'.$genre->name.'</a>';
+				$genre = get_term_by( 'slug', $text, 'genre' );
+				if($genre ){
+					$html.='<a href="'.get_term_link($genre,'genre').'">'.$genre->name.'</a>';
+				}
+				if($i < $total){
+					$html.=", ";
+				} $i++;
 			}
-			if($i < $total){
-				$html.=", ";
-			}
-			$i++;
-		}
-		echo $html;
-
-		 ?>
-
-
+			echo $html; ?>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-3 col-sm-6">
-	<a class="slide-item-wrap" itemprop="url" href="#"><img itemprop="image" alt="<?php the_title();?>" src="<?php echo $thumbnail_url;?>" class="img-responsive"></a>
+	<div class="row">
+		<div class="col-md-3 col-sm-6">
+		<a class="slide-item-wrap" itemprop="url" href="#"><img itemprop="image" alt="<?php the_title();?>" src="<?php echo $thumbnail_url;?>" class="img-responsive"></a>
+		</div>
+		<div class="col-md-4 col-md-push-5 col-sm-6"></div>
+		<div class="col-md-5 col-md-pull-4 col-sm-12 movie-main-info text-center">
+		<div style="margin:10px auto;">
+
+			<div id="circle-score-year" class="circliful" data-dimension="100" data-text="<?php echo $year_release;?>" data-info="year" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="50" data-total="50" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
+
+			</div>
+
+			<div id="circle-score-length" class="circliful" data-dimension="100" data-text="<?php echo $length;?> " data-info="length" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="31" data-total="60" data-animationstep="20" data-fontsize="18" data-width="5" style="width: 100px;">
+
+			</div>
+			<div id="circle-score-imdb" class="circliful" data-dimension="100" data-text="<?php echo $imdb_score;?>" data-info="IMDB" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="<?php echo $imdb_score;?>" data-total="10" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
+
+			</div>
+
+			<div id="circle-score-tomatoes" class="circliful" data-dimension="100" data-text="N/A" data-info="Tomato" data-fgcolor="#505050" data-bgcolor="#2c2f32" data-part="0" data-total="100" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
+			</div>
+		</div>
+		<div class="movie-actors"><?php echo $movie_actors;?><br></div>
+		<div class="movie-desc"><?php the_content();?></div>
+		</div>
 	</div>
-	<div class="col-md-4 col-md-push-5 col-sm-6"></div>
-	<div class="col-md-5 col-md-pull-4 col-sm-12 movie-main-info text-center">
-	<div style="margin:10px auto;">
-
-		<div id="circle-score-year" class="circliful" data-dimension="100" data-text="<?php echo $year_release;?>" data-info="year" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="50" data-total="50" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
-
-		</div>
-
-		<div id="circle-score-length" class="circliful" data-dimension="100" data-text="<?php echo $length;?> " data-info="length" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="31" data-total="60" data-animationstep="20" data-fontsize="18" data-width="5" style="width: 100px;">
-
-		</div>
-		<div id="circle-score-imdb" class="circliful" data-dimension="100" data-text="<?php echo $imdb_score;?>" data-info="IMDB" data-fgcolor="green" data-bgcolor="#2c2f32" data-part="<?php echo $imdb_score;?>" data-total="10" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
-
-		</div>
-
-		<div id="circle-score-tomatoes" class="circliful" data-dimension="100" data-text="N/A" data-info="Tomato" data-fgcolor="#505050" data-bgcolor="#2c2f32" data-part="0" data-total="100" data-animationstep="20" data-fontsize="22" data-width="5" style="width: 100px;">
-		</div>
-	</div>
-	<div class="movie-actors"><?php echo $movie_actors;?><br></div>
-	<div class="movie-desc"><?php the_content();?></div>
-	</div>
-</div>
 <div class="row">
 	<div class="col-md-3 col-sm-6 text-center"></div>
 	<div class="col-md-6 text-center"></div>
