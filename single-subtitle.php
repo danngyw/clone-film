@@ -57,6 +57,7 @@ $film_link      = get_permalink($film_id);
     $sub_zip_url = get_post_meta($sub_id,'sub_zip_url', true);
     $sub_zip_url = str_replace( 'http://', 'https://', $sub_zip_url );
 
+
     ?>
 <a class="btn-icon download-subtitle" href="<?php echo $sub_zip_url;?>"><span class="icon32 download"></span><span class="title">DOWNLOAD SUBTITLE</span></a>
 </div>
