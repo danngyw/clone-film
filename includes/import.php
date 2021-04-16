@@ -69,14 +69,14 @@ function update_filmd_detail( $film_id, $html){
 		}
 	}
 
-	crawl_insert_attachment_from_url($thumbnail_url, $film_id);
+	import_film_thumbnail($thumbnail_url, $film_id);
     update_post_meta($film_id, 'is_full_updated','full');
 }
 
 
-function import_film_thumbnail($args, $film_id = 0){
-	crawl_log('import_thumbnail. URL: '.$args['source_thumbnail_url']);
-	$url =  $args['source_thumbnail_url'];
+function import_film_thumbnail($url, $film_id = 0){
+	//crawl_log('import_thumbnail. URL: '.$url);
+	//$url =  $args['source_thumbnail_url'];
 	require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
 	$timeout_seconds = 5;
@@ -137,6 +137,6 @@ function import_film_thumbnail($args, $film_id = 0){
 
 	} else {
 		crawl_log('download_url thumbnail fail');
-		crawl_log($temp_file);
+		crawl_log($temp_file->get_error_message());
 	}
 }

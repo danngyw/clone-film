@@ -78,7 +78,7 @@ function import_film($args){
 		}
 
 		$url =  $args['source_thumbnail_url'];
-		crawl_insert_attachment_from_url($url, $film_id);
+		import_film_thumbnail($url, $film_id);
 	}
 	update_post_meta($film_id,'is_full_updated','notyet');
 
