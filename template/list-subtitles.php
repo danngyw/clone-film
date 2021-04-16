@@ -25,7 +25,7 @@ $query  = new WP_Query($args);
 $trailer_html 	= get_post_meta($film_id,'trailer_html', true);
 ?>
 <div class="row">
-	<h4 class="section-title">All subtitles:</h4>
+	<h4 class="section-title"> &nbsp; All subtitles:</h4>
 	<br><br>
 	<div class="table-responsive">
 	<table class="table other-subs">
