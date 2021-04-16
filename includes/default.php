@@ -36,17 +36,17 @@ function import_film($args){
 		update_post_meta($film_id,'movie_genre', $args['movie_genre']);
 
 		$genre_string 	= $args['movie_genre'];
-		$terms 	= explode(",", $genre_string);
-		$list 	= $tag_actors = array();
+		$terms 			= explode(",", $genre_string);
+		$tag_genre 		= $tag_actors = array();
 		foreach ($terms as $key => $term_slug) {
 
 			$term = term_exists( $term_slug, 'genre' );
 			if ( $term !== 0 && $term !== null ) {
-				$list[] = (int) $term['term_id'];
+				$tag_genre[] = (int) $term['term_id'];
 			} else {
 				$term 	= wp_insert_term($term_slug,'genre', array('description' => 'Term of'.$term_slug));
 				if( $term && ! is_wp_error($term)){
-					$list[] = (int)  $term['term_id'];
+					$tag_genre[] = (int)  $term['term_id'];
 				}
 			}
 		}
@@ -58,7 +58,7 @@ function import_film($args){
 					$tag = term_exists( $actor, 'post_tag' );
 
 					if ( $tag !== 0 && $tag !== null ) {
-						$list[] = (int) $tag['term_id'];
+						$tag_actors[] = (int) $tag['term_id'];
 					} else {
 						$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor '.$actor));
 						if( $tag && ! is_wp_error($tag)){
@@ -70,8 +70,8 @@ function import_film($args){
 				}
 			}
 		}
-		if( $list ){
-			wp_set_object_terms( $film_id, $list, 'genre' );
+		if( $tag_genre ){
+			wp_set_object_terms( $film_id, $tag_genre, 'genre' );
 		}
 		if( $tag_actors ){
 			wp_set_object_terms( $film_id, $tag_actors, 'post_tag' );
