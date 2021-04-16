@@ -80,6 +80,16 @@ require_once('includes/default.php');
 require_once('includes/html.php');
 require_once('debug.php');
 
+function is_film_imported($source_id){
+    global $wpdb;
+    $sql = "SELECT pm.post_id
+                FROM $wpdb->postmeta AS pm
+                    WHERE pm.meta_key = 'film_source_id' AND pm.meta_value = '{$source_id}'
+                        LIMIT 1";
+
+    return  $wpdb->get_row($sql);
+}
+
 if( is_admin() ){
     require_once('admin/admin.php');
 }
@@ -107,15 +117,7 @@ function crawl_include_files(){
 }
 add_action('init','crawl_include_files', 99);
 
-function is_film_imported($source_id){
-    global $wpdb;
-    $sql = "SELECT pm.post_id
-                FROM $wpdb->postmeta AS pm
-                    WHERE pm.meta_key = 'film_source_id' AND pm.meta_value = '{$source_id}'
-                        LIMIT 1";
 
-    return  $wpdb->get_row($sql);
-}
 
 function sendSubtileRequest( $data ) {
 	$url = "https://data.slav.tv/";

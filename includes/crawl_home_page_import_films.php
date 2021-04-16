@@ -45,6 +45,7 @@ foreach($list->find('li') as $li) {
         $args['post_excerpt']         = $film_excerpt;
         $args['source_thumbnail_url'] = $thumbnail_url;
         $args[FILM_SOURCE_ID]         = $source_id;
+        $args['film_source_id']       = $source_id;
         $args['post_title']           = $title->text();
         $args['year_release']         = $year;
         $args['length_time']          = $length;
