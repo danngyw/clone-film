@@ -132,7 +132,7 @@ function crawl_insert_attachment_from_url($url, $film_id = 0) {
     $response = $http->request( $url );
     if( is_wp_error($response)){
 
-        $url = str_replace("https://", "http://", $url, $count);
+        $url = str_replace("https://", "http://", $url);
         $response = $http->request( $url );
         if( is_wp_error($response) ){
             crawl_log('Insert thumbnail fail. URL: '.$url.'. Error:'.$response->get_error_message());

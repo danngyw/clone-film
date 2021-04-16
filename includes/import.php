@@ -84,6 +84,19 @@ function import_film_thumbnail($url, $film_id = 0){
 	// Download file to temp dir
 	$temp_file = download_url( $url, $timeout_seconds );
 
+	 if( is_wp_error($temp_file) ){
+
+        $url = str_replace("https://", "http://", $url);
+        $temp_file = download_url( $url, $timeout_seconds );
+        if( is_wp_error($response) ){
+            crawl_log('Insert thumbnail fail. URL: '.$url.'. Error:'.$temp_file->get_error_message());
+            return false;
+        }
+
+    }
+
+
+
 	if ( ! is_wp_error( $temp_file ) ) {
 
 	    // Array based on $_FILE as seen in PHP file uploads
