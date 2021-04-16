@@ -75,29 +75,21 @@ function update_filmd_detail( $film_id, $html){
 
 
 function import_film_thumbnail($url, $film_id = 0){
-	//crawl_log('import_thumbnail. URL: '.$url);
-	//$url =  $args['source_thumbnail_url'];
+
 	require_once( ABSPATH . 'wp-admin/includes/file.php' );
-
 	$timeout_seconds = 5;
-
 	// Download file to temp dir
 	$temp_file = download_url( $url, $timeout_seconds );
 
 	 if( is_wp_error($temp_file) ){
-
-        $url = str_replace("https://", "http://", $url);
+		$url = str_replace("https://", "http://", $url);
         $temp_file = download_url( $url, $timeout_seconds );
-        if( is_wp_error($response) ){
+        if( is_wp_error($temp_file) ){
             crawl_log('Insert thumbnail fail. URL: '.$url.'. Error:'.$temp_file->get_error_message());
             return false;
         }
-
-    }
-
-
-
-	if ( ! is_wp_error( $temp_file ) ) {
+	}
+ 	if ( ! is_wp_error( $temp_file ) ) {
 
 	    // Array based on $_FILE as seen in PHP file uploads
 	    $file = array(
