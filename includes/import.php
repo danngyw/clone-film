@@ -122,7 +122,6 @@ function import_film_thumbnail($url, $film_id = 0){
 	        // Insert any error handling here
 	        update_post_meta($film_id,'no_thumbnail',1);
 	    } else {
-	    	crawl_log('wp_handle_sideload Success');
 	    	$attachment = array(
 	            'post_mime_type' => $results['type'],
 	            'post_title' => basename($url),
@@ -139,8 +138,5 @@ function import_film_thumbnail($url, $film_id = 0){
 
 	    }
 
-	} else {
-		crawl_log('download_url thumbnail fail');
-		crawl_log($temp_file->get_error_message());
 	}
 }
