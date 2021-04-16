@@ -128,7 +128,6 @@ function import_film_thumbnail($url, $film_id = 0){
         	$attach_id = wp_insert_attachment( $attachment, $results['file'], $film_id );
         	if(!is_wp_error($attach_id)){
         		set_post_thumbnail( $film_id, $attach_id );
-        		crawl_log('set_post_thumbnail DONE');
         	}else{
         		crawl_log('wp_insert_attachment Fail');
         	}
