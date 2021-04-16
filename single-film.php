@@ -1,16 +1,12 @@
 <?php
-
 get_header();
 the_post();
 global $post, $film_id;
 $film 			= $post;
 $film_id 		= $post_id = $post->ID;
-
 $movie_genre  	= get_post_meta($film_id,'movie_genre', true);
-
 $list = explode(",", $movie_genre);
 $first_genre = $list[0];
-
 
 $term_genre = get_term_by('name',$first_genre, 'genre');
 $genre_link = '';
@@ -29,17 +25,11 @@ if( $term_genre ){
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
 	<ul class="breadcrumb">
 		<li><a href="<?php echo home_url();?>">Home</a></li>
-		<?php echo $genre_link;?>
-
-		<li class="active"><?php the_title();?></li>
+		<?php echo $genre_link;?> <li class="active"><?php the_title();?></li>
 	</ul>
-
-
-<?php get_template_part('template/film','detail');?>
-<?php get_template_part('template/list','subtitles');?>
+	<?php get_template_part('template/film','detail');?>
+	<?php get_template_part('template/list','subtitles');?>
 
 </div>
 
-<?php
-get_footer();
-
+<?php get_footer(); ?>

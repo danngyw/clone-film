@@ -65,5 +65,5 @@
 
 	</head>
 	<body <?php body_class(); ?>>
-		<?php //get_template_part('nav','header');?>
-		<?php // get_search_form();?>
+		<?php get_template_part('nav','header');?>
+		<?php get_search_form();?>
