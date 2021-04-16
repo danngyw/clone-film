@@ -22,6 +22,7 @@ $args = array(
 );
 
 $query  = new WP_Query($args);
+$trailer_html 	= get_post_meta($film_id,'trailer_html', true);
 ?>
 <div class="row">
 	<h4 class="section-title">All subtitles:</h4>
@@ -57,3 +58,14 @@ $query  = new WP_Query($args);
 	</div>
 </div>
 <?php wp_reset_query(); ?>
+<?php if($trailer_html){ ?>
+	<div class="row" style="margin:20px auto;">
+		<div class="col-md-offset-3 col-md-6 col-xs-12">
+			<h4 class="section-title">Trailer:</h4>
+			<div class="embed-responsive embed-responsive-16by9">
+			<?php
+			echo $trailer_html;?>
+			</div>
+		</div>
+	</div>
+<?php } ?>

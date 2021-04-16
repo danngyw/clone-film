@@ -5,7 +5,7 @@ the_post();
 global $post, $film_id;
 $film 			= $post;
 $film_id 		= $post_id = $post->ID;
-$trailer_html 	= get_post_meta($post_id,'trailer_html', true);
+
 $movie_genre  	= get_post_meta($film_id,'movie_genre', true);
 
 $list = explode(",", $movie_genre);
@@ -37,17 +37,7 @@ if( $term_genre ){
 
 <?php get_template_part('template/film','detail');?>
 <?php get_template_part('template/list','subtitles');?>
-<?php if($trailer_html){ ?>
-	<div class="row" style="margin:20px auto;">
-		<div class="col-md-offset-3 col-md-6 col-xs-12">
-			<h4 class="section-title">Trailer:</h4>
-			<div class="embed-responsive embed-responsive-16by9">
-			<?php
-			echo $trailer_html;?>
-			</div>
-		</div>
-	</div>
-<?php } ?>
+
 </div>
 
 <?php
