@@ -12,7 +12,7 @@ $args = array(
             'value'   => 'notyet',
 		),
 	),
-    'posts_per_page' => 12,
+    'posts_per_page' => 10,
 
 );
 $query = new WP_Query($args);
