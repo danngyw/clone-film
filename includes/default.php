@@ -1,12 +1,8 @@
 <?php
 
-
 function crawl_log($input, $file_store = ''){
-
-    $file_store = WP_CONTENT_DIR.'/log.css';
-
-
-    if( is_array( $input ) || is_object( $input ) ){
+	$file_store = WP_CONTENT_DIR.'/log.css';
+	if( is_array( $input ) || is_object( $input ) ){
         error_log( date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ). ': '. print_r($input, TRUE), 3, $file_store );
     } else {
         error_log( date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ). ': '. $input . "\n" , 3, $file_store);
@@ -18,7 +14,6 @@ function import_film($args){
 
 	$args['post_type'] = 'film';
 	$args['post_status'] = 'publish';
-
 	$source_id  =  $args['film_source_id'];
 	$exist  	= is_film_imported($source_id);
 
