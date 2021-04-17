@@ -3,7 +3,7 @@ function fix_taxonomy_pagination ( $query ) {
   // not an admin page and it is the main query
   if (!is_admin() && $query->is_main_query()){
 
-    if(is_tax()){
+    if( is_tax() || is_tag() ){
       // where 24 is number of posts per page on custom taxonomy pages
       $query->set('posts_per_page', 15);
 
