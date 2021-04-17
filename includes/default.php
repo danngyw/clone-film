@@ -118,6 +118,11 @@ function import_subtitle_film($args, $film_id){
 	$args['post_type'] 		= 'subtitle';
 	$args['post_status'] 	= 'publish';
 	$args['post_parent']  	= $film_id;
+	$sub_source_id = $args['sub_source_id'];
+	$sub_id_exists = is_subtitle_imported_advanced($sub_source_id);
+	if($sub_id_exists){
+		return false;
+	}
 
 	$sub_id = wp_insert_post($args);
 
