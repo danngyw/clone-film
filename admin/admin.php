@@ -66,7 +66,7 @@ function Crawl_Overview_Info(){
 	    ),
 	    'posts_per_page' => -1,
 	);
-	$query = new WP_Query( $args );
+	//$query = new WP_Query( $args );
 
 	$args = array(
 		'post_type' => 'film',
@@ -80,7 +80,7 @@ function Crawl_Overview_Info(){
 	    'posts_per_page' => -1,
 
 	);
-	$film 	= new WP_Query($args);
+	//$film 	= new WP_Query($args);
 
 	$file_log 	= WP_CONTENT_DIR.'/log.css';
 	$link_html 	= false;
@@ -97,12 +97,12 @@ function Crawl_Overview_Info(){
 			<tbody>
 				<tr>
 					<th scope="row"><label for="mailserver_url">Số lượng Film import hôm nay:</label></th>
-					<td><?php echo $query->post_count;?></td>
+					<td><?php //echo $query->post_count;?></td>
 				</tr>
 
 				<tr>
 					<th scope="row"><label for="mailserver_url">Số Film Chưa update subtitle:</label></th>
-					<td><?php echo $film->post_count;?></td>
+					<td><?php // echo $film->post_count;?></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="mailserver_url">PHP Version Using:</label></th>
