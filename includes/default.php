@@ -135,32 +135,30 @@ function import_subtitle_film($args, $film_id){
 			'source'              => home_url(),
 		);
 
-		$language 	= $args['m_sub_language'];
-		$language = '';
-		if ( !empty($language) ){
-			$list = array();
-			$term = term_exists( $language, 'language' );
-			if ( $term !== 0 && $term !== null ) {
-				$list[] = (int) $term['term_id'];
-			} else {
-					$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$language));
-					if( $term && ! is_wp_error($term)){
-						$list[] = (int)  $term['term_id'];
-					} else{
-					crawl_log("Set tax language for SUB fail. ".$language);
-				}
+		// $language 	= $args['m_sub_language'];
+		// $language = '';
+		// if ( !empty($language) ){
+		// 	$list = array();
+		// 	$term = term_exists( $language, 'language' );
+		// 	if ( $term !== 0 && $term !== null ) {
+		// 		$list[] = (int) $term['term_id'];
+		// 	} else {
+		// 			$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$language));
+		// 			if( $term && ! is_wp_error($term)){
+		// 				$list[] = (int)  $term['term_id'];
+		// 			} else{
+		// 			crawl_log("Set tax language for SUB fail. ".$language);
+		// 		}
 
 
-			}
-			if( $list ){
-				//wp_set_object_terms( $sub_id, $list, 'language' );
-			}
-		}
+		// 	}
+
+		// }
 
 		try {
 	        $res   = sendSubtileRequest($data);
 
-	       	if( $res->url ){
+	       	if( isset($res->url) && !empty($res->url) ){
 				update_post_meta( $sub_id,'sub_zip_url', $res->url);
 			} else {
 				update_post_meta($sub_id,'sub_zip_url','empty');
