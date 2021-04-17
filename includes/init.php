@@ -5,7 +5,8 @@ function fix_taxonomy_pagination ( $query ) {
 
     if( is_tax() || is_tag() ){
       // where 24 is number of posts per page on custom taxonomy pages
-      $query->set('posts_per_page', 20);
+        $query->set('posts_per_page', 2);
+        $query->set('post_type', 'film');
 
     }
   }
@@ -49,7 +50,6 @@ function film_custom_post_type() {
 
 }
 add_action('init', 'film_custom_post_type', 5);
-
 function register_film_tax() {
 
     $labels = array(

@@ -70,7 +70,6 @@ function update_filmd_detail( $film_id, $html){
 	}
 
 	import_film_thumbnail($thumbnail_url, $film_id);
-
 }
 
 
