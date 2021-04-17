@@ -34,17 +34,17 @@ function crawl_include_files(){
         if($act == "import"){
             $ipage      = isset($_REQUEST['ipage']) ? (int) $_REQUEST['ipage']: 0;
             if($ipage){
-                include ("includes/crawl_pages_import_films.php");
+                require_once ("includes/crawl_pages_import_films.php");
             } else {
-                include ("includes/crawl_home_page_import_films.php");
+                require_once ("includes/crawl_home_page_import_films.php");
             }
 
         } else if($act =="importsub"){
             crawl_log("start crawl subtitles");
-            include ("includes/crawl_film_import_subtitles.php");
+            require_once ("includes/crawl_film_import_subtitles.php");
         }
     }
-    include ("includes/update_fillm_detail.php");
+    require_once ("includes/update_fillm_detail.php");
 
 }
 add_action('init','crawl_include_files', 99);
