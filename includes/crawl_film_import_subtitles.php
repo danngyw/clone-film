@@ -108,8 +108,6 @@ if( $query->have_posts() ){
 					crawl_log("Add Film Language Fail. Language : ".$sub_language);
 				}
 			}
-
-
 		}
 
 		if( $lang_ids ){
@@ -126,6 +124,7 @@ if( $query->have_posts() ){
 		}
 
 		update_post_meta($film_id,'number_substitle', $count);
+		update_post_meta($film_id, 'is_full_updated','full');
 	}
 	// sleep(9);
 } else{

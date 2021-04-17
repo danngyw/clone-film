@@ -70,7 +70,7 @@ function update_filmd_detail( $film_id, $html){
 	}
 
 	import_film_thumbnail($thumbnail_url, $film_id);
-    update_post_meta($film_id, 'is_full_updated','full');
+
 }
 
 
