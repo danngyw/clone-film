@@ -82,10 +82,12 @@ function get_recent_films(){
 	$query = new WP_Query($args);
 	if($query->have_posts()){
 		echo '<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">';
+		$i = 1;
 		while($query->have_posts()){
 			global $post;
 			$query->the_post();
-			render_item_film($post);
+			render_item_film($post, $i);
+			$i ++;
 		}
 		echo '</ul>';
 	} else {
@@ -113,7 +115,7 @@ function get_recent_films(){
 
 <?php }
 
-function render_item_film($film){
+function render_item_film($film, $i = 0){
 	$thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
 	$year_release  	= get_post_meta($film->ID,'year_release', true);
 	$length_time  	= get_post_meta($film->ID,'length_time', true);
@@ -123,7 +125,7 @@ function render_item_film($film){
 	$movie_genre 	= get_post_meta($film->ID,'movie_genre', true);
 
 	?>
-	<li class="media media-movie-clickable film-id-<?php echo $film->ID;?> source-id-<?php echo $source_id;?>">
+	<li class="media media-movie-clickable film-id-<?php echo $film->ID;?> source-id-<?php echo $source_id;?> film-item-<?php echo $i;?>">
 		<div class="media-left media-middle">
 			<a href="<?php the_permalink();?>" itemprop="url"> <img class="media-object" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" itemprop="image" width="92"> </a>
 		</div>
