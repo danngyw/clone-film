@@ -34,8 +34,8 @@
 
 	    <?php
 		do_action('wp_footer');
-		global $post;
-		$film_id = $post->ID;
+		// global $post;
+		// $film_id = $post->ID;
 
 		// $actor_string 	= get_post_meta($film_id,'movie_actors', true);
 		// $tags 	= explode(",", $actor_string);
