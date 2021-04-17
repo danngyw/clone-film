@@ -101,7 +101,7 @@ function Crawl_Overview_Info(){
 				</tr>
 
 				<tr>
-					<th scope="row"><label for="mailserver_url">Số Film Chưa update substitle:</label></th>
+					<th scope="row"><label for="mailserver_url">Số Film Chưa update subtitle:</label></th>
 					<td><?php echo $film->post_count;?></td>
 				</tr>
 				<tr>
@@ -244,7 +244,7 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 
 	$list = $document->find('.table-responsive .other-subs');
 	$count = 0;
-
+	$lang_ids = array();
 	foreach($list->find('tr') as $key=> $tr) { // tr = element type
 		if( $key == 0){
 			continue;
@@ -288,8 +288,26 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 			import_subtitle_film($args, $film_id);
 			$count_new++;
 
+			$tag = term_exists( $sub_language, 'language' );
+
+			if ( $tag !== 0 && $tag !== null ) {
+				$lang_ids[] = (int) $tag['term_id'];
+			} else {
+				$tag 	= wp_insert_term($sub_language,'language', array('description' => 'Film Language '.$sub_language)); // insert languages
+				if( $tag && ! is_wp_error($tag)){
+					$lang_ids[] = (int)  $tag['term_id'];
+				} else {
+					crawl_log("Add Film Language Fail. Language : ".$sub_language);
+				}
+			}
+
+
 		}
 	}
+	if( $lang_ids ){
+		wp_add_object_terms( $film_id, $lang_ids, 'language' );
+	}
+	update_post_meta($film_id,'number_subtitles', $count_new);
 	update_post_meta($film_id,'is_full_updated','full');
 	return $count_new;
 }

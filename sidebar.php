@@ -5,7 +5,7 @@
 
 			$args = array(
 			    'post_type'  => 'film',
-			    'meta_key'   => 'number_substitle',
+			    'meta_key'   => 'number_subtitles',
 			    //'orderby'    => 'meta_value_num',
 			    'orderby' 	 =>' meta_value_num date',
 			    'order'      => 'DESC',
@@ -20,7 +20,7 @@
 					$year_release  	= get_post_meta($film_id,'year_release', true);
 					$movie_genre 	= get_post_meta($film_id,'movie_genre', true);
 					$thumbnail_url 	= get_the_post_thumbnail_url($film_id);
-					$number_substitle = get_post_meta($film_id,'number_substitle', true);
+					$number_subtitles = get_post_meta($film_id,'number_subtitles', true);
 					 ?>
 					<li class="media media-movie-clickable mmc-tiny">
 						<div class="media-left media-middle"> <a href="<?php the_permalink();?>" itemprop="url"> <img class="media-object" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" height="42" itemprop="image"> </a> </div>

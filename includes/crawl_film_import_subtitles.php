@@ -41,7 +41,7 @@ if( $query->have_posts() ){
 	    $movie_content  = $movie_desc->text();
 
 	    $list = $document->find('.table-responsive .other-subs');
-		$count = (int) get_post_meta($film_id,'number_substitle', true);
+		$count = (int) get_post_meta($film_id,'number_subtitles', true);
 		$lang_ids = array();
 		foreach($list->find('tr') as $key=> $tr) { // tr = element type
 			if( $key == 0){
@@ -123,7 +123,7 @@ if( $query->have_posts() ){
 			}
 		}
 
-		update_post_meta($film_id,'number_substitle', $count);
+		update_post_meta($film_id,'number_subtitles', $count);
 		update_post_meta($film_id, 'is_full_updated','full');
 	}
 	// sleep(9);

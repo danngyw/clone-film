@@ -34,6 +34,36 @@
 
 	    <?php
 		do_action('wp_footer');
+		global $post;
+		$film_id = $post->ID;
+
+		// $actor_string 	= get_post_meta($film_id,'movie_actors', true);
+		// $tags 	= explode(",", $actor_string);
+
+		// $tag_actors = array();
+		// if( $tags && count($tags) > 0 ){
+		// 	foreach ($tags as $key => $actor) {
+		// 		if($actor){
+		// 			$tag = term_exists( $actor, 'post_tag' );
+
+		// 			if ( $tag !== 0 && $tag !== null ) {
+		// 				$tag_actors[] = (int) $tag['term_id'];
+		// 			} else {
+		// 				$tag 	= wp_insert_term($actor,'post_tag', array('description' => 'Tag of actor '.$actor));
+		// 				if( $tag && ! is_wp_error($tag)){
+		// 					$tag_actors[] = (int)  $tag['term_id'];
+		// 				} else {
+		// 					crawl_log("Add actor fail. Name Actor: ".$actor);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
+		// if( $tag_actors ){
+		// 	wp_set_object_terms( $film_id, $tag_actors, 'post_tag' );
+		// }
+
+
 
 		?>
 	</body>
