@@ -64,8 +64,11 @@ function update_filmd_detail( $film_id, $html){
 			}
 		}
 
+		// if( $tag_director ){
+		// 	wp_set_post_terms( $film_id, $tag_director, 'post_tag' );
+		// }
 		if( $tag_director ){
-			wp_set_post_terms( $film_id, $tag_director, 'post_tag' );
+			// wp_set_object_terms( $film_id, $tag_director, 'post_tag' );
 		}
 	}
 
