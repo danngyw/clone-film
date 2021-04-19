@@ -15,11 +15,11 @@ function import_film($args){
 	$args['post_type'] = 'film';
 	$args['post_status'] = 'publish';
 	$source_id  =  $args['film_source_id'];
-	$exist  	= is_film_imported($source_id);
-
-	if( $exist ){
-		return false;
-	}
+	//$exist  	= is_film_imported($source_id);
+	$exist = 0;
+	// if( $exist ){
+	// 	// return false;
+	// }
 
 	$film_id = wp_insert_post($args);
 	if( ! is_wp_error($film_id) ){

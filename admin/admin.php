@@ -82,6 +82,7 @@ function Crawl_Overview_Info(){
 	);
 	//$film 	= new WP_Query($args);
 
+
 	$file_log 	= WP_CONTENT_DIR.'/log.css';
 	$link_html 	= false;
 	if( file_exists($file_log) ){
