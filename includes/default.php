@@ -3,9 +3,9 @@
 function crawl_log($input, $file_store = ''){
 	$file_store = WP_CONTENT_DIR.'/log.css';
 	if( is_array( $input ) || is_object( $input ) ){
-        error_log( date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ). ': '. print_r($input, TRUE), 3, $file_store );
+        error_log( date( 'Y/m/d H:i:s', current_time( 'timestamp', 0 ) ). ': '. print_r($input, TRUE), 3, $file_store );
     } else {
-        error_log( date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) ). ': '. $input . "\n" , 3, $file_store);
+        error_log( date( 'Y/m/d H:i:s', current_time( 'timestamp', 0 ) ). ': '. $input . "\n" , 3, $file_store);
     }
 }
 
@@ -15,15 +15,15 @@ function import_film($args){
 	$args['post_type'] = 'film';
 	$args['post_status'] = 'publish';
 	$source_id  =  $args['film_source_id'];
-	//$exist  	= is_film_imported($source_id);
-	$exist = 0;
-	// if( $exist ){
-	// 	// return false;
-	// }
+	$exist  	= is_film_imported($source_id);
+
+	if( $exist ){
+		return false;
+	}
 
 	$film_id = wp_insert_post($args);
 	if( ! is_wp_error($film_id) ){
-		update_post_meta($film_id,FILM_SOURCE_ID, $args[FILM_SOURCE_ID]);
+		update_post_meta($film_id,'film_source_id', $source_id);
 		update_post_meta($film_id,'year_release', $args['year_release']);
 		update_post_meta($film_id,'length_time', $args['length_time']);
 		update_post_meta($film_id,'imdb_score', $args['imdb_score']);
