@@ -18,7 +18,6 @@ function import_film($args){
 
 	$film_id = wp_insert_post($args);
 	if( ! is_wp_error($film_id) ){
-		crawl_log($film_id.'::'.$source_id);
 		wa_add_film_track($film_id, $source_id);
 
 		update_post_meta($film_id,'film_source_id', $source_id);
