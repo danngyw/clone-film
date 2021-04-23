@@ -12,6 +12,23 @@ require_once('includes/default.php');
 require_once('includes/html.php');
 require_once('debug.php');
 
+function is_film_imported_v2($source_id){
+    global $wpdb;
+    $sql = "SELECT track.film_id
+                FROM {$wpdb->base_prefix}imported_track AS track
+                    WHERE track.source_id = '".$source_id."'
+                        LIMIT 1";
+
+    return  $wpdb->get_row($sql);
+}
+function wa_add_film_track($film_id, $source_id){
+    global $wpdb;
+    $sql = "INSERT INTO `{$wpdb->base_prefix}imported_track`
+          (`ID`,`film_id`,`source_id`)
+   values (NULL, $film_id, $source_id)";
+
+    $wpdb->query($sql);
+}
 function is_film_imported($source_id){
     global $wpdb;
     $sql = "SELECT pm.post_id
@@ -45,10 +62,10 @@ function crawl_include_files(){
         }
     }
     require_once ("includes/update_fillm_detail.php");
+    require_once ("custom_db.php");
 
 }
 add_action('init','crawl_include_files', 99);
-
 
 
 function sendSubtileRequest( $data ) {

@@ -30,7 +30,7 @@ for ($page = $oldest; $page >= 0; $page--) {
         if( empty($source_id ) )
             continue;
 
-        $exist  = is_film_imported($source_id);
+        $exist  = is_film_imported_v2($source_id);
         if( !$exist ){
 
             $title = $li->find('h3');
@@ -76,7 +76,7 @@ for ($page = $oldest; $page >= 0; $page--) {
 
     } // end for find li
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
-    $crawl_log ="Crawled page ".$page" and Imported {$count} Films.";
+    $crawl_log ="Crawled page ".$page." and Imported {$count} Films.";
     crawl_log($crawl_log);
     $html = NULL;
     $list = NULL;

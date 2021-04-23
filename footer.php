@@ -64,6 +64,47 @@
 		// }
 
 
+		// $source_id =1378378;
+	    //$t = is_film_imported($source_id);
+
+
+		// if($t){
+		// 	echo ' Film da imported';
+		// } else {
+		// 	echo 'Film chua import';
+		// }
+	 //   	global $wpdb;
+		// $sql = "SELECT  count(*) from $wpdb->postmeta";
+		// $result = $wpdb->get_var($sql);
+		// var_dump($result);
+		// $sql = "SELECT  count(*) from $wpdb->posts";
+		// $result = $wpdb->get_var($sql);
+		// var_dump($result);
+		// $sql = "SELECT pm.post_id, pm.meta_value FROM $wpdb->postmeta pm WHERE pm.meta_key = 'film_source_id' ";
+
+		// $results = $wpdb->get_results($sql);
+		// $t = count($results);
+
+		// var_dump($t);
+		// $sql_track = "SELECT count(*) FROM {$wpdb->base_prefix}imported_track ";
+		// $track = $wpdb->get_var($sql_track);
+		// var_dump($track);
+		// foreach ($results as $key => $record) {
+
+		// 	//var_dump($record);
+
+		// 	// echo 'Film_id:'.$record->post_id;
+		// 	// echo 'Source ID:'.$record->meta_value;
+
+		// 	$source_id = $record->meta_value;
+		// 	$imported = is_film_imported_v2($source_id);
+		// 	if(  ! $imported ){
+		// 		$film_id 	= (int) $record->post_id;
+		// 		$source_id 	= (int) $record->meta_value;
+		// 		// wa_add_film_track($film_id, $source_id);
+		// 	}
+		// }
+
 
 		?>
 	</body>

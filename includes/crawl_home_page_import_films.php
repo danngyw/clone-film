@@ -20,7 +20,7 @@ foreach($list->find('li') as $li) {
     if( empty($source_id ) )
         continue;
 
-    $exist  = is_film_imported($source_id);
+    $exist  = is_film_imported_v2($source_id);
     if( !$exist ){
 
         $title = $li->find('h3');
