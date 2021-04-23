@@ -27,6 +27,10 @@ if( $query->have_posts() ){
 		$film_source_id = get_post_meta($film_id,'film_source_id', true);
 		$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
 
+		$urlOnline = checkURlOnline($film_url);
+		if( ! $urlOnline){
+			continue;
+		}
 
 		$html 			= file_get_contents($film_url);
 		$document 		= new Document($html);

@@ -1,5 +1,13 @@
 <?php
 define('FILM_SOURCE_ID','film_source_id');
+function checkURlOnline($url) {
+    $headers = get_headers($url);
+    $code = substr($headers[0], 9, 3);
+    if ($code == 200) {
+        return true;
+    }
+    return false;
+}
 
 
 require_once('includes/init.php');
