@@ -33,7 +33,8 @@ function wa_add_film_track($film_id, $source_id){
     global $wpdb;
     $sql = "INSERT INTO `{$wpdb->base_prefix}imported_track`
           (`ID`,`film_id`,`source_id`)
-   values (NULL, $film_id, $source_id)";
+   values (NULL, $film_id, '$source_id')";
+
 
     $wpdb->query($sql);
 }

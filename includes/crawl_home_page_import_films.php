@@ -17,8 +17,9 @@ foreach($list->find('li') as $li) {
     $fiml_slug = $link->getAttribute("href");
     $id = explode("/movie-imdb/tt", $fiml_slug);
     $source_id = $id[1];
-    if( empty($source_id ) )
+    if( empty($source_id ) ){
         continue;
+    }
 
     $exist  = is_film_imported_v2($source_id);
     if( !$exist ){
