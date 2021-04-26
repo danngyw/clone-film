@@ -41,9 +41,13 @@
 		// $remove_track = "DELETE FROM `{$wpdb->base_prefix}imported_track`";
 		// $wpdb->query($remove_track);
 
-		// $sql = "SELECT  count(*) from `{$wpdb->base_prefix}imported_track`";
-		// $result = $wpdb->get_var($sql);
-		// var_dump($result);
+		// $sql = "SELECT *  from `{$wpdb->base_prefix}imported_track`";
+		// $track = $wpdb->get_results($sql);
+		// foreach ($track as $key => $record) {
+		// 	var_dump($record);
+		// 	echo '<br />';
+		// }
+
 
 
 		// global $post;
@@ -103,13 +107,14 @@
 		// var_dump($track);
 		foreach ($results as $key => $record) {
 
-
+			//var_dump($record);
+			//echo '<br />';
 			$source_id = $record->meta_value;
 			$imported = is_film_imported_v2($source_id);
 			if(  ! $imported ){
 				$film_id 	= (int) $record->post_id;
 				$source_id 	= $record->meta_value;
-				wa_add_film_track($film_id, $source_id);
+				// wa_add_film_track($film_id, $source_id);
 			}
 		}
 
