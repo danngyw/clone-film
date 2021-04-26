@@ -96,27 +96,22 @@
 		// $sql = "SELECT  count(*) from $wpdb->posts";
 		// $result = $wpdb->get_var($sql);
 		// var_dump($result);
-		$sql = "SELECT pm.post_id, pm.meta_value FROM $wpdb->postmeta pm WHERE pm.meta_key = 'film_source_id' ";
+		// $sql = "SELECT pm.post_id, pm.meta_value FROM $wpdb->postmeta pm WHERE pm.meta_key = 'film_source_id' ";
 
-		$results = $wpdb->get_results($sql);
+		// $results = $wpdb->get_results($sql);
 
+		// foreach ($results as $key => $record) {
 
-		// var_dump($t);
-		// $sql_track = "SELECT count(*) FROM {$wpdb->base_prefix}imported_track ";
-		// $track = $wpdb->get_var($sql_track);
-		// var_dump($track);
-		foreach ($results as $key => $record) {
-
-			//var_dump($record);
-			//echo '<br />';
-			$source_id = $record->meta_value;
-			$imported = is_film_imported_v2($source_id);
-			if(  ! $imported ){
-				$film_id 	= (int) $record->post_id;
-				$source_id 	= $record->meta_value;
-				// wa_add_film_track($film_id, $source_id);
-			}
-		}
+		// 	//var_dump($record);
+		// 	//echo '<br />';
+		// 	$source_id = $record->meta_value;
+		// 	$imported = is_film_imported_v2($source_id);
+		// 	if(  ! $imported ){
+		// 		$film_id 	= (int) $record->post_id;
+		// 		$source_id 	= $record->meta_value;
+		// 		// wa_add_film_track($film_id, $source_id);
+		// 	}
+		// }
 
 
 		?>
