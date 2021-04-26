@@ -12,10 +12,10 @@ $sql = "CREATE TABLE `{$wpdb->base_prefix}imported_track` (
 	) $charset_collate;";
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-dbDelta($sql);
+//dbDelta($sql);
 
-$table = $wpdb->prefix . 'imported_track';
-$sql = "ALTER TABLE `{$table}`
-        MODIFY COLUMN `source_id` VARCHAR(20) NOT NULL;";
+// $table = $wpdb->prefix . 'imported_track';
+// $sql = "ALTER TABLE `{$table}`
+//         MODIFY COLUMN `source_id` VARCHAR(20) NOT NULL;";
 
-$query_result = $wpdb->query( $sql );
+// $query_result = $wpdb->query( $sql );
