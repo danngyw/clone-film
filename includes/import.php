@@ -68,8 +68,9 @@ function update_filmd_detail( $film_id, $html){
 			wp_add_object_terms( $film_id, $tag_director, 'post_tag' );
 		}
 	}
-
-	import_film_thumbnail($thumbnail_url, $film_id);
+	if( !has_post_thumbnail($film_id) ) {
+		import_film_thumbnail($thumbnail_url, $film_id);
+	}
 }
 
 
@@ -100,15 +101,8 @@ function import_film_thumbnail($url, $film_id = 0){
 	    );
 
 	    $overrides = array(
-	        // Tells WordPress to not look for the POST form
-	        // fields that would normally be present as
-	        // we downloaded the file from a remote server, so there
-	        // will be no form fields
-	        // Default is true
 	        'test_form' => false,
 
-	        // Setting this to false lets WordPress allow empty files, not recommended
-	        // Default is true
 	        'test_size' => true,
 	    );
 
