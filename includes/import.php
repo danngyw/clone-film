@@ -68,7 +68,7 @@ function update_filmd_detail( $film_id, $html){
 			wp_add_object_terms( $film_id, $tag_director, 'post_tag' );
 		}
 	}
-	if( !has_post_thumbnail($film_id) ) {
+	if( ! has_post_thumbnail($film_id) ) {
 		import_film_thumbnail($thumbnail_url, $film_id);
 	}
 }
