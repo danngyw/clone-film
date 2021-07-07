@@ -59,7 +59,17 @@ function crawl_insert_subtitle($args, $film_id){
    values (NULL, $film_id,$source_id,  '$sub_title', '$sub_zip_url', '$language', '$rating')";
 
     $wpdb->query($sql);
-    return $wpdb->insert_id;
+
+    if( $wpdb->insert_id ){
+        crawl_log('crawl_insert_subtitle  Success:');
+        crawl_log($wpdb->insert_id);
+        return $wpdb->insert_id;
+    }
+    crawl_log('crawl_insert_subtitle  Fail:');
+    crawl_log($wpdb->last_error);
+
+    return $wpdb->last_error;
+
 }
 function update_substile_zip($sub_id, $zip_url){
     global $wpdb;

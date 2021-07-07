@@ -31,7 +31,7 @@ if( $query->have_posts() ){
 		$urlOnline = checkURlOnline($film_url);
 		if( ! $urlOnline){
 			//crawl_log('url site NotOnline: '.$film_url);
-			continue;
+			//continue;
 		}
 
 		$opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
