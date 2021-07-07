@@ -54,7 +54,7 @@ function crawl_insert_subtitle($args, $film_id){
     $language   = $args['m_sub_language'];
     $sub_zip_url = "empty";
 
-    $sql = "INSERT INTO `{$wpdb->base_prefix}substitles`
+    $sql = "INSERT INTO `{$wpdb->base_prefix}subtitles`
           (`ID`,`film_id`,`source_id`, `sub_title`, `sub_zip_url`, `language`, `rating`)
    values (NULL, $film_id,$source_id,  '$sub_title', '$sub_zip_url', '$language', '$rating')";
 
@@ -64,7 +64,7 @@ function crawl_insert_subtitle($args, $film_id){
 function update_substile_zip($sub_id, $zip_url){
     global $wpdb;
 
-    $sql = "UPDATE  `{$wpdb->base_prefix}substitles`
+    $sql = "UPDATE  `{$wpdb->base_prefix}subtitles`
     SET sub_zip_url = '{$zip_url}'
     WHERE ID = $sub_id";
     $wpdb->query($sql);

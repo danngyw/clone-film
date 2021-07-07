@@ -38,8 +38,8 @@
 		global $wpdb;
 
 
-		// $remove_track = "DELETE FROM `{$wpdb->base_prefix}imported_track`";
-		// $wpdb->query($remove_track);
+		//$remove_track = "DELETE FROM $wpdb->posts WHERE post_type = 'subtitle'";
+		//$wpdb->query($remove_track);
 
 		// $sql = "SELECT *  from `{$wpdb->base_prefix}imported_track`";
 		// $track = $wpdb->get_results($sql);
