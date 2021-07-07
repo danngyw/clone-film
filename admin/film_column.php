@@ -31,13 +31,13 @@ function show_crawl_status($name) {
           	if($is_full_update == 'full'){
           		echo "Yes - ";
               $sql = "SELECT count(ID) as total
-              FROM `{$wpdb->base_prefix}substitles`
+              FROM `{$wpdb->base_prefix}subtitles`
               WHERE film_id = {$film_id} ";
 
               $result = (int) $wpdb->get_var($sql );
 
 
-             if( $result ) echo $result.'(subtitles)';
+              echo $result.'(subtitles)';
 
               // update_post_meta($post->ID,'number_subtitles', $result[0]->total);
 
