@@ -24,7 +24,7 @@ $args = array(
 $query  = new WP_Query($args);
 $trailer_html 	= get_post_meta($film_id,'trailer_html', true);
 
-$sql = "SELECT * FROM `{$wpdb->base_prefix}substitles` WHERE film_id = $film_id";
+$sql = "SELECT * FROM `{$wpdb->base_prefix}subtitles` WHERE film_id = $film_id";
 
 $results = $wpdb->get_results($sql);
 ?>
