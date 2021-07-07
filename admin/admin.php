@@ -315,8 +315,9 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 			continue;
 		}
 		$sub_source_id = $tr->__get('data-id');
-
+		var_dump($sub_source_id);
 		$imported = is_subtitle_imported_advanced($sub_source_id);
+		var_dump($imported);
 
 		if( !$imported ){
 			$sub_title = $tr->find('td',2);
