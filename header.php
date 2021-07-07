@@ -10,7 +10,7 @@
 		wp_head(); ?>
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="<?php echo home_url();?>" />
-		<meta property="og:image" content="<?php echo get_stylesheet_directory_uri();?>/images/screenshots/screenshot01.jpg" />
+		<meta property="og:image" content="https://www.roty.tv/wp-content/uploads/2021/05/screenshot01.jpg" />
 
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,800italic,800' rel='stylesheet' type='text/css'>
 		<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
@@ -62,8 +62,18 @@
 			    })(jQuery);
 		    </script>
 		<?php } ?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTVWT56Q5C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-	</head>
+  gtag('config', 'G-DTVWT56Q5C');
+</script>
+	
+<script data-ad-client="ca-pub-9506973153572738" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
 	<body <?php body_class(); ?>>
 		<?php get_template_part('nav','header');?>
 		<?php get_search_form();?>

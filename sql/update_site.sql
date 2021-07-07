@@ -9,10 +9,10 @@ $home = get_option('home', true);
 echo 'New Home';
 echo $home;
 
-$old_url = "https://slav.tv";
-$new_url = "http://slav.tv";
+$old_url = "https://www.roty.tv";
+$new_url = "http://www.roty.tv";
 
-$sql = "UPDATE wp_options SET option_value = replace(option_value, 'https://slav.tv', 'http://slav.tv') WHERE option_name = 'home' OR option_name = 'siteurl'";
+$sql = "UPDATE wp_options SET option_value = replace(option_value, 'https://www.roty.tv', 'http://www.roty.tv') WHERE option_name = 'home' OR option_name = 'siteurl'";
 $wpdb->query($sql);
 
 // $sql = "UPDATE wp_options SET option_value = replace(option_value, 'oldurl.com', 'newurl.com') WHERE option_name = 'home' OR option_name = 'siteurl'"

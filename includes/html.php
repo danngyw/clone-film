@@ -30,6 +30,7 @@ function render_latest_item($film){
 }
 function get_recent_films(){
 
+
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	if( is_home() || is_front_page() ){
 		$paged = (get_query_var('page')) ? get_query_var('page') : 1;
@@ -78,7 +79,8 @@ function get_recent_films(){
 	// echo '<pre>';
 	// var_dump($args);
 	// echo '</pre>';
-
+	
+	
 	$query = new WP_Query($args);
 	if($query->have_posts()){
 		echo '<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">';

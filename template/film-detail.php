@@ -1,7 +1,6 @@
 <?php
 global $post;
 $film 			= $post;
-
 $film_id 		= $post_id = $post->ID;
 $thumbnail_url 	= get_the_post_thumbnail_url($film->ID);
 $year_release  	= get_post_meta($film->ID,'year_release', true);
@@ -51,7 +50,7 @@ $company 		= get_post_meta($film_id, 'company', true);
 $writer 		= get_post_meta($film_id, 'writer', true);
 $website 		= get_post_meta($film_id, 'website', true);
 ?>
-<div class="row row-film-detail">
+<div class="row">
 	<div class="col-xs-12 text-center">
 	<h1 class="movie-main-title"><?php the_title();?> (<?php echo $year_release;?>)</h1>
 	<div class="movie-genre">
@@ -97,34 +96,59 @@ $website 		= get_post_meta($film_id, 'website', true);
 	<div class="movie-desc"><?php the_content();?></div>
 	</div>
 </div>
-
-<div class="row row-metas-film">
+<div class="row">
 	<div class="col-md-3 col-sm-6 text-center"></div>
 	<div class="col-md-6 text-center"></div>
-	<div class="clearfix"></div>
+	<div class="row row-section">
+		<div class="col-md-3 col-sm-6">
+			<ul class="list-group text-left">
+				<li class="list-group-item"><span class="pull-right"> <?php if($company) echo $company; else echo 'N/A';?> </span> <span class="text-muted text-uppercase">Company:</span></li>
+				<li class="list-group-item"><span class="pull-right">  <?php if($rated) echo $rated; else echo 'NR';?></span> <span class="text-muted text-uppercase">Rated:</span></li>
+				<li class="list-group-item"> <span class="pull-right"><?php echo $imdb_link;?></span> <span class="text-muted text-uppercase">IMDB:</span></li>
+			</ul>
+		</div>
+		<div class="col-md-3 col-sm-6">
+			<ul class="list-group text-left">
+				<li class="list-group-item"><span class="pull-right"> <?php if($released) echo $released; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Released:</span></li>
+				<li class="list-group-item"><span class="pull-right">
+					<?php
+						function convert_name($str) {
+		$str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
+		$str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
+		$str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
+		$str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
+		$str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
+		$str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
+		$str = preg_replace("/(đ)/", 'd', $str);
+		$str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
+		$str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
+		$str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
+		$str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
+		$str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
+		$str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
+		$str = preg_replace("/(Đ)/", 'D', $str);
+		$str = preg_replace("/(\“|\”|\?|\‘|\’|\,|\!|\%||\:|\&|\,|\%|\;|\.|#8217)/", '', $str);
+		$str = preg_replace("/( )/", '-', $str);
+		return $str;
+	}		
 
-	<div class="col-md-3 col-sm-6">
-		<ul class="list-group text-left">
-			<li class="list-group-item"><span class="pull-right"> <?php if($company) echo $company; else echo 'N/A';?> </span> <span class="text-muted text-uppercase">Company:</span></li>
-			<li class="list-group-item"><span class="pull-right">  <?php if($rated) echo $rated; else echo 'NR';?></span> <span class="text-muted text-uppercase">Rated:</span></li>
-			<li class="list-group-item"> <span class="pull-right"><?php echo $imdb_link;?></span> <span class="text-muted text-uppercase">IMDB:</span></li>
-		</ul>
+			
+				
+echo '<a target="_blank" rel="nofollow" href="https://www.amazon.com/gp/search?ie=UTF8&tag=roty09-20&linkCode=ur2&linkId=3539f1ef63605267668f709586174a03&camp=1789&creative=9325&index=instant-video&keywords='.esc_html( get_the_title()).'"><img src="/wp-content/themes/filmsV2/images/buy_amazon.gif" alt="buy amazon" title="buy amazon" /></a>';
+					?>
+					
+					</span> <span class="text-muted text-uppercase">Subscribe and Watch:</span></li>
+				<li class="list-group-item"><span class="pull-right"><?php if($box_office) echo $box_office; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Box office:</span></li>
+			</ul>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<ul class="list-group text-left">
+				<li class="list-group-item"><span class="pull-right">  <?php if($writer) echo $writer; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Writer:</span></li>
+				<li class="list-group-item"><span class="pull-right"><?php if($director) echo $director; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Director:</span></li>
+				<li class="list-group-item"><span class="pull-right"><?php if($website) echo $website; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Website:</span></li>
+			</ul>
+		</div>
 	</div>
-	<div class="col-md-3 col-sm-6">
-		<ul class="list-group text-left">
-			<li class="list-group-item"><span class="pull-right"> <?php if($released) echo $released; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Released:</span></li>
-			<li class="list-group-item"><span class="pull-right"><?php if($dvd_release) echo $dvd_release; else echo 'N/A';?></span> <span class="text-muted text-uppercase">DVD Release:</span></li>
-			<li class="list-group-item"><span class="pull-right"><?php if($box_office) echo $box_office; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Box office:</span></li>
-		</ul>
-	</div>
-	<div class="col-md-6 col-sm-12">
-		<ul class="list-group text-left">
-			<li class="list-group-item"><span class="pull-right">  <?php if($writer) echo $writer; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Writer:</span></li>
-			<li class="list-group-item"><span class="pull-right"><?php if($director) echo $director; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Director:</span></li>
-			<li class="list-group-item"><span class="pull-right"><?php if($website) echo $website; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Website:</span></li>
-		</ul>
-	</div>
-
 	<div class="clearfix"></div>
 	<div class="col-md-4" style="margin:20px auto;"></div>
 	<div class="col-md-4 col-sm-12 col-xs-12 text-center" style="margin:20px auto;">

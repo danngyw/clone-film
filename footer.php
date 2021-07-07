@@ -1,8 +1,8 @@
-		<footer class="footer">
+		<footer class="footer"><br>
 			<div class="container text-center">
 				<div class="row">
-					<div class="col-xs-12"><a href="<?php echo home_url();?>/privacy">privacy</a> | <a href="<?php echo home_url();?>/legal-information">legal</a> | <a href="<?php echo home_url();?>/contact">contact</a></div>
-					<div class="col-xs-12 text-muted">All images and subtitles are copyrighted to their respectful owners unless stated otherwise. This website is not associated with any external links or websites. ©yifysubtitles. </div>
+					<div class="col-xs-12"><a href="/about" rel="nofollow">ABOUT</a> | <a href="/privacy">PRIVACY</a> | <a href="/legal">LEGAL</a> | <a href="/dmca">DMCA</a> | <a href="/contact">CONTACT</a></div>
+					<div class="col-xs-12 text-muted">All images and subtitles are copyrighted to their respectful owners unless stated otherwise. This website is not associated with any external links or websites. ©Roty. </div>
 				</div>
 			</div>
 		</footer>
@@ -47,8 +47,13 @@
 		// 	var_dump($record);
 		// 	echo '<br />';
 		// }
+		// $imported = $wpdb->get_var("SELECT COUNT(*) FROM `{$wpdb->base_prefix}imported_track`");
+		// var_dump($imported);
 
-
+		// $sql = "SELECT count(*) FROM $wpdb->postmeta pm WHERE pm.meta_key = 'film_source_id' ";
+		// $real = $wpdb->get_var($sql);
+		// var_dump('Real Meta:');
+		// var_dump($real);
 
 		// global $post;
 		// $film_id = $post->ID;

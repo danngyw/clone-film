@@ -17,13 +17,7 @@ for ($page = $oldest; $page >= 0; $page--) {
 
     $html = NULL;
 
-    //$html = new Document(file_get_contents($site_url));
-
-    $opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
-    //Basically adding headers to the request
-    $context = stream_context_create($opts);
-
-    $html = new Document(file_get_contents($site_url,false,$context));
+    $html = new Document(file_get_contents($site_url));
 
     $list = $html->find($ul_css);
     $count = 0;
@@ -33,10 +27,10 @@ for ($page = $oldest; $page >= 0; $page--) {
         $fiml_slug = $link->getAttribute("href");
         $id = explode("/movie-imdb/tt", $fiml_slug);
         $source_id = $id[1];
-        if( empty($source_id ) )
+        if( empty($source_id ))
             continue;
 
-        $exist  = is_film_imported_v2($source_id);
+        $exist  = is_film_imported($source_id);
         if( !$exist ){
 
             $title = $li->find('h3');
@@ -63,7 +57,7 @@ for ($page = $oldest; $page >= 0; $page--) {
             $film_excerpt = $film_desc->text();
             $args['post_excerpt']         = $film_excerpt;
             $args['source_thumbnail_url'] = $thumbnail_url;
-            $args['film_source_id']        = $source_id;
+            $args[FILM_SOURCE_ID]         = $source_id;
             $args['post_title']           = $title->text();
             $args['year_release']         = $year;
             $args['length_time']          = $length;
@@ -82,7 +76,6 @@ for ($page = $oldest; $page >= 0; $page--) {
 
     } // end for find li
     $crawl_log.="Imported {$count} Films. URL Crawl:".$site_url;
-    $crawl_log ="Crawled page ".$page." and Imported {$count} Films.";
     crawl_log($crawl_log);
     $html = NULL;
     $list = NULL;

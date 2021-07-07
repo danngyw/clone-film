@@ -13,6 +13,7 @@ if($paged > 1){
 	$css_class = "col-sm-12";
 } ?>
 <div class="container">
+<?php the_title( '<h1>', '</h1>' ); ?>
 	<?php
 	if( is_home() || is_front_page() ){ ?>
 		<?php get_template_part('template/latest','movies');?>
@@ -26,8 +27,7 @@ if($paged > 1){
 	<div class="row">
 		<div class="<?php echo $css_class;?>">
 			<?php if( is_home() || is_front_page() ){?>
-				<h4 class="section-title">Recently added movies</h4>
-				<br />
+				<h2 class="section-title" style="font-size: 18px;">Recently added movie Subtitles</h2>
 			<?php } ?>
 		 	<?php  get_recent_films();?>
 		</div>

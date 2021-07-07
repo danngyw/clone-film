@@ -13,6 +13,9 @@ if($paged > 1){
 } ?>
 <div class="container">
 	<?php
+			echo '<h1>';
+			echo single_cat_title();
+			echo '</h1>';
 	if( is_home() || is_front_page() ){ ?>
 		<?php get_template_part('template/latest','movies');?>
 		<?php //get_template_part('template/test','flags');?>

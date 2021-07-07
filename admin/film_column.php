@@ -31,15 +31,15 @@ function show_crawl_status($name) {
           	if($is_full_update == 'full'){
           		echo "Yes - ";
               $sql = "SELECT count(ID) as total
-              FROM $wpdb->posts
-              WHERE post_parent = {$film_id} AND post_type = 'subtitle'";
+              FROM `{$wpdb->base_prefix}substitles`
+              WHERE film_id = {$film_id} ";
 
-              $result = $wpdb->get_results($sql, OBJECT );
-              if( $result ) echo $result[0]->total.'(subtitles)';
+              $result = (int) $wpdb->get_var($sql );
 
-              $number_subtitles = (int) get_post_meta($film_id,'number_subtitles', true);
 
-                update_post_meta($post->ID,'number_subtitles', $result[0]->total);
+             if( $result ) echo $result.'(subtitles)';
+
+              // update_post_meta($post->ID,'number_subtitles', $result[0]->total);
 
 
           	} else {

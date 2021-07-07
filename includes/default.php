@@ -80,13 +80,32 @@ function import_film($args){
  * check the substile imported or not.
 */
 
-function is_subtitle_imported_advanced($sub_source_id){
+function is_subtitle_imported_advanced_old($sub_source_id){
 	global $wpdb;
 	$sql = "SELECT p.ID
 	  		FROM $wpdb->posts as p
 				LEFT JOIN $wpdb->postmeta as pm ON pm.post_id = p.ID
 					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}' AND p.post_status ='publish'
 						LIMIT 1";
+
+  	return $wpdb->get_row($sql);
+}
+function is_subtitle_imported_advanced1($sub_source_id){
+	global $wpdb;
+	$sql = "SELECT p.ID
+	  		FROM $wpdb->posts as p
+				LEFT JOIN $wpdb->postmeta as pm ON pm.post_id = p.ID
+					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}' AND p.post_status ='publish'
+						LIMIT 1";
+
+  	return $wpdb->get_row($sql);
+}
+
+function is_subtitle_imported_advanced($sub_source_id){
+	global $wpdb;
+	$sql = "SELECT p.ID
+	  		FROM `{$wpdb->base_prefix}substitles`  as sub
+			WHERE sub.source_id = {$sub_source_id} LIMIT 1";
 
   	return $wpdb->get_row($sql);
 }
@@ -107,24 +126,16 @@ function is_subtitle_imported_simple($sub_source_id){
 }
 function import_subtitle_film($args, $film_id){
 
-	$args['post_type'] 		= 'subtitle';
-	$args['post_status'] 	= 'publish';
-	$args['post_parent']  	= $film_id;
 	$sub_source_id = $args['sub_source_id'];
 	$sub_id_exists = is_subtitle_imported_advanced($sub_source_id);
 	if($sub_id_exists){
 		return false;
 	}
 
-	$sub_id = wp_insert_post($args);
+	$sub_id = crawl_insert_subtitle($args, $film_id);
 
 	if( ! is_wp_error($sub_id) ){
 
-		update_post_meta( $sub_id,'subtitle_source_id', $args['sub_source_id']);
-		update_post_meta( $sub_id,'m_sub_language', $args['m_sub_language']);
-		update_post_meta( $sub_id,'m_sub_uploader', $args['m_sub_uploader']);
-		update_post_meta( $sub_id,'m_sub_slug', $args['m_sub_slug']);
-		update_post_meta( $sub_id, 'm_rating_score', $args['m_rating_score']);
 		$data = array(
 			'import'              => 'subtitle',
 	        'sub_id'              =>  $sub_id,
@@ -132,33 +143,10 @@ function import_subtitle_film($args, $film_id){
 			'source'              => home_url(),
 		);
 
-		// $language 	= $args['m_sub_language'];
-		// $language = '';
-		// if ( !empty($language) ){
-		// 	$list = array();
-		// 	$term = term_exists( $language, 'language' );
-		// 	if ( $term !== 0 && $term !== null ) {
-		// 		$list[] = (int) $term['term_id'];
-		// 	} else {
-		// 			$term 	= wp_insert_term($term, 'language', array('description' => 'Term of'.$language));
-		// 			if( $term && ! is_wp_error($term)){
-		// 				$list[] = (int)  $term['term_id'];
-		// 			} else{
-		// 			crawl_log("Set tax language for SUB fail. ".$language);
-		// 		}
-
-
-		// 	}
-
-		// }
-
 		try {
 	        $res   = sendSubtileRequest($data);
-
 	       	if( isset($res->url) && !empty($res->url) ){
-				update_post_meta( $sub_id,'sub_zip_url', $res->url);
-			} else {
-				update_post_meta($sub_id,'sub_zip_url','empty');
+				update_substile_zip($sub_id, $res->url);
 			}
 	    } catch (Exception $e) {
 

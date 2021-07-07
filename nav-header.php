@@ -2,7 +2,7 @@
 			<div class="container">
 				<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="<?php echo home_url();?>/"><h1><?php echo $title;?></h1>
+				<a class="navbar-brand" href="<?php echo home_url();?>/">
 					<?php
 
 					$url = get_stylesheet_directory_uri().'/images/misc/logo-small.png';
@@ -12,13 +12,23 @@
 						$url =  $image[0];
 					}
 					?>
-						<img src="<?php echo $url;?>" alt="<?php echo $title;?>">
+						<img src="<?php echo $url;?>" alt="yifysubtitles.top Subtitles - Subtitle Download | Subscene | Yify Subtitles | Opensubtitles | Yts Subtitles">
 					</a>
+						
 
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
+<?php wp_nav_menu( 
+  array( 
+      'theme_location' => 'header-menu', 
+      'container' => 'false', 
+      'menu_id' => 'header-menu', 
+      'menu_class' => 'menu'
+   ) 
+); ?>
 					<ul class="nav navbar-nav navbar-right">
-						<?php
+
+<?php
 
 						$show_link = get_option('show_menu','no');
 						if( $show_link == 'yes'){
@@ -39,6 +49,8 @@
 
 						<li><a href="<?php echo home_url();?>">Login</a></li>
 					</ul>
+
+
 				</div>
 
 			</div>

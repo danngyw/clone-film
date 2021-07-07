@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-12">
-		<h4 class="section-title text-center">Latest movies</h4>
+		<h2 class="section-title text-center" style="font-size: 18px;">Latest Subtitle Update</h2>
 		<br />
 
 		<div class="owl-carousel owl-theme owl-loaded owl-drag">

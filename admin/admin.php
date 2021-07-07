@@ -39,6 +39,15 @@ function crawl_overview_output(){
 	}
 }
 
+
+
+function list_option_number_films($number){
+
+	for( $i= 1 ; $i <= 10 ; $i++ ){ ?>
+		<option value="<?php echo $i;?>" <?php selected($i,$number);?> ><?php echo $i;?></option>
+		<?php
+	}
+}
 function Crawl_Overview_Info(){
 
 	$ajax_url = admin_url().'admin-ajax.php';
@@ -130,11 +139,34 @@ function Crawl_Overview_Info(){
 
 					</p>
 
+					<?php
+					$curl = extension_loaded('curl');
+					if( ! $curl){
+						echo "Please Enable Curl first.";
+					}
+					$curl_status = 'Disabled';
+					if(function_exists('curl_version')){
+						$info = curl_version();
+						$curl_status = $info["version"];
+					}
+
+					echo 'Curl Version:   '.$curl_status;
+					?>
 					</td>
 
 				</tr>
 
+				<?php
 
+				$number = get_option('number_film_craw_sub','5');
+
+				?>
+				<tr>
+					<th scope="row"><p><label for="mailserver_url">Number film import substitle:</label></p></th>
+					<td><select class="set-number-film-crawl">
+						<?php list_option_number_films($number);?>
+					</select></td>
+				</tr>
 				<tr>
 					<th scope="row"><p><label for="mailserver_url">Hiển thị link Source Site in menu:</label></p><span> Dễ dàng so sánh thông tin</span></th>
 					<td><select class="toggle-menu-link">
@@ -186,6 +218,22 @@ function Crawl_Overview_Info(){
 				        success: function(res){ console.log(res); },
 				    });
 				});
+
+				$(".set-number-film-crawl").change(function(event){
+				var _this = $(event.currentTarget);
+					var opt = _this.val();
+					$.ajax({
+				        emulateJSON: true,
+				        method :'post',
+				        url : '<?php echo $ajax_url;?>',
+				        data: {
+				        	action:'set_number_film_crawl',
+				        	number: opt,
+				        },
+				        beforeSend  : function(event){ console.log('Insert message'); },
+				        success: function(res){ console.log(res); },
+				    });
+				});
 				$(".del-log").click(function(event){
 					var answer = window.confirm("Are you sure?");
 					if( ! answer ){
@@ -216,6 +264,16 @@ function save_film_menu(){
 }
 
 add_action( 'wp_ajax_save_film_menu','save_film_menu' );
+function save_number_film_crawl(){
+	$opt = isset($_POST['number']) ? $_POST['number']:'5';
+	update_option('number_film_craw_sub',$opt);
+	wp_send_json(array('success'=>true,'msg'=>'Done'));
+}
+
+add_action( 'wp_ajax_set_number_film_crawl','save_number_film_crawl' );
+
+
+
 function film_delete_log_file(){
 	$file_log 	= WP_CONTENT_DIR.'/log.css';
 	$deleted = unlink($file_log);
@@ -232,7 +290,13 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 	$film_id 		= $p_film->ID;
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-	$html 			= file_get_contents($film_url);
+	//$html 			= file_get_contents($film_url);
+
+	$opts 		= array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
+    $context 	= stream_context_create($opts);
+    $html 		= file_get_contents($film_url, false, $context);
+
+
 	$document 		= new Document($html);
     $node = $document->getDocument()->documentElement;
     $element = $document->find('iframe');

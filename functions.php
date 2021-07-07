@@ -10,6 +10,12 @@ function checkURlOnline($url) {
 }
 
 
+function register_my_menu() {
+    register_nav_menu('header-menu',__( 'Main Menu New' ));
+}
+add_action( 'init', 'register_my_menu' );
+
+
 require_once('includes/init.php');
 
 
@@ -37,6 +43,32 @@ function wa_add_film_track($film_id, $source_id){
 
 
     $wpdb->query($sql);
+}
+
+function crawl_insert_subtitle($args, $film_id){
+    global $wpdb;
+
+    $source_id  = $args['sub_source_id'];
+    $sub_title  = $args['post_title'];
+    $rating     = $args['m_rating_score'];
+    $language   = $args['m_sub_language'];
+    $sub_zip_url = "empty";
+
+    $sql = "INSERT INTO `{$wpdb->base_prefix}substitles`
+          (`ID`,`film_id`,`source_id`, `sub_title`, `sub_zip_url`, `language`, `rating`)
+   values (NULL, $film_id,$source_id,  '$sub_title', '$sub_zip_url', '$language', '$rating')";
+
+    $wpdb->query($sql);
+    return $wpdb->insert_id;
+}
+function update_substile_zip($sub_id, $zip_url){
+    global $wpdb;
+
+    $sql = "UPDATE  `{$wpdb->base_prefix}substitles`
+    SET sub_zip_url = '{$zip_url}'
+    WHERE ID = $sub_id";
+    $wpdb->query($sql);
+
 }
 function is_film_imported($source_id){
     global $wpdb;
@@ -78,7 +110,7 @@ add_action('init','crawl_include_files', 99);
 
 
 function sendSubtileRequest( $data ) {
-	$url = "https://data.slav.tv/";
+	$url = "https://data.roty.tv/";
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
@@ -211,3 +243,19 @@ function crawl_insert_attachment_from_url($url, $film_id = 0) {
     return $attach_id;
 
 }
+
+function sample_admin_notice__success() {
+    $check = extension_loaded('curl');
+    //phpinfo();
+    if ( !function_exists("curl_init") ){ ?>
+    <div class="notice notice-success is-dismissible">
+        <p>Please install CURL. extension=php_curl.dll</p>
+    </div>
+    <?php
+    }
+    if( !$check){
+        die('Please enable curl first.');
+    }
+}
+add_action( 'admin_notices', 'sample_admin_notice__success' );
+

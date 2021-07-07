@@ -2,7 +2,7 @@
 require_once TEMPLATEPATH."/vendor/autoload.php";
 use FastSimpleHTMLDom\Document;
 global $post;
-
+$number = (int) get_option('number_film_craw_sub','5');
 $args = array(
 	'post_type' => 'film',
 	'post_status' => 'publish',
@@ -12,9 +12,10 @@ $args = array(
             'value'   => 'notyet',
 		),
 	),
-    'posts_per_page' => 10,
+    'posts_per_page' => $number,
 
 );
+
 $query = new WP_Query($args);
 $loop = 1;
 
@@ -25,14 +26,20 @@ if( $query->have_posts() ){
 		$p_film 		= $post;
 		$film_id 		= $p_film->ID;
 		$film_source_id = get_post_meta($film_id,'film_source_id', true);
-		$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-
+		$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".urlencode($film_source_id);
+		$film_url 		= esc_url($film_url);
 		$urlOnline = checkURlOnline($film_url);
 		if( ! $urlOnline){
+			//crawl_log('url site NotOnline: '.$film_url);
 			continue;
 		}
 
-		$html 			= file_get_contents($film_url);
+		$opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
+		//Basically adding headers to the request
+		$context = stream_context_create($opts);
+		$html 	= file_get_contents($film_url,false,$context);
+		// end new code
+
 		$document 		= new Document($html);
 	    $node = $document->getDocument()->documentElement;
 	    $element = $document->find('iframe');
@@ -60,8 +67,7 @@ if( $query->have_posts() ){
 
 
 			if( $sub_id_exists ){
-				$text_log = "Skip -- sub sourceid imported in db. Sub Source ID: ";
-				//crawl_log($text_log.$sub_source_id);
+				crawl_log($text_log.$sub_source_id);
 			}
 
 			if(! $sub_id_exists ){
@@ -96,10 +102,8 @@ if( $query->have_posts() ){
 
 
 				import_subtitle_film($args, $film_id);
-				// $text = "DONE: sub_source_id ".$sub_source_id." has been imported successful.";
-				//crawl_log($text);
+				$count++;
 			}
-			$count++;
 			$tag = term_exists( $sub_language, 'language' );
 
 			if ( $tag !== 0 && $tag !== null ) {
@@ -118,13 +122,6 @@ if( $query->have_posts() ){
 			//$t = wp_set_object_terms( $film_id, $lang_ids, 'language', false );
 			// wp_add_object_terms();
 			$t = wp_add_object_terms( $film_id, $lang_ids, 'language' );
-			if( $t && !is_wp_error($t)){
-				// crawl_log("Set tax language  for film_id ".$film_id.". Success");
-				// crawl_log($lang_ids);
-			} else {
-				// crawl_log("Set tax language  for film_id ".$film_id.". Fail");
-				// crawl_log($lang_ids);
-			}
 		}
 
 		update_post_meta($film_id,'number_subtitles', $count);
@@ -132,14 +129,13 @@ if( $query->have_posts() ){
 	}
 	// sleep(9);
 } else{
-$loop = 0;
+	$loop = 0;
 }
 if( $loop ){
 
 	$url = home_url().'/?act=importsub';
 
 	if ( ! headers_sent() ) {
-		crawl_log('new  session to crawl sub: URL:'.$url);
 	    wp_redirect($url);
 	    exit;
 	}

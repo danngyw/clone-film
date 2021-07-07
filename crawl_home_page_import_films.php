@@ -8,14 +8,7 @@ $site_url   = $home_page =  "https://yifysubtitles.org/";
 $crawl_log  = "Crawl home page to import fiml: ";
 
 
-
-
-$opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
-//Basically adding headers to the request
-$context = stream_context_create($opts);
-
-$html = new Document(file_get_contents($site_url,false,$context));
-
+$html = new Document(file_get_contents($site_url));
 $list = $html->find($ul_css);
 $count = 0;
 foreach($list->find('li') as $li) {
@@ -24,11 +17,10 @@ foreach($list->find('li') as $li) {
     $fiml_slug = $link->getAttribute("href");
     $id = explode("/movie-imdb/tt", $fiml_slug);
     $source_id = $id[1];
-    if( empty($source_id ) ){
+    if( empty($source_id ))
         continue;
-    }
 
-    $exist  = is_film_imported_v2($source_id);
+    $exist  = is_film_imported($source_id);
     if( !$exist ){
 
         $title = $li->find('h3');
@@ -55,6 +47,7 @@ foreach($list->find('li') as $li) {
         $film_excerpt = $film_desc->text();
         $args['post_excerpt']         = $film_excerpt;
         $args['source_thumbnail_url'] = $thumbnail_url;
+        $args[FILM_SOURCE_ID]         = $source_id;
         $args['film_source_id']       = $source_id;
         $args['post_title']           = $title->text();
         $args['year_release']         = $year;
