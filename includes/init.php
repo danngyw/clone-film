@@ -31,23 +31,20 @@ function film_custom_post_type() {
             'menu_position' => 2
         )
     );
-    register_post_type('subtitle',
-        array(
-            'labels'      => array(
-                'name'          => __( 'Subtitles', 'textdomain' ),
-                'singular_name' => __( 'Subtitle', 'textdomain' ),
-            ),
-            'public'      => true,
-            'has_archive' => true,
-            'rewrite'     => array( 'slug' => 'subtitle' ), // my custom slug
-            'supports'  => array( 'title', 'editor','custom-fields', 'author','excerpt'),
-            'menu_position' => 3,
-            'taxonomies' => array('language'),
-        )
-    );
-
-
-
+    // register_post_type('subtitle',
+    //     array(
+    //         'labels'      => array(
+    //             'name'          => __( 'Subtitles', 'textdomain' ),
+    //             'singular_name' => __( 'Subtitle', 'textdomain' ),
+    //         ),
+    //         'public'      => true,
+    //         'has_archive' => true,
+    //         'rewrite'     => array( 'slug' => 'subtitle' ), // my custom slug
+    //         'supports'  => array( 'title', 'editor','custom-fields', 'author','excerpt'),
+    //         'menu_position' => 3,
+    //         'taxonomies' => array('language'),
+    //     )
+    // );
 }
 add_action('init', 'film_custom_post_type', 5);
 function register_film_tax() {

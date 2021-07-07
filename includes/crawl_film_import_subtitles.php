@@ -67,7 +67,7 @@ if( $query->have_posts() ){
 
 
 			if( $sub_id_exists ){
-				crawl_log($text_log.$sub_source_id);
+				crawl_log('Sub exit.');
 			}
 
 			if(! $sub_id_exists ){

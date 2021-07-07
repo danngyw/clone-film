@@ -29,7 +29,9 @@ $sql = "CREATE TABLE `{$wpdb->base_prefix}subtitles` (
 
 dbDelta($sql);
 
-
+// $sql = "DROP TABLE `{$wpdb->base_prefix}subtitles`";
+// dbDelta($sql);
+// die('1');
 // $table = $wpdb->prefix . 'imported_track';
 // $sql = "ALTER TABLE `{$table}`
 //         MODIFY COLUMN `source_id` VARCHAR(20) NOT NULL;";
