@@ -37,7 +37,7 @@ $results = $wpdb->get_results($sql);
 	<table class="table other-subs">
 		<thead><tr><th>Rating</th><th>Language</th><th>Release</th><th>Link</th></tr></thead><?php
 		if($results){
-			foreach($results as $sub){ 
+			foreach($results as $sub){
 				$sub_id = $sub->source_id;
 				$sub_title = $sub->sub_title;
 				$language = $sub->language;

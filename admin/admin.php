@@ -375,3 +375,18 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 	update_post_meta($film_id,'is_full_updated','full');
 	return $count_new;
 }
+
+add_action( 'admin_init', 'crawl_codex_init' );
+function crawl_codex_init() {
+    add_action( 'delete_post', 'crawl_codex_sync', 10 );
+}
+
+function crawl_codex_sync( $pid ) {
+    global $wpdb;
+    $tbl_subtitles = $wpdb->prefix . 'subtitles';
+
+    $sql = $wpdb->prepare( "DELETE FROM {$tbl_subtitles} WHERE film_id = %d", $tbl_subtitles, $pid );
+    crawl_log('Sql del subs: '.$sql);
+    $wpdb->query( $sql );
+
+}
