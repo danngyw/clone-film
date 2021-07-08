@@ -63,23 +63,22 @@ function crawl_insert_subtitle($args, $film_id){
     // values (NULL, $film_id,$source_id,  '$sub_title', '$sub_zip_url', '$language', '$rating')";
 
     // $wpdb->query($sql);
-    $insert = $wpdb->insert(
-        $tbl_subtitles,
-        array(
+    $args =  array(
             'film_id'       => $film_id,
             'source_id'     => $source_id,
             'sub_title'     => $sub_title,
             'sub_zip_url'   => $sub_zip_url,
             'language'      => $language,
             'rating'        => $rating,
-        )
-    );
+        );
+    $insert = $wpdb->insert($tbl_subtitles, $args );
 
     if( $wpdb->insert_id ){
         return $wpdb->insert_id;
     }
 
     crawl_log('crawl_insert_subtitle  Fail:');
+    crawl_log($args);
     crawl_log($wpdb->last_error);
 
     return $wpdb->last_error;
