@@ -1,4 +1,34 @@
 <?php
+function debug_insert_subtile(){
+	global $wpdb;
+	$sub_title = 'Doraemon: New Nobitaâ€™s Great Demon-Peko and the Exploration Party of Five BluRay Ganoo';
+	$source_id = 999;
+	$film_id = 1;
+	$sub_zip_url = 'https://data.roty.tv/wp-content/uploads/2021/07/doraemon-new-nobitas-great-demon-peko-and-the-exploration-party-of-five-2014-english-yify-326941.zip';
+	$rating = 5;
+	$language = 'English';
+	//$tbl_subtitles = $wpdb->prefix . 'subtitles';
+	$tbl_subtitles = $wpdb->prefix . 'crawl_subtitles';
+	$args =  array(
+        'film_id'       => $film_id,
+        'source_id'     => $source_id,
+        'sub_title'     => $sub_title,
+        'sub_zip_url'   => $sub_zip_url,
+        'language'      => $language,
+        'rating'        => $rating,
+    );
+    $insert = $wpdb->insert($tbl_subtitles, $args );
+    if( !$insert ){
+    	$wpdb->print_error();
+    	$sql = "SHOW FULL COLUMNS FROM `wp_subtitles`";
+    	$result = $wpdb->get_results($sql);
+    	echo '<pre>';
+    	var_dump($result);
+    	echo '</pre>';
+    	die();
+    }
+
+}
 function manual_film_debug(){
 	$args = array(
 		'post_type' => 'film',
