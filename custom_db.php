@@ -14,14 +14,14 @@ $sql = "CREATE TABLE `{$wpdb->base_prefix}imported_track` (
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 	dbDelta($sql);
 
-	$tbl_subtitles = $wpdb->prefix . 'crawl_subtitles';
+	$tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
 	$sql = "CREATE TABLE $tbl_subtitles (
 	  	ID bigint(20) NOT NULL AUTO_INCREMENT,
 	  	film_id bigint(20) UNSIGNED NOT NULL,
 	  	source_id VARCHAR(200) NOT NULL,
 	  	sub_title  text  NOT NULL,
 	  	sub_zip_url  text   NULL,
-	  	language  VARCHAR(200) NOT NULL,
+	  	language  VARCHAR(250) NOT NULL,
 	  	rating  FLOAT(11) NOT NULL,
 	  	PRIMARY KEY  (ID),
 	  	UNIQUE KEY ID (ID)

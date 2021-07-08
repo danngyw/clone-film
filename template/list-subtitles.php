@@ -23,7 +23,7 @@ $args = array(
 
 $query  = new WP_Query($args);
 $trailer_html 	= get_post_meta($film_id,'trailer_html', true);
-$tbl_subtitles = $wpdb->prefix . 'crawl_subtitles';
+$tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
 $sql = "SELECT * FROM $tbl_subtitles WHERE film_id = $film_id";
 
 $results = $wpdb->get_results($sql);
