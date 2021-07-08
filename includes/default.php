@@ -103,7 +103,7 @@ function is_subtitle_imported_advanced1($sub_source_id){
 
 function is_subtitle_imported_advanced($sub_source_id){
 	global $wpdb;
-	$tbl_subtitles = $wpdb->prefix . 'crawl_subtitles';
+	$tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
 	$sql = "SELECT sub.ID
 	  		FROM $tbl_subtitles  as sub
 			WHERE sub.source_id = '{$sub_source_id}' LIMIT 1";
