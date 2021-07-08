@@ -27,8 +27,23 @@ display: inline-flex;
     list-style: none;
     padding: 18px 18px 0px 0px;
 }
+.is_mobile{
+	display: none !important;
+}
 
-@media only screen and (max-width: 600px) {#header-menu{display:block}}
+@media only screen and (max-width: 700px) {
+	#header-menu{display:block}
+	.btn-download{
+		position: relative;
+		left: 50px;
+	}
+	.is_mobile{
+		display: block !important;
+	}
+	.is_desktop{
+		display: none;
+	}
+}
 
 body, html, div,span,a, label{
 	font-size: 14px;

@@ -44,7 +44,8 @@ $results = $wpdb->get_results($sql);
 				$rating = $sub->rating;
 				$sub_zip_url = $sub->sub_zip_url;
 				$flag_css 		= get_flag_css($language);
-
+				$css 		= wp_is_mobile() ? 'is_mobile' :'is_desktop';
+				$btn_download  = '<a follow class="btn-download '.$css.'" href="'.$sub_zip_url.'"><span class="title">DOWNLOAD</span></a>';
 				?>
 				<tr data-id="<?php echo $post->ID;?>" class="sub-item sub-item-id-<?php echo $sub_id;?>">
 						<td class="rating-cell"><span class="label label-success"><?php echo $rating;?></span></td>
@@ -52,10 +53,11 @@ $results = $wpdb->get_results($sql);
 						<td class="td-subtitle">
 
 						<span class="text-muted">subtitle</span><span class="name-subtitle"> <?php echo $sub_title;?></span>
+						<?php if( wp_is_mobile()){ echo '<br />'.$btn_download; } ?>
 						</td>
-
-						<td class="uploader-cell"><span class="uploader">
-							<a follow class="" href="<?php echo $sub_zip_url;?>"><span class="title">DOWNLOAD</span></a></span></td>
+						<?php if( ! wp_is_mobile()){ ?>
+							<td class="uploader-cell"><span class="uploader"> <?php echo $btn_download;?></span></td>
+						<?php } ?>
 					</tr>
 					<?php
 

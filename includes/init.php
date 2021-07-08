@@ -133,7 +133,7 @@ add_action( 'after_setup_theme', 'wpdocs_setup_theme' );
 function film_theme_enqueue_styles() {
 
     $parent_style = 'jobcareertheme';
-    wp_enqueue_style( 'clone-film', get_stylesheet_uri() );
+    wp_enqueue_style( 'clone-film', get_stylesheet_uri().'?vers='.rand() );
 
     wp_enqueue_style( $parent_style, get_template_directory_uri() . '/assets/app.css' );
 
