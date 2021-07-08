@@ -80,7 +80,8 @@ function crawl_insert_subtitle($args, $film_id){
     crawl_log('crawl_insert_subtitle  Fail:');
     crawl_log($args);
     crawl_log($wpdb->last_error);
-
+    $wpdb->print_error();
+    wp_die();
     return $wpdb->last_error;
 
 }
