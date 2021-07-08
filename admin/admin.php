@@ -381,16 +381,16 @@ function crawl_codex_init() {
     add_action( 'delete_post', 'crawl_codex_sync', 10 );
 }
 
-function crawl_codex_sync( $pid ) {
+function crawl_codex_sync( $film_id ) {
     global $wpdb;
     $tbl_subtitles = $wpdb->prefix . 'subtitles';
 
-    $sql = $wpdb->prepare( "DELETE FROM {$tbl_subtitles} WHERE film_id = %d", $pid );
+    $sql = $wpdb->prepare( "DELETE FROM {$tbl_subtitles} WHERE film_id = %d", $film_id );
     crawl_log($sql);
     $wpdb->query( $sql );
 
     $tbl_track = $wpdb->base_prefix.'imported_track';
-    $del_track = $wpdb->prepare( "DELETE FROM {$tbl_track} WHERE film_id = %d", $pid );
+    $del_track = $wpdb->prepare( "DELETE FROM {$tbl_track} WHERE film_id = %d", $film_id );
     crawl_log($del_track);
     $wpdb->query( $del_track );
 
