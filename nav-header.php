@@ -14,17 +14,16 @@
 					?>
 						<img src="<?php echo $url;?>" alt="yifysubtitles.top Subtitles - Subtitle Download | Subscene | Yify Subtitles | Opensubtitles | Yts Subtitles">
 					</a>
-						
 
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
-<?php wp_nav_menu( 
-  array( 
-      'theme_location' => 'header-menu', 
-      'container' => 'false', 
-      'menu_id' => 'header-menu', 
+<?php wp_nav_menu(
+  array(
+      'theme_location' => 'header-menu',
+      'container' => 'false',
+      'menu_id' => 'header-menu',
       'menu_class' => 'menu'
-   ) 
+   )
 ); ?>
 					<ul class="nav navbar-nav navbar-right">
 

@@ -1,5 +1,6 @@
 <?php
 define('FILM_SOURCE_ID','film_source_id');
+define('IMG_URL',    get_stylesheet_directory_uri().'/images');
 function checkURlOnline($url) {
     $headers = get_headers($url);
     $code = substr($headers[0], 9, 3);
