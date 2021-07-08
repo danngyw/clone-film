@@ -19,7 +19,7 @@ $sql = "CREATE TABLE `{$wpdb->base_prefix}subtitles` (
   	ID bigint(20) NOT NULL AUTO_INCREMENT,
   	film_id bigint(20) UNSIGNED NOT NULL,
   	source_id VARCHAR(200) NOT NULL,
-  	sub_title VARCHAR(200) NOT NULL,
+  	sub_title VARCHAR(255) NOT NULL,
   	sub_zip_url VARCHAR(120),
   	language  VARCHAR(20) NOT NULL,
   	rating  FLOAT(11) NOT NULL,
