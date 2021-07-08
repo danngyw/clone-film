@@ -2,11 +2,12 @@
 function debug_insert_subtile(){
 	global $wpdb;
 	$sub_title = 'Doraemon: New Nobitaâ€™s Great Demon-Peko and the Exploration Party of Five BluRay Ganoo';
+	$sub_title = 'A.Perfect.Man.2013.WEB-DL (Media-DL.com) Hirkania با همکار�';
 	$source_id = 337821;
 	$film_id = 146136;
-	$sub_zip_url = 'https://data.roty.tv/wp-content/uploads/2021/07/match-2014-brazillian-portuguese-yify-337821-3.zip';
+	$sub_zip_url = 'https://data.roty.tv/wp-content/uploads/2021/07/a-perfect-man-2013-farsipersian-yify-338303-11.zip';
 	$rating = 5;
-	$language = 'Brazillian Portuguese';
+	$language = 'Farsi/Persian';
 
 	$tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
 	$args =  array(
@@ -19,13 +20,14 @@ function debug_insert_subtile(){
     );
     $insert = $wpdb->insert($tbl_subtitles, $args );
     if( !$insert ){
-    	$wpdb->print_error();
+  
     	$sql = "SHOW FULL COLUMNS FROM $tbl_subtitles";
     	$result = $wpdb->get_results($sql);
     	echo '<pre>';
     	var_dump($result);
+    	$wpdb->print_error();
     	echo '</pre>';
-    	die();
+    	die('111');
     }
 
 }

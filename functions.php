@@ -57,6 +57,7 @@ function crawl_insert_subtitle($args, $film_id){
     $sub_zip_url    = $args['sub_zip_url'];
 
     $tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
+    $sub_title =  mb_convert_encoding($sub_title, "UTF-8");
     $args =  array(
             'film_id'       => $film_id,
             'source_id'     => $source_id,
@@ -74,8 +75,12 @@ function crawl_insert_subtitle($args, $film_id){
     crawl_log('crawl_insert_subtitle  Fail:');
     crawl_log($args);
     crawl_log($wpdb->last_error);
-    $wpdb->print_error();
-    wp_die();
+
+    // $sql = "SHOW FULL COLUMNS FROM $tbl_subtitles";
+    // $result = $wpdb->get_results($sql);
+
+    // $wpdb->print_error();
+    // wp_die();
     return $wpdb->last_error;
 
 }
