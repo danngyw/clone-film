@@ -72,7 +72,7 @@ function import_film($args){
 		$url =  $args['source_thumbnail_url'];
 		import_film_thumbnail($url, $film_id);
 	}
-	update_post_meta($film_id,'is_full_updated','notyet');
+	update_post_meta($film_id,'is_crawled_sub','notyet');
 
 }
 
@@ -103,8 +103,9 @@ function is_subtitle_imported_advanced1($sub_source_id){
 
 function is_subtitle_imported_advanced($sub_source_id){
 	global $wpdb;
+	$tbl_subtitles = $wpdb->prefix . 'crawl_subtitles';
 	$sql = "SELECT sub.ID
-	  		FROM `{$wpdb->base_prefix}subtitles`  as sub
+	  		FROM $tbl_subtitles  as sub
 			WHERE sub.source_id = {$sub_source_id} LIMIT 1";
 
   	return $wpdb->get_row($sql);

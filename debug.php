@@ -6,9 +6,9 @@ function manual_film_debug(){
 		'meta_query' => array(
 
 	         array(
-	            'key'     => 'is_full_updated',
-	            'value'   => 'notyet',
-	            //'meta_query' => '=='
+	            'key'     => 'is_crawled_sub',
+	            'value'   => 'done',
+	            'meta_query' => '!='
 	        ),
 
 	    ),

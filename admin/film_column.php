@@ -26,9 +26,9 @@ function show_crawl_status($name) {
            break;
         case 'crawl_status':
             global $wpdb;
-          	$is_full_update = get_post_meta($post->ID,'is_full_updated', true);
+          	$is_full_update = get_post_meta($post->ID,'is_crawled_sub', true);
 
-          	if($is_full_update == 'full'){
+          	if($is_full_update == 'done'){
           		echo "Yes - ";
               $sql = "SELECT count(ID) as total
               FROM `{$wpdb->base_prefix}subtitles`

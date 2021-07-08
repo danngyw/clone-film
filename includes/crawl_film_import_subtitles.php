@@ -8,8 +8,10 @@ $args = array(
 	'post_status' => 'publish',
 	'meta_query' => array(
 		array(
-            'key'     => 'is_full_updated',
-            'value'   => 'notyet',
+            'key'     => 'is_crawled_sub', // is_full_updated
+            'value'   => 'done', // notyet
+            'compare' => '!='
+
 		),
 	),
     'posts_per_page' => $number,
@@ -125,7 +127,7 @@ if( $query->have_posts() ){
 		}
 
 		update_post_meta($film_id,'number_subtitles', $count);
-		update_post_meta($film_id, 'is_full_updated','full');
+		update_post_meta($film_id, 'is_crawled_sub','done');
 	}
 	// sleep(9);
 } else{

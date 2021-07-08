@@ -372,7 +372,7 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 		wp_add_object_terms( $film_id, $lang_ids, 'language' );
 	}
 	update_post_meta($film_id,'number_subtitles', $count_new);
-	update_post_meta($film_id,'is_full_updated','full');
+	update_post_meta($film_id,'is_crawled_sub','done');
 	return $count_new;
 }
 
