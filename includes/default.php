@@ -76,39 +76,20 @@ function import_film($args){
 
 }
 
-/**
- * check the substile imported or not.
-*/
 
-function is_subtitle_imported_advanced_old($sub_source_id){
-	global $wpdb;
-	$sql = "SELECT p.ID
-	  		FROM $wpdb->posts as p
-				LEFT JOIN $wpdb->postmeta as pm ON pm.post_id = p.ID
-					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}' AND p.post_status ='publish'
-						LIMIT 1";
-
-  	return $wpdb->get_row($sql);
-}
-function is_subtitle_imported_advanced1($sub_source_id){
-	global $wpdb;
-	$sql = "SELECT p.ID
-	  		FROM $wpdb->posts as p
-				LEFT JOIN $wpdb->postmeta as pm ON pm.post_id = p.ID
-					WHERE pm.meta_key = 'subtitle_source_id' AND pm.meta_value = '{$sub_source_id}' AND p.post_status ='publish'
-						LIMIT 1";
-
-  	return $wpdb->get_row($sql);
-}
 
 function is_subtitle_imported_advanced($sub_source_id){
 	global $wpdb;
 	$tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
-	$sql = "SELECT sub.ID
-	  		FROM $tbl_subtitles  as sub
-			WHERE sub.source_id = '{$sub_source_id}' LIMIT 1";
 
-  	return $wpdb->get_row($sql);
+	$sql = $wpdb->prepare( "SELECT ID  FROM {$tbl_subtitles}  WHERE  source_id = %s LIMIT 1", $sub_source_id );
+
+	$result =  $wpdb->get_row($sql  );
+
+	if($result){
+		return (int) $result->ID;
+	}
+	return $result;
 }
 
 /**

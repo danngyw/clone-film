@@ -20,7 +20,7 @@ function debug_insert_subtile(){
     );
     $insert = $wpdb->insert($tbl_subtitles, $args );
     if( !$insert ){
-  
+
     	$sql = "SHOW FULL COLUMNS FROM $tbl_subtitles";
     	$result = $wpdb->get_results($sql);
     	echo '<pre>';
