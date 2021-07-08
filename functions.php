@@ -188,7 +188,7 @@ function film_create_admin_bar_menus() {
     $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('List Films'), 'id' => 'admin-link-film', 'href' => $url));
     $subtitle = admin_url( 'edit.php?post_type=subtitle');
 
-    $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('List Subtitles'), 'id' => 'admin-link-subtitle', 'href' => $subtitle));
+    // $wp_admin_bar->add_menu(array('parent' => $menu_id, 'title' => __('List Subtitles'), 'id' => 'admin-link-subtitle', 'href' => $subtitle));
     $file_log   = WP_CONTENT_DIR.'/log.css';
     if( file_exists($file_log) ){
         $log_file_link  = home_url().'/wp-content/log.css?rand='.rand();
