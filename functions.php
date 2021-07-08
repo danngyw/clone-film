@@ -48,11 +48,11 @@ function wa_add_film_track($film_id, $source_id){
 function crawl_insert_subtitle($args, $film_id){
     global $wpdb;
 
-    $source_id  = $args['sub_source_id'];
-    $sub_title  = $args['post_title'];
-    $rating     = $args['m_rating_score'];
-    $language   = $args['m_sub_language'];
-    $sub_zip_url = "empty";
+    $source_id      = $args['sub_source_id'];
+    $sub_title      = $args['post_title'];
+    $rating         = $args['m_rating_score'];
+    $language       = $args['m_sub_language'];
+    $sub_zip_url    = $args['m_sub_slug'];
 
     $sql = "INSERT INTO `{$wpdb->base_prefix}subtitles`
           (`ID`,`film_id`,`source_id`, `sub_title`, `sub_zip_url`, `language`, `rating`)

@@ -131,27 +131,24 @@ function import_subtitle_film($args, $film_id){
 	if($sub_id_exists){
 		return false;
 	}
+	$sub_id = 0;
+	$data = array(
+		'import'              => 'subtitle',
+        'sub_id'              =>  $sub_id,
+        'sub_slug'            =>$args['m_sub_slug'],
+		'source'              => home_url(),
+	);
 
-	$sub_id = crawl_insert_subtitle($args, $film_id);
+	try {
+        $res   = sendSubtileRequest($data);
+       	if( isset($res->url) && !empty($res->url) ){
+       		$args['sub_zip_url'] = $res->url;
+       		$sub_id = crawl_insert_subtitle($args, $film_id);
+			//update_substile_zip($sub_id, $res->url);
+		}
+    } catch (Exception $e) {
 
-	if( ! is_wp_error($sub_id) ){
-
-		$data = array(
-			'import'              => 'subtitle',
-	        'sub_id'              =>  $sub_id,
-	        'sub_slug'            =>$args['m_sub_slug'],
-			'source'              => home_url(),
-		);
-
-		try {
-	        $res   = sendSubtileRequest($data);
-	       	if( isset($res->url) && !empty($res->url) ){
-				update_substile_zip($sub_id, $res->url);
-			}
-	    } catch (Exception $e) {
-
-	    }
-	}
+    }
 
 }
 
