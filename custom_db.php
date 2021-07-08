@@ -21,7 +21,7 @@ $sql = "CREATE TABLE `{$wpdb->base_prefix}imported_track` (
 	  	source_id VARCHAR(200) NOT NULL,
 	  	sub_title  text  NOT NULL,
 	  	sub_zip_url  text   NULL,
-	  	language  VARCHAR(20) NOT NULL,
+	  	language  VARCHAR(200) NOT NULL,
 	  	rating  FLOAT(11) NOT NULL,
 	  	PRIMARY KEY  (ID),
 	  	UNIQUE KEY ID (ID)

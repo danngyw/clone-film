@@ -2,12 +2,12 @@
 function debug_insert_subtile(){
 	global $wpdb;
 	$sub_title = 'Doraemon: New Nobitaâ€™s Great Demon-Peko and the Exploration Party of Five BluRay Ganoo';
-	$source_id = 999;
-	$film_id = 1;
-	$sub_zip_url = 'https://data.roty.tv/wp-content/uploads/2021/07/doraemon-new-nobitas-great-demon-peko-and-the-exploration-party-of-five-2014-english-yify-326941.zip';
+	$source_id = 337821;
+	$film_id = 146136;
+	$sub_zip_url = 'https://data.roty.tv/wp-content/uploads/2021/07/match-2014-brazillian-portuguese-yify-337821-3.zip';
 	$rating = 5;
-	$language = 'English';
-	//$tbl_subtitles = $wpdb->prefix . 'subtitles';
+	$language = 'Brazillian Portuguese';
+
 	$tbl_subtitles = $wpdb->prefix . 'crawl_subtitles';
 	$args =  array(
         'film_id'       => $film_id,
