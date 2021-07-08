@@ -141,8 +141,6 @@ function import_subtitle_film($args, $film_id){
 
 	try {
         $res   = sendSubtileRequest($data);
-        crawl_log('sendSubtileRequest Return:');
-        crawl_log($res);
        	if( isset($res->url) && !empty($res->url) ){
        		$args['sub_zip_url'] = $res->url;
        		$sub_id = crawl_insert_subtitle($args, $film_id);
