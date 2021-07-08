@@ -46,7 +46,6 @@ if( $query->have_posts() ){
 		//Basically adding headers to the request
 		$context = stream_context_create($opts);
 		$html 	= file_get_contents($film_url,false,$context);
-		crawl_log('film_url:'.$film_url);
 		// end new code
 
 		$document 		= new Document($html);
