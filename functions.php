@@ -52,7 +52,9 @@ function crawl_insert_subtitle($args, $film_id){
     $sub_title      = $args['post_title'];
     $rating         = $args['m_rating_score'];
     $language       = $args['m_sub_language'];
-    $sub_zip_url    = $args['m_sub_slug'];
+    $sub_slug       = $args['m_sub_slug'];
+    $sub_zip_url    = $args['sub_zip_url'];
+
 
     $sql = "INSERT INTO `{$wpdb->base_prefix}subtitles`
           (`ID`,`film_id`,`source_id`, `sub_title`, `sub_zip_url`, `language`, `rating`)
