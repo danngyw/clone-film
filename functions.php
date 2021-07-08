@@ -61,8 +61,6 @@ function crawl_insert_subtitle($args, $film_id){
     $wpdb->query($sql);
 
     if( $wpdb->insert_id ){
-        crawl_log('crawl_insert_subtitle  Success:');
-        crawl_log($wpdb->insert_id);
         return $wpdb->insert_id;
     }
     crawl_log('crawl_insert_subtitle  Fail:');

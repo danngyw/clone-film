@@ -129,13 +129,10 @@ function import_subtitle_film($args, $film_id){
 	$sub_source_id = $args['sub_source_id'];
 	$sub_id_exists = is_subtitle_imported_advanced($sub_source_id);
 	if($sub_id_exists){
-		crawl_log('Fail : Sub exists '.$sub_id_exists);
 		return false;
 	}
 
 	$sub_id = crawl_insert_subtitle($args, $film_id);
-	crawl_log('crawl_insert_subtitle Return:');
-	crawl_log($sub_id);
 
 	if( ! is_wp_error($sub_id) ){
 
