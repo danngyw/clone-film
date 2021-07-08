@@ -385,8 +385,12 @@ function crawl_codex_sync( $pid ) {
     global $wpdb;
     $tbl_subtitles = $wpdb->prefix . 'subtitles';
 
-    $sql = $wpdb->prepare( "DELETE FROM {$tbl_subtitles} WHERE film_id = %d", $tbl_subtitles, $pid );
-    crawl_log('Sql del subs: '.$sql);
+    $sql = $wpdb->prepare( "DELETE FROM {$tbl_subtitles} WHERE film_id = %d", $pid );
+
     $wpdb->query( $sql );
+
+    $tbl_track = $wpdb->base_prefix.'imported_track';
+    $del_track = $wpdb->prepare( "DELETE FROM {$tbl_track} WHERE film_id = %d", $pid );
+    $wpdb->query( $del_track );
 
 }
