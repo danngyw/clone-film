@@ -30,8 +30,9 @@ function show_crawl_status($name) {
 
           	if($is_full_update == 'done'){
           		echo "Yes - ";
+              $tbl_subtitles = $wpdb->prefix . 'crawl_subtitles';
               $sql = "SELECT count(ID) as total
-              FROM `{$wpdb->base_prefix}subtitles`
+              FROM $tbl_subtitles
               WHERE film_id = {$film_id} ";
 
               $result = (int) $wpdb->get_var($sql );

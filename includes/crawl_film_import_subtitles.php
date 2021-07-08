@@ -7,10 +7,16 @@ $args = array(
 	'post_type' => 'film',
 	'post_status' => 'publish',
 	'meta_query' => array(
+		'relation' => 'OR',
 		array(
             'key'     => 'is_crawled_sub', // is_full_updated
             'value'   => 'done', // notyet
-            'compare' => '!='
+            'compare' => '!=',
+
+		),
+		array(
+            'key'     => 'is_crawled_sub', // is_full_updated
+            'compare' => 'NOT EXISTS'
 
 		),
 	),
@@ -40,6 +46,7 @@ if( $query->have_posts() ){
 		//Basically adding headers to the request
 		$context = stream_context_create($opts);
 		$html 	= file_get_contents($film_url,false,$context);
+		crawl_log('film_url:'.$film_url);
 		// end new code
 
 		$document 		= new Document($html);
