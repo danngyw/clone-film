@@ -141,10 +141,10 @@ if( $query->have_posts() ){
 }
 if( $loop ){
 
-	$url = home_url().'/?act=importsub';
+	$url = home_url().'/?act=importsub&rand='.rand();
 
 	if ( ! headers_sent() ) {
-	    wp_redirect($url);
+	    wp_redirect_replace($url);
 	    exit;
 	}
 }
