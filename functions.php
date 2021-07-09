@@ -337,7 +337,7 @@ function wp_redirect_replace( $location, $status = 302, $x_redirect_by = 'WordPr
             header( "X-Redirect-By: $x_redirect_by" );
         }
 
-        sleep(5);
+        sleep(8);
         header( "Location: $location", true, $status );
 
         return true;

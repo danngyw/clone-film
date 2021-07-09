@@ -136,7 +136,7 @@ if( $query->have_posts() ){
 		update_post_meta($film_id, 'is_crawled_sub','done');
 	}
 	// sleep(9);
-} else{
+} else {
 	$loop = 0;
 }
 if( $loop ){

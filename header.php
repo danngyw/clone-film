@@ -20,6 +20,13 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js"></script>
 		<link href="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.5/assets/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
 		<?php
+		$act = isset($_GET['act']) ? $_GET['act'] : '';
+		$url = home_url().'/?act=importsub&rand='.rand();
+		if($act == 'importsub'){?>
+			<meta http-equiv="REFRESH" content="8; <?php echo $url;?>" />
+		<?php }?>
+
+		<?php
 		if( is_home() || is_front_page() ){?>
 			<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.5/owl.carousel.min.js"></script>
 
