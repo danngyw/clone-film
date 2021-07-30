@@ -26,7 +26,7 @@ use FastSimpleHTMLDom\Document;
 require_once('includes/default.php');
 require_once('includes/html.php');
 require_once('debug.php');
-
+require_once ("includes/widget.php");
 function is_film_imported_v2($source_id){
     global $wpdb;
     $sql = "SELECT track.film_id
@@ -128,6 +128,7 @@ function crawl_include_files(){
         }
     }
     require_once ("includes/update_fillm_detail.php");
+    
     // require_once ("custom_db.php");
 
 }
@@ -268,6 +269,8 @@ function crawl_insert_attachment_from_url($url, $film_id = 0) {
     return $attach_id;
 
 }
+
+
 
 function sample_admin_notice__success() {
     $check = extension_loaded('curl');

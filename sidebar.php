@@ -1,4 +1,8 @@
+
+
 <?php
+
+
 $args = array(
     'post_type'  		=> 'film',
     'meta_key'   		=> 'number_subtitles',
@@ -9,6 +13,13 @@ $args = array(
 $popular = new WP_Query( $args );
 ?>
 <div class="col-md-4">
+
+	<?php if ( is_active_sidebar( 'home-sidebar' ) ) { ?>
+    <ul id="sidebar">
+        <?php dynamic_sidebar('home-sidebar'); ?>
+    </ul>
+	<?php } ?>
+
 	<h4 class="section-title">Popular</h4>
 	<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">
 		<?php
