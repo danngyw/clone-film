@@ -26,9 +26,9 @@ function show_crawl_status($name) {
            break;
         case 'crawl_status':
             global $wpdb;
-          	$is_full_update = get_post_meta($post->ID,'is_crawled_sub', true);
+          	$is_full_update = get_post_meta($post->ID,'is_crawled_sub', 0);
 
-          	if($is_full_update == 'done'){
+          	if( (int) $is_full_update > 1 || $is_full_update == 'done'){
           		echo "Yes - ";
               $number_subtitles = (int) get_post_meta($post->ID, 'number_subtitles', $post->ID);
               // $tbl_subtitles = $wpdb->prefix . 'custom_subtitles';

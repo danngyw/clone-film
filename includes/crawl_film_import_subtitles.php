@@ -10,8 +10,8 @@ $args = array(
 		'relation' => 'OR',
 		array(
             'key'     => 'is_crawled_sub', // is_full_updated
-            'value'   => 'done', // notyet
-            'compare' => '!=',
+            'value'   => 0, // notyet
+            'compare' => '>',
 
 		),
 		array(
@@ -134,7 +134,7 @@ if( $query->have_posts() ){
 		}
 
 		update_post_meta($film_id,'number_subtitles', $count);
-		update_post_meta($film_id, 'is_crawled_sub','done');
+		update_post_meta($film_id, 'is_crawled_sub', time());
 	}
 	// sleep(9);
 } else {

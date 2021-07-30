@@ -5,13 +5,24 @@
 
 		<div class="owl-carousel owl-theme owl-loaded owl-drag">
 			<?php
+			// $args = array(
+			// 	'post_type' 	=> 'film',
+			// 	'post_status' 	=> 'publish',
+			// 	'order'			=> 'rand',
+			// 	'posts_per_page' => 9,
+
+			// );
 			$args = array(
-				'post_type' 	=> 'film',
-				'post_status' 	=> 'publish',
-				'order'			=> 'rand',
-				'posts_per_page' => 9,
+			    'post_status' => 'publish',
+			    'post_type' => 'film',
+			    'meta_key' => 'is_crawled_sub',
+			    'orderby' => 'meta_value_num',
+			    'order' => 'DESC',
+			    'posts_per_page' => 9,
 			);
+			//is_crawled_sub
 			$query = new WP_Query($args);
+
 			if($query->have_posts()){
 				while ( $query->have_posts() ) {
 					$query->the_post();

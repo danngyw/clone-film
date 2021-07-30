@@ -73,7 +73,7 @@ function import_film($args){
 		$url =  $args['source_thumbnail_url'];
 		import_film_thumbnail($url, $film_id);
 	}
-	update_post_meta($film_id,'is_crawled_sub','notyet');
+	update_post_meta($film_id,'is_crawled_sub', 0);
 
 }
 

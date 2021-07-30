@@ -39,8 +39,8 @@ function manual_film_debug(){
 
 	         array(
 	            'key'     => 'is_crawled_sub',
-	            'value'   => 'done',
-	            'meta_query' => '!='
+	            'value'   => 0,
+	            'meta_query' => '>'
 	        ),
 
 	    ),

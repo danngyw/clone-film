@@ -315,9 +315,7 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
               $sql = "SELECT count(ID) as total
               FROM $tbl_subtitles
               WHERE film_id = {$film_id} ";
-
     $number_sub = (int) $wpdb->get_var($sql );
-
 
 	foreach($list->find('tr') as $key=> $tr) { // tr = element type
 		if( $key == 0){
@@ -325,7 +323,6 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 		}
 		$sub_source_id = $tr->__get('data-id');
 		$imported = is_subtitle_imported_advanced($sub_source_id);
-
 
 		crawl_log('start import sub.');
 		if( !$imported ){
@@ -385,8 +382,8 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 	if( $lang_ids ){
 		wp_add_object_terms( $film_id, $lang_ids, 'language' );
 	}
-	update_post_meta($film_id,'number_subtitles', $count_new);
-	update_post_meta($film_id,'is_crawled_sub','done');
+	update_post_meta($film_id,'is_crawled_sub', time());
+
 	return $count_new;
 }
 
