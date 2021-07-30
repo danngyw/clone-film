@@ -35,7 +35,7 @@ $popular = new WP_Query( $args );
 				$thumbnail_url 	= get_the_post_thumbnail_url($film_id);
 				$number_subtitles = get_post_meta($film_id,'number_subtitles', true);
 				?>
-				<li class="media media-movie-clickable mmc-tiny">
+				<li class="media media-movie-clickable mmc-tiny film-id-<?php echo $post->ID;?> ">
 					<div class="media-left media-middle"> <a href="<?php the_permalink();?>" itemprop="url"> <img class="media-object" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" height="42" itemprop="image"> </a> </div>
 					<div class="media-body">
 					 	<a href="<?php the_permalink();?>">
