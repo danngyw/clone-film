@@ -24,7 +24,7 @@ if( $term_genre ){
 }?>
 <div class="container" itemscope="" itemtype="http://schema.org/Movie">
 	<ul class="breadcrumb">
-		<li><a href="<?php echo home_url();?>">Download Subtitles</a></li>
+		<li><a href="<?php echo home_url();?>">YTS Subtitles</a></li>
 		<?php echo $genre_link;?> <li class="active"><?php the_title();?></li>
 	</ul>
 	<?php get_template_part('template/film','detail');?>

@@ -1,5 +1,6 @@
 <?php
 use FastSimpleHTMLDom\Document;
+use FastSimpleHTMLDom\Element;
 require get_parent_theme_file_path('includes/import.php');
 require get_parent_theme_file_path( '/admin/film_column.php' );
 require get_parent_theme_file_path( '/admin/init_dashboard.php' );
@@ -290,7 +291,6 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 	$film_id 		= $p_film->ID;
 	$film_source_id = get_post_meta($film_id,'film_source_id', true);
 	$film_url 		= "https://yifysubtitles.org/movie-imdb/tt".$film_source_id;
-	//$html 			= file_get_contents($film_url);
 
 	$opts 		= array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
     $context 	= stream_context_create($opts);
@@ -310,6 +310,15 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 	$list = $document->find('.table-responsive .other-subs');
 	$count = 0;
 	$lang_ids = array();
+	global $wpdb;
+	$tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
+              $sql = "SELECT count(ID) as total
+              FROM $tbl_subtitles
+              WHERE film_id = {$film_id} ";
+
+    $number_sub = (int) $wpdb->get_var($sql );
+
+
 	foreach($list->find('tr') as $key=> $tr) { // tr = element type
 		if( $key == 0){
 			continue;
@@ -317,6 +326,8 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 		$sub_source_id = $tr->__get('data-id');
 		$imported = is_subtitle_imported_advanced($sub_source_id);
 
+
+		crawl_log('start import sub.');
 		if( !$imported ){
 			$sub_title = $tr->find('td',2);
 
@@ -348,7 +359,7 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 			$args['m_sub_slug'] 	= $sub_slug;
 			$args['m_rating_score'] = (int) $rating_score;
 
-
+			crawl_log('start import zip');
 			import_subtitle_film($args, $film_id);
 			$count_new++;
 
@@ -365,9 +376,12 @@ function ManualCrwalFilmImportSubtitle($p_film, $update_film_detail = 1){
 				}
 			}
 
-
+			$number_sub ++;
+		} else {
+			crawl_log('Sub exists:'.$sub_source_id);
 		}
-	}
+	} // end foreach
+	update_post_meta($film_id,'number_subtitles', $number_sub);
 	if( $lang_ids ){
 		wp_add_object_terms( $film_id, $lang_ids, 'language' );
 	}

@@ -135,7 +135,7 @@ add_action('init','crawl_include_files', 99);
 
 
 function sendSubtileRequest( $data ) {
-	$url = "https://data.roty.tv/";
+	$url = "https://data.yts-subs.org/";
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
@@ -337,7 +337,7 @@ function wp_redirect_replace( $location, $status = 302, $x_redirect_by = 'WordPr
             header( "X-Redirect-By: $x_redirect_by" );
         }
 
-        sleep(8);
+        sleep(10);
         header( "Location: $location", true, $status );
 
         return true;

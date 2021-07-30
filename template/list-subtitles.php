@@ -44,7 +44,7 @@ $results = $wpdb->get_results($sql);
 				$sub_zip_url = $sub->sub_zip_url;
 				$flag_css 		= get_flag_css($language);
 				$css 		= wp_is_mobile() ? 'is_mobile' :'is_desktop';
-				$btn_download  = '<a follow class="btn-download '.$css.'" href="'.$sub_zip_url.'"><span class="title">DOWNLOAD</span></a>';
+				$btn_download  = '<a follow rel="nofollow external noopener noreferrer"class="btn-download '.$css.'" href="'.$sub_zip_url.'"><span class="title">DOWNLOAD</span></a>';
 				?>
 				<tr data-id="<?php echo $post->ID;?>" class="sub-item sub-item-id-<?php echo $sub_id;?>">
 						<td class="rating-cell"><span class="label label-success"><?php echo $rating;?></span></td>

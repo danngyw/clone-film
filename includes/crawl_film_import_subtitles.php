@@ -20,6 +20,7 @@ $args = array(
 
 		),
 	),
+	'orderby'        => 'rand',
     'posts_per_page' => $number,
 
 );

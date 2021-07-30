@@ -30,15 +30,16 @@ function show_crawl_status($name) {
 
           	if($is_full_update == 'done'){
           		echo "Yes - ";
-              $tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
-              $sql = "SELECT count(ID) as total
-              FROM $tbl_subtitles
-              WHERE film_id = {$film_id} ";
+              $number_subtitles = (int) get_post_meta($post->ID, 'number_subtitles', $post->ID);
+              // $tbl_subtitles = $wpdb->prefix . 'custom_subtitles';
+              // $sql = "SELECT count(ID) as total
+              // FROM $tbl_subtitles
+              // WHERE film_id = {$film_id} ";
 
-              $result = (int) $wpdb->get_var($sql );
+              // $result = (int) $wpdb->get_var($sql );
 
 
-              echo $result.'(subtitles)';
+              echo $number_subtitles.'(subtitles)';
 
               // update_post_meta($post->ID,'number_subtitles', $result[0]->total);
 

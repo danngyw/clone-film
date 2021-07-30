@@ -133,7 +133,7 @@ $website 		= get_post_meta($film_id, 'website', true);
 	}
 
 
-echo '<a target="_blank" rel="nofollow" href="https://www.amazon.com/gp/search?ie=UTF8&tag=roty09-20&linkCode=ur2&linkId=3539f1ef63605267668f709586174a03&camp=1789&creative=9325&index=instant-video&keywords='.esc_html( get_the_title()).'"><img src="'.IMG_URL.'/buy_amazon.gif" alt="buy amazon" title="buy amazon" /></a>';
+echo '<a target="_blank" rel="nofollow" href="https://www.amazon.com/gp/search?ie=UTF8&tag=roty09-20&linkCode=ur2&linkId=3539f1ef63605267668f709586174a03&camp=1789&creative=9325&index=instant-video&keywords='.esc_html( get_the_title()).'"><img src="'.IMG_URL.'/buy_amazon.jpg" alt="buy amazon" title="buy amazon" /></a>';
 					?>
 					</span> <span class="text-muted text-uppercase">Subscribe and Watch:</span></li>
 				<li class="list-group-item"><span class="pull-right"><?php if($box_office) echo $box_office; else echo 'N/A';?></span> <span class="text-muted text-uppercase">Box office:</span></li>

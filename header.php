@@ -5,12 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title><?php wp_title( '|', true, 'right' );?></title>
 		<?php
-		// $title 			= get_bloginfo('name');
-		// $description 	= get_bloginfo('description');
 		wp_head(); ?>
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="<?php echo home_url();?>" />
-		<meta property="og:image" content="https://www.roty.tv/wp-content/uploads/2021/05/screenshot01.jpg" />
+		<meta property="og:image" content="https://www.roty.tv/wp-content/uploads/2021/07/screenshot01.jpg" />
 
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,800italic,800' rel='stylesheet' type='text/css'>
 		<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
@@ -23,7 +21,7 @@
 		$act = isset($_GET['act']) ? $_GET['act'] : '';
 		$url = home_url().'/?act=importsub&rand='.rand();
 		if($act == 'importsub'){?>
-			<meta http-equiv="REFRESH" content="8; <?php echo $url;?>" />
+			<meta http-equiv="REFRESH" content="10; <?php echo $url;?>" />
 		<?php }?>
 
 		<?php
@@ -69,17 +67,6 @@
 			    })(jQuery);
 		    </script>
 		<?php } ?>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTVWT56Q5C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DTVWT56Q5C');
-</script>
-	
-<script data-ad-client="ca-pub-9506973153572738" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 	<body <?php body_class(); ?>>
 		<?php get_template_part('nav','header');?>

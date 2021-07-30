@@ -67,6 +67,7 @@ foreach($list->find('li') as $li) {
            import_film($args);
         }
         $count ++;
+        die('111');
 
     }
 }

@@ -12,7 +12,7 @@
 						$url =  $image[0];
 					}
 					?>
-						<img src="<?php echo $url;?>" alt="yifysubtitles.top Subtitles - Subtitle Download | Subscene | Yify Subtitles | Opensubtitles | Yts Subtitles">
+						<img src="<?php echo $url;?>" alt="YIFY YTS Subtitles - Subtitle Download | Subscene | Yify Subtitles | Opensubtitles | Yts Subtitles">
 					</a>
 
 				</div>

@@ -98,3 +98,23 @@ function manual_film_debug(){
 
 }
 // add_action('wp_footer','manual_film_debug');
+
+function debug_import_thumbnail(){
+	$url = "https://img.yts.mx/assets/images/movies/a_thin_line_between_love_and_hate_1996/medium-cover.jpg";
+	require_once( ABSPATH . 'wp-admin/includes/file.php' );
+	$timeout_seconds = 5;
+	// Download file to temp dir
+	$temp_file = download_url( $url, $timeout_seconds );
+	echo '<pre>';
+	var_dump($temp_file);
+	echo '</pre>';
+	if( is_wp_error($temp_file) ){
+		$url = str_replace("https://", "http://", $url);
+        $temp_file = download_url( $url, $timeout_seconds );
+        if( is_wp_error($temp_file) ){
+           // crawl_log('Insert thumbnail fail. URL: '.$url.'. Error:'.$temp_file->get_error_message());
+            return false;
+        }
+	}
+}
+// add_action('wp_footer','debug_import_thumbnail');

@@ -1,5 +1,6 @@
 <?php
-
+use FastSimpleHTMLDom\Document;
+use FastSimpleHTMLDom\Element;
 function crawl_log($input, $file_store = ''){
 	$file_store = WP_CONTENT_DIR.'/log.css';
 	if( is_array( $input ) || is_object( $input ) ){
@@ -114,10 +115,11 @@ function import_subtitle_film($args, $film_id){
 		return false;
 	}
 	$sub_id = 0;
+	$sub_slug = $args['m_sub_slug'];
 	$data = array(
 		'import'              => 'subtitle',
         'sub_id'              =>  $sub_id,
-        'sub_slug'            =>$args['m_sub_slug'],
+        'sub_slug'            => $sub_slug,
 		'source'              => home_url(),
 	);
 
@@ -126,7 +128,29 @@ function import_subtitle_film($args, $film_id){
        	if( isset($res->url) && !empty($res->url) ){
        		$args['sub_zip_url'] = $res->url;
        		$sub_id = crawl_insert_subtitle($args, $film_id);
-			//update_substile_zip($sub_id, $res->url);
+		} else {
+			crawl_log('Reupload zip.');
+
+			$opts 		= array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
+			$context 	= stream_context_create($opts);
+			$sub_url 	= "https://yifysubtitles.org/subtitles/".$sub_slug;
+		  	$html 		= file_get_contents($sub_url, false, $context);
+			$document 	= new Document($html);
+			$node 		= $document->find('.download-subtitle');
+			$btn_html 	= $node->innerHtml();
+			$document 	= new Document($btn_html);
+			$node 		= $document->getDocument()->documentElement;
+			$element 	= new Element($node);
+			$zip_url 	= $element->href; // /subtitle/tom-clancys-without-remorse-2021-albanian-yify-330879.zip"
+			$zip_slug 	= substr($zip_url, 10); // tom-clancys-without-remorse-2021-albanian-yify-330879.zip // remove /subtitle/
+			$zip_slug 	= substr($zip_slug, 0, -4); // tom-clancys-without-remorse-2021-albanian-yify-330879 remove .zip
+
+			$data['sub_slug'] = $zip_slug;
+			$res   = sendSubtileRequest($data);
+			if( isset($res->url) && !empty($res->url) ){
+				$args['sub_zip_url'] = $res->url;
+				$sub_id = crawl_insert_subtitle($args, $film_id);
+			}
 		}
     } catch (Exception $e) {
 
