@@ -1,54 +1,10 @@
-
-
-<?php
-
-
-$args = array(
-    'post_type'  		=> 'film',
-    'meta_key'   		=> 'number_subtitles',
-    'orderby' 	 		=>' meta_value_num date',
-    'order'      		=> 'DESC',
-    'posts_per_page' 	=> 10,
-);
-$popular = new WP_Query( $args );
-?>
 <div class="col-md-4">
-
 	<?php if ( is_active_sidebar( 'home-sidebar' ) ) { ?>
-    <ul id="sidebar">
-        <?php dynamic_sidebar('home-sidebar'); ?>
-    </ul>
+
+    <?php dynamic_sidebar('home-sidebar'); ?>
+
 	<?php } ?>
 
-	<h4 class="section-title">Popular</h4>
-	<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">
-		<?php
-
-		if($popular->have_posts() ){
-			while ($popular->have_posts()) {
-				$popular->the_post();
-				global $post;
-
-				$film_id = $post->ID;
-				$year_release  	= get_post_meta($film_id,'year_release', true);
-				$movie_genre 	= get_post_meta($film_id,'movie_genre', true);
-				$thumbnail_url 	= get_the_post_thumbnail_url($film_id);
-				$number_subtitles = get_post_meta($film_id,'number_subtitles', true);
-				?>
-				<li class="media media-movie-clickable mmc-tiny film-id-<?php echo $post->ID;?> ">
-					<div class="media-left media-middle"> <a href="<?php the_permalink();?>" itemprop="url"> <img class="media-object" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" height="42" itemprop="image"> </a> </div>
-					<div class="media-body">
-					 	<a href="<?php the_permalink();?>">
-							<h5 class="media-heading" itemprop="name"><?php the_title();?>(<?php echo $year_release;?>)</h5>
-							<small itemprop="genre"><?php echo $movie_genre;?></small>
-					</a>
-					</div>
-				</li>
-				<?php
-			}
-		}?>
-
-	</ul>
 	<h4 class="section-title">Genre</h4>
 	<ul class="list-group row default-list">
 	<?php
@@ -85,3 +41,47 @@ $popular = new WP_Query( $args );
 	<?php } ?>
 
 </div>
+
+	<!--
+	<h4 class="section-title">Popular</h4>
+	<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">
+		!-->
+		<?php
+		/*
+		$args = array(
+		    'post_type'  		=> 'film',
+		    'meta_key'   		=> 'number_subtitles',
+		    'orderby' 	 		=>' meta_value_num date',
+		    'order'      		=> 'DESC',
+		    'posts_per_page' 	=> 10,
+		);
+		$popular = new WP_Query( $args );
+		if($popular->have_posts() ){
+			while ($popular->have_posts()) {
+				$popular->the_post();
+				global $post;
+
+				$film_id = $post->ID;
+				$year_release  	= get_post_meta($film_id,'year_release', true);
+				$movie_genre 	= get_post_meta($film_id,'movie_genre', true);
+				$thumbnail_url 	= get_the_post_thumbnail_url($film_id);
+				$number_subtitles = get_post_meta($film_id,'number_subtitles', true);
+				*/
+				?>
+				<!--
+				<li class="media media-movie-clickable mmc-tiny film-id-<?php echo $post->ID;?> ">
+					<div class="media-left media-middle"> <a href="<?php the_permalink();?>" itemprop="url"> <img class="media-object" src="<?php echo $thumbnail_url;?>" alt="<?php the_title();?>" height="42" itemprop="image"> </a> </div>
+					<div class="media-body">
+					 	<a href="<?php the_permalink();?>">
+							<h5 class="media-heading" itemprop="name"><?php the_title();?>(<?php echo $year_release;?>)</h5>
+							<small itemprop="genre"><?php echo $movie_genre;?></small>
+					</a>
+					</div>
+				</li>
+				!-->
+
+				<?php
+			//}
+		//}?>
+
+	<!-- </ul> !-->

@@ -11,7 +11,7 @@ $args = array(
 		array(
             'key'     => 'is_crawled_sub', // is_full_updated
             'value'   => 0, // notyet
-            'compare' => '>',
+            //'compare' => '>',
 
 		),
 		array(
