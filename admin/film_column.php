@@ -26,7 +26,7 @@ function show_crawl_status($name) {
            break;
         case 'crawl_status':
             global $wpdb;
-          	$is_full_update = get_post_meta($post->ID,'is_crawled_sub', 0);
+          	$is_full_update = get_post_meta($post->ID,'is_crawled_sub', true);
 
           	if( (int) $is_full_update > 1 || $is_full_update == 'done'){
           		echo "Yes - ";

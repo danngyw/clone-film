@@ -79,8 +79,6 @@ function get_recent_films(){
 	// echo '<pre>';
 	// var_dump($args);
 	// echo '</pre>';
-	
-	
 	$query = new WP_Query($args);
 	if($query->have_posts()){
 		echo '<ul class="media-list" itemscope="" itemtype="http://schema.org/Movie">';
@@ -94,22 +92,12 @@ function get_recent_films(){
 		echo '</ul>';
 	} else {
 		echo 'No Post Found';
-	}?>
-
-	<?php
+	}
+	wp_reset_query();
 	if( function_exists('wp_pagenavi') ):
 		wp_pagenavi( array( 'query' => $query) );
 	endif;
-
-
-	// $big = 9999;
-	// echo paginate_links( array(
-	// 'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-	// 'format' => '?paged=%#%',  // or   '/paged=%#%',  // if using pretty permalink
-	// 'current' => max( 1, get_query_var('paged') ),
-	// 'total' => $query->max_num_pages ) );
-
-                   ?>
+	?>
 
 
 	<div id="movie-browser-paginate" class="dataTables_paginate paging_simple_numbers"> </div>
